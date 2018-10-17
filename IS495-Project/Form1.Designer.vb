@@ -22,10 +22,30 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container()
+        Me.lblMichaelReinders = New System.Windows.Forms.Label()
+        Me.SuspendLayout()
+        '
+        'lblMichaelReinders
+        '
+        Me.lblMichaelReinders.AutoSize = True
+        Me.lblMichaelReinders.Location = New System.Drawing.Point(13, 13)
+        Me.lblMichaelReinders.Name = "lblMichaelReinders"
+        Me.lblMichaelReinders.Size = New System.Drawing.Size(121, 17)
+        Me.lblMichaelReinders.TabIndex = 0
+        Me.lblMichaelReinders.Text = "Michael Reinders "
+        '
+        'Form1
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.lblMichaelReinders)
+        Me.Name = "Form1"
         Me.Text = "Form1"
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
     End Sub
 
+    Friend WithEvents lblMichaelReinders As Label
 End Class
