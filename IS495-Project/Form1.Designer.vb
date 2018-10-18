@@ -22,18 +22,18 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lblMichaelReinders = New System.Windows.Forms.Label()
+        Me.lblMichaelHendrickReinders = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'lblMichaelReinders
+        'lblMichaelHendrickReinders
         '
-        Me.lblMichaelReinders.AutoSize = True
-        Me.lblMichaelReinders.Location = New System.Drawing.Point(13, 14)
-        Me.lblMichaelReinders.Name = "lblMichaelReinders"
-        Me.lblMichaelReinders.Size = New System.Drawing.Size(135, 17)
-        Me.lblMichaelReinders.TabIndex = 0
-        Me.lblMichaelReinders.Text = "Michael H Reinders "
+        Me.lblMichaelHendrickReinders.AutoSize = True
+        Me.lblMichaelHendrickReinders.Location = New System.Drawing.Point(13, 14)
+        Me.lblMichaelHendrickReinders.Name = "lblMichaelHendrickReinders"
+        Me.lblMichaelHendrickReinders.Size = New System.Drawing.Size(181, 17)
+        Me.lblMichaelHendrickReinders.TabIndex = 0
+        Me.lblMichaelHendrickReinders.Text = "Michael Hendrick Reinders "
         '
         'Label1
         '
@@ -51,7 +51,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.lblMichaelReinders)
+        Me.Controls.Add(Me.lblMichaelHendrickReinders)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "Form1"
         Me.Text = "Form1"
@@ -60,6 +60,6 @@ Partial Class Form1
 
     End Sub
 
-    Friend WithEvents lblMichaelReinders As Label
+    Friend WithEvents lblMichaelHendrickReinders As Label
     Friend WithEvents Label1 As Label
 End Class
