@@ -24,35 +24,46 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.lblMichaelHendrickReinders = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblChrisName = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'lblMichaelHendrickReinders
         '
         Me.lblMichaelHendrickReinders.AutoSize = True
-        Me.lblMichaelHendrickReinders.Location = New System.Drawing.Point(13, 14)
+        Me.lblMichaelHendrickReinders.Location = New System.Drawing.Point(10, 11)
+        Me.lblMichaelHendrickReinders.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblMichaelHendrickReinders.Name = "lblMichaelHendrickReinders"
-        Me.lblMichaelHendrickReinders.Size = New System.Drawing.Size(181, 17)
+        Me.lblMichaelHendrickReinders.Size = New System.Drawing.Size(138, 13)
         Me.lblMichaelHendrickReinders.TabIndex = 0
         Me.lblMichaelHendrickReinders.Text = "Michael Hendrick Reinders "
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(17, 34)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(13, 28)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(93, 17)
+        Me.Label1.Size = New System.Drawing.Size(72, 13)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Steven Rubio"
         '
+        'lblChrisName
+        '
+        Me.lblChrisName.AutoSize = True
+        Me.lblChrisName.Location = New System.Drawing.Point(12, 51)
+        Me.lblChrisName.Name = "lblChrisName"
+        Me.lblChrisName.Size = New System.Drawing.Size(116, 13)
+        Me.lblChrisName.TabIndex = 2
+        Me.lblChrisName.Text = "Christopher Edison Lee"
+        '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(600, 366)
+        Me.Controls.Add(Me.lblChrisName)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblMichaelHendrickReinders)
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
@@ -62,4 +73,5 @@ Partial Class Form1
 
     Friend WithEvents lblMichaelHendrickReinders As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents lblChrisName As Label
 End Class
