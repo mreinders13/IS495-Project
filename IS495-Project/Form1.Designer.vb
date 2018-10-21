@@ -25,6 +25,7 @@ Partial Class Form1
         Me.lblMichaelHendrickReinders = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblChrisName = New System.Windows.Forms.Label()
+        Me.lblJenTruong = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'lblMichaelHendrickReinders
@@ -55,15 +56,25 @@ Partial Class Form1
         Me.lblChrisName.TabIndex = 2
         Me.lblChrisName.Text = "Christopher Edison Lee"
         '
+        'lblJenTruong
+        '
+        Me.lblJenTruong.AutoSize = True
+        Me.lblJenTruong.Location = New System.Drawing.Point(13, 78)
+        Me.lblJenTruong.Name = "lblJenTruong"
+        Me.lblJenTruong.Size = New System.Drawing.Size(81, 13)
+        Me.lblJenTruong.TabIndex = 3
+        Me.lblJenTruong.Text = "Jennifer Truong"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(600, 366)
+        Me.Controls.Add(Me.lblJenTruong)
         Me.Controls.Add(Me.lblChrisName)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblMichaelHendrickReinders)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
@@ -74,4 +85,5 @@ Partial Class Form1
     Friend WithEvents lblMichaelHendrickReinders As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents lblChrisName As Label
+    Friend WithEvents lblJenTruong As Label
 End Class
