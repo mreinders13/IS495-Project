@@ -24,30 +24,61 @@ Partial Class frmUsername
     Private Sub InitializeComponent()
         Me.txtUsername = New System.Windows.Forms.TextBox()
         Me.btnEntrySubmit = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtCurrentSemester = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'txtUsername
         '
-        Me.txtUsername.Location = New System.Drawing.Point(12, 12)
+        Me.txtUsername.Location = New System.Drawing.Point(73, 6)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(100, 20)
+        Me.txtUsername.Size = New System.Drawing.Size(121, 20)
         Me.txtUsername.TabIndex = 0
         '
         'btnEntrySubmit
         '
-        Me.btnEntrySubmit.Location = New System.Drawing.Point(12, 38)
+        Me.btnEntrySubmit.Location = New System.Drawing.Point(12, 58)
         Me.btnEntrySubmit.Name = "btnEntrySubmit"
-        Me.btnEntrySubmit.Size = New System.Drawing.Size(75, 23)
+        Me.btnEntrySubmit.Size = New System.Drawing.Size(182, 23)
         Me.btnEntrySubmit.TabIndex = 1
-        Me.btnEntrySubmit.Text = "Button1"
+        Me.btnEntrySubmit.Text = "Submit and Continue"
         Me.btnEntrySubmit.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.btnEntrySubmit.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(16, 35)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(51, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Semester"
+        '
+        'txtCurrentSemester
+        '
+        Me.txtCurrentSemester.Location = New System.Drawing.Point(73, 32)
+        Me.txtCurrentSemester.Name = "txtCurrentSemester"
+        Me.txtCurrentSemester.Size = New System.Drawing.Size(121, 20)
+        Me.txtCurrentSemester.TabIndex = 5
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 9)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(55, 13)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Username"
         '
         'frmUsername
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 261)
+        Me.ClientSize = New System.Drawing.Size(211, 96)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.txtCurrentSemester)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnEntrySubmit)
         Me.Controls.Add(Me.txtUsername)
         Me.Name = "frmUsername"
@@ -59,4 +90,7 @@ Partial Class frmUsername
 
     Friend WithEvents txtUsername As TextBox
     Friend WithEvents btnEntrySubmit As Button
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txtCurrentSemester As TextBox
+    Friend WithEvents Label3 As Label
 End Class

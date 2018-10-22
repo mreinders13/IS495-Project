@@ -26,6 +26,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblChrisName = New System.Windows.Forms.Label()
         Me.lblJenTruong = New System.Windows.Forms.Label()
+        Me.btnOpenProj = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblMichaelHendrickReinders
@@ -65,11 +66,21 @@ Partial Class Form1
         Me.lblJenTruong.TabIndex = 3
         Me.lblJenTruong.Text = "Jennifer Truong"
         '
+        'btnOpenProj
+        '
+        Me.btnOpenProj.Location = New System.Drawing.Point(52, 128)
+        Me.btnOpenProj.Name = "btnOpenProj"
+        Me.btnOpenProj.Size = New System.Drawing.Size(440, 90)
+        Me.btnOpenProj.TabIndex = 4
+        Me.btnOpenProj.Text = "GO TO PROJECT"
+        Me.btnOpenProj.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(600, 366)
+        Me.Controls.Add(Me.btnOpenProj)
         Me.Controls.Add(Me.lblJenTruong)
         Me.Controls.Add(Me.lblChrisName)
         Me.Controls.Add(Me.Label1)
@@ -86,4 +97,5 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents lblChrisName As Label
     Friend WithEvents lblJenTruong As Label
+    Friend WithEvents btnOpenProj As Button
 End Class
