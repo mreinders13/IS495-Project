@@ -9,7 +9,7 @@
         End Get
     End Property
 
-    Public Shared Sub SetClientUserName(argCurrentSemester As String)
+    Public Shared Sub SetCurrentSemester(argCurrentSemester As String)
         CurrentSemester = argCurrentSemester
     End Sub
 End Class
