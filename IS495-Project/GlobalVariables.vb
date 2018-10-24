@@ -1,6 +1,7 @@
 ﻿Public Class GlobalVariables
     Public Shared CurrentSemester As String = Nothing
     Public Shared SourceFilePath As String = Nothing
+    Public Shared CurrentUsername As String = Nothing
 
     Private Sub New()
     End Sub
@@ -26,4 +27,14 @@
     Public Shared Sub SetSourceFilePath(argSourceFilePath As String)
         SourceFilePath = argSourceFilePath
     End Sub
+
+    Public Shared Sub SetCurrentUsername(argCurrentUsername As String)
+        CurrentUsername = argCurrentUsername
+    End Sub
+
+    Public Shared ReadOnly Property GetCurrentUsername() As String
+        Get
+            Return CurrentUsername
+        End Get
+    End Property
 End Class
