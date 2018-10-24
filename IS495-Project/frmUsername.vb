@@ -7,6 +7,8 @@
 
             If GlobalVariables.GetCurrentSemester <> "" Then
                 'Open Next Window
+                Dim frm2 = New frmDisplayStudent
+                frm2.Show()
             Else
                 MessageBox.Show("Please provide the semester that you will be working with.")
             End If
