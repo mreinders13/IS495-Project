@@ -27,20 +27,23 @@ Partial Class frmUsername
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtCurrentSemester = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.ofdOpenFile = New System.Windows.Forms.OpenFileDialog()
+        Me.btnOpenFileDialog = New System.Windows.Forms.Button()
+        Me.lblFilePath_Prompt = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'txtUsername
         '
         Me.txtUsername.Location = New System.Drawing.Point(73, 6)
         Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(121, 20)
+        Me.txtUsername.Size = New System.Drawing.Size(203, 20)
         Me.txtUsername.TabIndex = 0
         '
         'btnEntrySubmit
         '
-        Me.btnEntrySubmit.Location = New System.Drawing.Point(12, 58)
+        Me.btnEntrySubmit.Location = New System.Drawing.Point(12, 81)
         Me.btnEntrySubmit.Name = "btnEntrySubmit"
-        Me.btnEntrySubmit.Size = New System.Drawing.Size(182, 23)
+        Me.btnEntrySubmit.Size = New System.Drawing.Size(529, 23)
         Me.btnEntrySubmit.TabIndex = 1
         Me.btnEntrySubmit.Text = "Submit and Continue"
         Me.btnEntrySubmit.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
@@ -49,7 +52,7 @@ Partial Class frmUsername
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 35)
+        Me.Label1.Location = New System.Drawing.Point(282, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(51, 13)
         Me.Label1.TabIndex = 2
@@ -57,9 +60,9 @@ Partial Class frmUsername
         '
         'txtCurrentSemester
         '
-        Me.txtCurrentSemester.Location = New System.Drawing.Point(73, 32)
+        Me.txtCurrentSemester.Location = New System.Drawing.Point(339, 6)
         Me.txtCurrentSemester.Name = "txtCurrentSemester"
-        Me.txtCurrentSemester.Size = New System.Drawing.Size(121, 20)
+        Me.txtCurrentSemester.Size = New System.Drawing.Size(203, 20)
         Me.txtCurrentSemester.TabIndex = 5
         '
         'Label3
@@ -71,11 +74,31 @@ Partial Class frmUsername
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Username"
         '
+        'btnOpenFileDialog
+        '
+        Me.btnOpenFileDialog.Location = New System.Drawing.Point(12, 32)
+        Me.btnOpenFileDialog.Name = "btnOpenFileDialog"
+        Me.btnOpenFileDialog.Size = New System.Drawing.Size(99, 23)
+        Me.btnOpenFileDialog.TabIndex = 7
+        Me.btnOpenFileDialog.Text = "Select a file"
+        Me.btnOpenFileDialog.UseVisualStyleBackColor = True
+        '
+        'lblFilePath_Prompt
+        '
+        Me.lblFilePath_Prompt.AutoSize = True
+        Me.lblFilePath_Prompt.Location = New System.Drawing.Point(117, 37)
+        Me.lblFilePath_Prompt.Name = "lblFilePath_Prompt"
+        Me.lblFilePath_Prompt.Size = New System.Drawing.Size(126, 13)
+        Me.lblFilePath_Prompt.TabIndex = 8
+        Me.lblFilePath_Prompt.Text = "No file currently selected."
+        '
         'frmUsername
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(211, 96)
+        Me.ClientSize = New System.Drawing.Size(556, 116)
+        Me.Controls.Add(Me.lblFilePath_Prompt)
+        Me.Controls.Add(Me.btnOpenFileDialog)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtCurrentSemester)
         Me.Controls.Add(Me.Label1)
@@ -93,4 +116,7 @@ Partial Class frmUsername
     Friend WithEvents Label1 As Label
     Friend WithEvents txtCurrentSemester As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents ofdOpenFile As OpenFileDialog
+    Friend WithEvents btnOpenFileDialog As Button
+    Friend WithEvents lblFilePath_Prompt As Label
 End Class
