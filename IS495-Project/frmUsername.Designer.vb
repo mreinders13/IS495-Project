@@ -27,7 +27,7 @@ Partial Class frmUsername
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtCurrentSemester = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.ofdOpenFile = New System.Windows.Forms.OpenFileDialog()
+        Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.btnOpenFileDialog = New System.Windows.Forms.Button()
         Me.lblFilePath_Prompt = New System.Windows.Forms.Label()
         Me.SuspendLayout()
@@ -116,7 +116,7 @@ Partial Class frmUsername
     Friend WithEvents Label1 As Label
     Friend WithEvents txtCurrentSemester As TextBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents ofdOpenFile As OpenFileDialog
+    Friend WithEvents OpenFileDialog As OpenFileDialog
     Friend WithEvents btnOpenFileDialog As Button
     Friend WithEvents lblFilePath_Prompt As Label
 End Class

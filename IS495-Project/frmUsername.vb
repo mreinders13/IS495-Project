@@ -25,10 +25,10 @@
     End Sub
 
     Private Sub btnOpenFileDialog_Click(sender As Object, e As EventArgs) Handles btnOpenFileDialog.Click
-        Dim Result As DialogResult = ofdOpenFile.ShowDialog()
+        Dim Result As DialogResult = OpenFileDialog.ShowDialog()
 
         If Result = Windows.Forms.DialogResult.OK Then
-            Dim FilePath As String = ofdOpenFile.FileName
+            Dim FilePath As String = OpenFileDialog.FileName
 
             GlobalVariables.SetSourceFilePath(FilePath)
 
