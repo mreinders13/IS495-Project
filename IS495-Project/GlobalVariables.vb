@@ -28,6 +28,7 @@
         SourceFilePath = argSourceFilePath
     End Sub
 
+    'Username stuff (Task 1.0)
     Public Shared Sub SetCurrentUsername(argCurrentUsername As String)
         CurrentUsername = argCurrentUsername
     End Sub
