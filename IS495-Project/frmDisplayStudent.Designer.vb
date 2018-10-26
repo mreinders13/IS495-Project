@@ -26,14 +26,16 @@ Partial Class frmDisplayStudent
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.lblStudentName = New System.Windows.Forms.Label()
         Me.lblStudentNSHE = New System.Windows.Forms.Label()
+        Me.btnAccept = New System.Windows.Forms.Button()
+        Me.btnDeny = New System.Windows.Forms.Button()
+        Me.btnBridge = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnSaveData
         '
-        Me.btnSaveData.Location = New System.Drawing.Point(217, 392)
-        Me.btnSaveData.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSaveData.Location = New System.Drawing.Point(163, 318)
         Me.btnSaveData.Name = "btnSaveData"
-        Me.btnSaveData.Size = New System.Drawing.Size(100, 28)
+        Me.btnSaveData.Size = New System.Drawing.Size(75, 23)
         Me.btnSaveData.TabIndex = 0
         Me.btnSaveData.Text = "Save"
         Me.btnSaveData.UseVisualStyleBackColor = True
@@ -41,30 +43,63 @@ Partial Class frmDisplayStudent
         'lblStudentName
         '
         Me.lblStudentName.AutoSize = True
-        Me.lblStudentName.Location = New System.Drawing.Point(12, 9)
+        Me.lblStudentName.Location = New System.Drawing.Point(9, 7)
+        Me.lblStudentName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblStudentName.Name = "lblStudentName"
-        Me.lblStudentName.Size = New System.Drawing.Size(106, 17)
+        Me.lblStudentName.Size = New System.Drawing.Size(81, 13)
         Me.lblStudentName.TabIndex = 1
         Me.lblStudentName.Text = "Student Name: "
         '
         'lblStudentNSHE
         '
         Me.lblStudentNSHE.AutoSize = True
-        Me.lblStudentNSHE.Location = New System.Drawing.Point(12, 36)
+        Me.lblStudentNSHE.Location = New System.Drawing.Point(9, 29)
+        Me.lblStudentNSHE.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblStudentNSHE.Name = "lblStudentNSHE"
-        Me.lblStudentNSHE.Size = New System.Drawing.Size(115, 17)
+        Me.lblStudentNSHE.Size = New System.Drawing.Size(90, 13)
         Me.lblStudentNSHE.TabIndex = 2
         Me.lblStudentNSHE.Text = "Student NSHE#: "
         '
+        'btnAccept
+        '
+        Me.btnAccept.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert
+        Me.btnAccept.Location = New System.Drawing.Point(80, 280)
+        Me.btnAccept.Name = "btnAccept"
+        Me.btnAccept.Size = New System.Drawing.Size(75, 23)
+        Me.btnAccept.TabIndex = 3
+        Me.btnAccept.Text = "Accept"
+        Me.btnAccept.UseVisualStyleBackColor = True
+        '
+        'btnDeny
+        '
+        Me.btnDeny.Location = New System.Drawing.Point(246, 280)
+        Me.btnDeny.Name = "btnDeny"
+        Me.btnDeny.Size = New System.Drawing.Size(75, 23)
+        Me.btnDeny.TabIndex = 4
+        Me.btnDeny.Text = "Deny"
+        Me.btnDeny.UseVisualStyleBackColor = True
+        '
+        'btnBridge
+        '
+        Me.btnBridge.Location = New System.Drawing.Point(163, 280)
+        Me.btnBridge.Name = "btnBridge"
+        Me.btnBridge.Size = New System.Drawing.Size(75, 23)
+        Me.btnBridge.TabIndex = 5
+        Me.btnBridge.Text = "Bridge"
+        Me.btnBridge.UseVisualStyleBackColor = True
+        '
         'frmDisplayStudent
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(648, 638)
+        Me.ClientSize = New System.Drawing.Size(486, 518)
+        Me.Controls.Add(Me.btnBridge)
+        Me.Controls.Add(Me.btnDeny)
+        Me.Controls.Add(Me.btnAccept)
         Me.Controls.Add(Me.lblStudentNSHE)
         Me.Controls.Add(Me.lblStudentName)
         Me.Controls.Add(Me.btnSaveData)
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frmDisplayStudent"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
@@ -76,4 +111,7 @@ Partial Class frmDisplayStudent
     Friend WithEvents SaveFileDialog As SaveFileDialog
     Friend WithEvents lblStudentName As Label
     Friend WithEvents lblStudentNSHE As Label
+    Friend WithEvents btnAccept As Button
+    Friend WithEvents btnDeny As Button
+    Friend WithEvents btnBridge As Button
 End Class
