@@ -7,6 +7,23 @@
     Dim Status, Accepted, Denied, Bridged As String
     Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
 
+    Private Sub btnPrevStudent_Click(sender As Object, e As EventArgs) Handles btnPrevStudent.Click
+        'load the previous student 
+    End Sub
+
+    Private Sub btnNextStudent_Click(sender As Object, e As EventArgs) Handles btnNextStudent.Click
+        'load the next student
+        If (Counter + 1) < studentList.Count Then
+            Counter = Counter + 1
+            lblStudentName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
+            lblStudentNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
+
+        Else
+            MessageBox.Show("End of List")
+
+        End If
+    End Sub
+
     Private Sub btnSaveData_Click(sender As Object, e As EventArgs) Handles btnSaveData.Click
 
     End Sub
