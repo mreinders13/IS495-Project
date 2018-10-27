@@ -9,6 +9,15 @@
 
     Private Sub btnPrevStudent_Click(sender As Object, e As EventArgs) Handles btnPrevStudent.Click
         'load the previous student 
+        If (Counter - 1) > 0 Then
+            Counter = Counter - 1
+            lblStudentName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
+            lblStudentNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
+
+        Else
+            MessageBox.Show("This is the beginning of the list")
+
+        End If
     End Sub
 
     Private Sub btnNextStudent_Click(sender As Object, e As EventArgs) Handles btnNextStudent.Click
