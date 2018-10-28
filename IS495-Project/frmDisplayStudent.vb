@@ -4,8 +4,8 @@
     'set counter to 1 before loop begins
     Dim Counter As Int16 = 1
     'status variables
-    Dim Status, Accepted, Denied, Bridged As String
-    Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
+    'Dim Status, Accepted, Denied, Bridged As String
+    'Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
 
     Private Sub btnPrevStudent_Click(sender As Object, e As EventArgs) Handles btnPrevStudent.Click
         'load the previous student 
@@ -275,7 +275,7 @@
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
         'Save Accept decision
-        Status = Accepted
+        studentList(Counter).Status = "Accepted"
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionAccept = True
         'DecisionDeny = False
@@ -285,7 +285,7 @@
 
     Private Sub btnBridge_Click(sender As Object, e As EventArgs) Handles btnBridge.Click
         'Save Bridge Decision
-        Status = Bridged
+        studentList(Counter).Status = "Bridged"
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionBridge = True
         'DecisionAccept = False
@@ -295,7 +295,7 @@
 
     Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
         'Save Deny Decision 
-        Status = Denied
+        studentList(Counter).Status = "Denied"
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionBridge = False
         'DecisionAccept = False
