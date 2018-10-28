@@ -34,7 +34,63 @@
     End Sub
 
     Private Sub btnSaveData_Click(sender As Object, e As EventArgs) Handles btnSaveData.Click
+        'view save dialog
+        Dim result As DialogResult = SaveFileDialog.ShowDialog()
+        'check filepath to save to
+        If result = Windows.Forms.DialogResult.OK Then
+            Dim csvFile As String = SaveFileDialog.FileName
+            Dim saveCounter As Int16 = 0
 
+            Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
+            While saveCounter < studentList.Count
+                outFile.WriteLine(studentList(saveCounter).Time.ToString() + "," + studentList(saveCounter).First.ToString() + "," +
+                                  studentList(saveCounter).Last.ToString() + "," + studentList(saveCounter).NSHE.ToString() +
+                                  "," + studentList(saveCounter).Phone.ToString() + "," + studentList(saveCounter).Email.ToString() +
+                                  "," + studentList(saveCounter).Majors.ToString() +
+                                  "," + studentList(saveCounter).InternationalBusiness.ToString() +
+                                  "," + studentList(saveCounter).Regional.ToString() +
+                                  "," + studentList(saveCounter).Acc201.ToString() +
+                                  "," + studentList(saveCounter).Acc202.ToString() +
+                                  "," + studentList(saveCounter).Econ102.ToString() +
+                                  "," + studentList(saveCounter).Econ103.ToString() +
+                                  "," + studentList(saveCounter).Econ261.ToString() +
+                                  "," + studentList(saveCounter).Econ262.ToString() +
+                                  "," + studentList(saveCounter).IS101.ToString() +
+                                  "," + studentList(saveCounter).Math176.ToString() +
+                                  "," + studentList(saveCounter).Mkt210.ToString() +
+                                  "," + studentList(saveCounter).Econ102_2.ToString() +
+                                  "," + studentList(saveCounter).Econ103_2.ToString() +
+                                  "," + studentList(saveCounter).Econ261_2.ToString() +
+                                  "," + studentList(saveCounter).Econ262_2.ToString() +
+                                  "," + studentList(saveCounter).IS101_2.ToString() +
+                                  "," + studentList(saveCounter).Math176_2.ToString() +
+                                  "," + studentList(saveCounter).ToBeCompleted.ToString() +
+                                  "," + studentList(saveCounter).GPA.ToString() +
+                                  "," + studentList(saveCounter).AdditionalInfo.ToString() +
+                                  "," + studentList(saveCounter).OtherInstitutions.ToString() +
+                                  "," + studentList(saveCounter).TranscriptsSubmitted.ToString() +
+                                  "," + studentList(saveCounter).TranscriptsUploaded.ToString() +
+                                  "," + studentList(saveCounter).DeclarationDay.ToString() +
+                                  "," + studentList(saveCounter).DeclarationDayConflicts.ToString() +
+                                  "," + studentList(saveCounter).EmailConfirmation.ToString() +
+                                  "," + studentList(saveCounter).Understand.ToString() +
+                                  "," + studentList(saveCounter).FalseInfo.ToString() +
+                                  "," + studentList(saveCounter).ChangeMajorPDF.ToString() +
+                                  "," + studentList(saveCounter).Signature.ToString() +
+                                  "," + studentList(saveCounter).AppDate.ToString() +
+                                  "," + studentList(saveCounter).Browser.ToString() +
+                                  "," + studentList(saveCounter).ipAddress.ToString() +
+                                  "," + studentList(saveCounter).UniqueID.ToString() +
+                                  "," + studentList(saveCounter).Location.ToString() +
+                                  "," + studentList(saveCounter).Status.ToString())
+                saveCounter = saveCounter + 1
+            End While
+            outFile.Close()
+
+            Console.WriteLine(My.Computer.FileSystem.ReadAllText(csvFile))
+            MessageBox.Show("Save Successful")
+            Application.Exit()
+        End If
     End Sub
 
     Private Sub frmDisplayStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
