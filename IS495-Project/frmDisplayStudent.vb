@@ -7,6 +7,17 @@
     'Dim Status, Accepted, Denied, Bridged As String
     'Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
 
+
+    'I had something more like this in mind to keep track of the status. (Steven)
+    'Public Enum Status
+    '    Accepted
+    '    Denied
+    '    Bridged
+    'End Enum
+
+    'We should include the comments that students give in the interface.
+    'I remember the Client saying he only needed to see the FullName, NSHEID, and Comments.
+
     Private Sub btnPrevStudent_Click(sender As Object, e As EventArgs) Handles btnPrevStudent.Click
         'load the previous student 
         If (Counter - 1) > 0 Then
