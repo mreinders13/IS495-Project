@@ -50,7 +50,7 @@
         'check filepath to save to
         If result = Windows.Forms.DialogResult.OK Then
             Dim csvFile As String = SaveFileDialog.FileName
-            Dim saveCounter As Int16 = 0
+            Dim saveCounter As Int16 = 1
 
             Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
             While saveCounter < studentList.Count
@@ -243,6 +243,8 @@
         'Load values into the labels on the form
         lblStudentName.Text = "Student Name: " + studentList(Counter).First.ToString() + studentList(Counter).Last.ToString()
         lblStudentNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
+        lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
+        lblMajor.Text = "Student Major: " + studentList(Counter).Majors
     End Sub
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
