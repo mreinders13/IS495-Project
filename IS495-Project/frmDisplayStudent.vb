@@ -24,6 +24,10 @@
             Counter = Counter - 1
             lblName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
             lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
+            lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
+            lblMajor.Text = "Student Major: " + studentList(Counter).Majors
+            lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
+            lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
 
         Else
             MessageBox.Show("This is the beginning of the list")
@@ -37,6 +41,10 @@
             Counter = Counter + 1
             lblName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
             lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
+            lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
+            lblMajor.Text = "Student Major: " + studentList(Counter).Majors
+            lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
+            lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
 
         Else
             MessageBox.Show("End of List")
