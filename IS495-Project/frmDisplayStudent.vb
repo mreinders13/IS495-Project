@@ -22,8 +22,8 @@
         'load the previous student 
         If (Counter - 1) > 0 Then
             Counter = Counter - 1
-            lblStudentName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
-            lblStudentNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
+            lblName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
+            lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
 
         Else
             MessageBox.Show("This is the beginning of the list")
@@ -35,8 +35,8 @@
         'load the next student
         If (Counter + 1) < studentList.Count Then
             Counter = Counter + 1
-            lblStudentName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
-            lblStudentNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
+            lblName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
+            lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
 
         Else
             MessageBox.Show("End of List")
@@ -241,10 +241,12 @@
 
         End Try
         'Load values into the labels on the form
-        lblStudentName.Text = "Student Name: " + studentList(Counter).First.ToString() + studentList(Counter).Last.ToString()
-        lblStudentNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
+        lblName.Text = "Student Name: " + studentList(Counter).First.ToString() + studentList(Counter).Last.ToString()
+        lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
         lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
         lblMajor.Text = "Student Major: " + studentList(Counter).Majors
+        lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
+        lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
     End Sub
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
@@ -277,4 +279,6 @@
 
 
     End Sub
+
+
 End Class
