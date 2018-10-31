@@ -28,6 +28,15 @@
             lblMajor.Text = "Student Major: " + studentList(Counter).Majors
             lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
             lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
+            lblACC201.Text = "ACC201: " + studentList(Counter).Acc201
+            lblACC202.Text = "ACC202: " + studentList(Counter).Acc202
+            lblECON102.Text = "ECON102: " + studentList(Counter).Econ102
+            lblECON103.Text = "ECON103: " + studentList(Counter).Econ103
+            lblECON261.Text = "ECON261: " + studentList(Counter).Econ261
+            lblECON262.Text = "ECON262: " + studentList(Counter).Econ262
+            lblIS101.Text = "IS101: " + studentList(Counter).IS101
+            lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
+            lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
 
         Else
             MessageBox.Show("This is the beginning of the list")
@@ -45,6 +54,15 @@
             lblMajor.Text = "Student Major: " + studentList(Counter).Majors
             lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
             lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
+            lblACC201.Text = "ACC201: " + studentList(Counter).Acc201
+            lblACC202.Text = "ACC202: " + studentList(Counter).Acc202
+            lblECON102.Text = "ECON102: " + studentList(Counter).Econ102
+            lblECON103.Text = "ECON103: " + studentList(Counter).Econ103
+            lblECON261.Text = "ECON261: " + studentList(Counter).Econ261
+            lblECON262.Text = "ECON262: " + studentList(Counter).Econ262
+            lblIS101.Text = "IS101: " + studentList(Counter).IS101
+            lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
+            lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
 
         Else
             MessageBox.Show("End of List")
@@ -255,6 +273,15 @@
         lblMajor.Text = "Student Major: " + studentList(Counter).Majors
         lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
         lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
+        lblACC201.Text = "ACC201: " + studentList(Counter).Acc201
+        lblACC202.Text = "ACC202: " + studentList(Counter).Acc202
+        lblECON102.Text = "ECON102: " + studentList(Counter).Econ102
+        lblECON103.Text = "ECON103: " + studentList(Counter).Econ103
+        lblECON261.Text = "ECON261: " + studentList(Counter).Econ261
+        lblECON262.Text = "ECON262: " + studentList(Counter).Econ262
+        lblIS101.Text = "IS101: " + studentList(Counter).IS101
+        lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
+        lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
     End Sub
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click

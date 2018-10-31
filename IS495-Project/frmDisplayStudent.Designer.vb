@@ -35,6 +35,15 @@ Partial Class frmDisplayStudent
         Me.lblMajor = New System.Windows.Forms.Label()
         Me.lblInternationalBusiness = New System.Windows.Forms.Label()
         Me.lblComments = New System.Windows.Forms.Label()
+        Me.lblACC201 = New System.Windows.Forms.Label()
+        Me.lblACC202 = New System.Windows.Forms.Label()
+        Me.lblECON102 = New System.Windows.Forms.Label()
+        Me.lblECON103 = New System.Windows.Forms.Label()
+        Me.lblECON261 = New System.Windows.Forms.Label()
+        Me.lblECON262 = New System.Windows.Forms.Label()
+        Me.lblIS101 = New System.Windows.Forms.Label()
+        Me.lblMATH176 = New System.Windows.Forms.Label()
+        Me.lblMKT210 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnSaveData
@@ -145,18 +154,107 @@ Partial Class frmDisplayStudent
         '
         'lblComments
         '
-        Me.lblComments.AutoSize = True
         Me.lblComments.Location = New System.Drawing.Point(12, 144)
         Me.lblComments.Name = "lblComments"
-        Me.lblComments.Size = New System.Drawing.Size(135, 17)
+        Me.lblComments.Size = New System.Drawing.Size(305, 79)
         Me.lblComments.TabIndex = 11
         Me.lblComments.Text = "Student Comments: "
+        '
+        'lblACC201
+        '
+        Me.lblACC201.AutoSize = True
+        Me.lblACC201.Location = New System.Drawing.Point(348, 13)
+        Me.lblACC201.Name = "lblACC201"
+        Me.lblACC201.Size = New System.Drawing.Size(67, 17)
+        Me.lblACC201.TabIndex = 12
+        Me.lblACC201.Text = "ACC201: "
+        '
+        'lblACC202
+        '
+        Me.lblACC202.AutoSize = True
+        Me.lblACC202.Location = New System.Drawing.Point(348, 36)
+        Me.lblACC202.Name = "lblACC202"
+        Me.lblACC202.Size = New System.Drawing.Size(67, 17)
+        Me.lblACC202.TabIndex = 13
+        Me.lblACC202.Text = "ACC202: "
+        '
+        'lblECON102
+        '
+        Me.lblECON102.AutoSize = True
+        Me.lblECON102.Location = New System.Drawing.Point(348, 63)
+        Me.lblECON102.Name = "lblECON102"
+        Me.lblECON102.Size = New System.Drawing.Size(79, 17)
+        Me.lblECON102.TabIndex = 14
+        Me.lblECON102.Text = "ECON102: "
+        '
+        'lblECON103
+        '
+        Me.lblECON103.AutoSize = True
+        Me.lblECON103.Location = New System.Drawing.Point(348, 80)
+        Me.lblECON103.Name = "lblECON103"
+        Me.lblECON103.Size = New System.Drawing.Size(79, 17)
+        Me.lblECON103.TabIndex = 15
+        Me.lblECON103.Text = "ECON103: "
+        '
+        'lblECON261
+        '
+        Me.lblECON261.AutoSize = True
+        Me.lblECON261.Location = New System.Drawing.Point(348, 97)
+        Me.lblECON261.Name = "lblECON261"
+        Me.lblECON261.Size = New System.Drawing.Size(79, 17)
+        Me.lblECON261.TabIndex = 16
+        Me.lblECON261.Text = "ECON261: "
+        '
+        'lblECON262
+        '
+        Me.lblECON262.AutoSize = True
+        Me.lblECON262.Location = New System.Drawing.Point(348, 114)
+        Me.lblECON262.Name = "lblECON262"
+        Me.lblECON262.Size = New System.Drawing.Size(79, 17)
+        Me.lblECON262.TabIndex = 17
+        Me.lblECON262.Text = "ECON262: "
+        '
+        'lblIS101
+        '
+        Me.lblIS101.AutoSize = True
+        Me.lblIS101.Location = New System.Drawing.Point(351, 144)
+        Me.lblIS101.Name = "lblIS101"
+        Me.lblIS101.Size = New System.Drawing.Size(52, 17)
+        Me.lblIS101.TabIndex = 18
+        Me.lblIS101.Text = "IS101: "
+        '
+        'lblMATH176
+        '
+        Me.lblMATH176.AutoSize = True
+        Me.lblMATH176.Location = New System.Drawing.Point(348, 178)
+        Me.lblMATH176.Name = "lblMATH176"
+        Me.lblMATH176.Size = New System.Drawing.Size(79, 17)
+        Me.lblMATH176.TabIndex = 19
+        Me.lblMATH176.Text = "MATH176: "
+        '
+        'lblMKT210
+        '
+        Me.lblMKT210.AutoSize = True
+        Me.lblMKT210.Location = New System.Drawing.Point(348, 206)
+        Me.lblMKT210.Name = "lblMKT210"
+        Me.lblMKT210.Size = New System.Drawing.Size(69, 17)
+        Me.lblMKT210.TabIndex = 20
+        Me.lblMKT210.Text = "MKT210: "
         '
         'frmDisplayStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(648, 638)
+        Me.Controls.Add(Me.lblMKT210)
+        Me.Controls.Add(Me.lblMATH176)
+        Me.Controls.Add(Me.lblIS101)
+        Me.Controls.Add(Me.lblECON262)
+        Me.Controls.Add(Me.lblECON261)
+        Me.Controls.Add(Me.lblECON103)
+        Me.Controls.Add(Me.lblECON102)
+        Me.Controls.Add(Me.lblACC202)
+        Me.Controls.Add(Me.lblACC201)
         Me.Controls.Add(Me.lblComments)
         Me.Controls.Add(Me.lblInternationalBusiness)
         Me.Controls.Add(Me.lblMajor)
@@ -190,4 +288,13 @@ Partial Class frmDisplayStudent
     Friend WithEvents lblMajor As Label
     Friend WithEvents lblInternationalBusiness As Label
     Friend WithEvents lblComments As Label
+    Friend WithEvents lblACC201 As Label
+    Friend WithEvents lblACC202 As Label
+    Friend WithEvents lblECON102 As Label
+    Friend WithEvents lblECON103 As Label
+    Friend WithEvents lblECON261 As Label
+    Friend WithEvents lblECON262 As Label
+    Friend WithEvents lblIS101 As Label
+    Friend WithEvents lblMATH176 As Label
+    Friend WithEvents lblMKT210 As Label
 End Class
