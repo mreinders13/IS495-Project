@@ -162,82 +162,73 @@ Partial Class frmDisplayStudent
         '
         'lblACC201
         '
-        Me.lblACC201.AutoSize = True
         Me.lblACC201.Location = New System.Drawing.Point(348, 13)
         Me.lblACC201.Name = "lblACC201"
-        Me.lblACC201.Size = New System.Drawing.Size(67, 17)
+        Me.lblACC201.Size = New System.Drawing.Size(364, 77)
         Me.lblACC201.TabIndex = 12
         Me.lblACC201.Text = "ACC201: "
         '
         'lblACC202
         '
-        Me.lblACC202.AutoSize = True
         Me.lblACC202.Location = New System.Drawing.Point(348, 36)
         Me.lblACC202.Name = "lblACC202"
-        Me.lblACC202.Size = New System.Drawing.Size(67, 17)
+        Me.lblACC202.Size = New System.Drawing.Size(364, 77)
         Me.lblACC202.TabIndex = 13
         Me.lblACC202.Text = "ACC202: "
         '
         'lblECON102
         '
-        Me.lblECON102.AutoSize = True
         Me.lblECON102.Location = New System.Drawing.Point(348, 63)
         Me.lblECON102.Name = "lblECON102"
-        Me.lblECON102.Size = New System.Drawing.Size(79, 17)
+        Me.lblECON102.Size = New System.Drawing.Size(376, 77)
         Me.lblECON102.TabIndex = 14
         Me.lblECON102.Text = "ECON102: "
         '
         'lblECON103
         '
-        Me.lblECON103.AutoSize = True
-        Me.lblECON103.Location = New System.Drawing.Point(348, 80)
+        Me.lblECON103.Location = New System.Drawing.Point(348, 90)
         Me.lblECON103.Name = "lblECON103"
-        Me.lblECON103.Size = New System.Drawing.Size(79, 17)
+        Me.lblECON103.Size = New System.Drawing.Size(376, 77)
         Me.lblECON103.TabIndex = 15
         Me.lblECON103.Text = "ECON103: "
         '
         'lblECON261
         '
-        Me.lblECON261.AutoSize = True
-        Me.lblECON261.Location = New System.Drawing.Point(348, 97)
+        Me.lblECON261.Location = New System.Drawing.Point(348, 121)
         Me.lblECON261.Name = "lblECON261"
-        Me.lblECON261.Size = New System.Drawing.Size(79, 17)
+        Me.lblECON261.Size = New System.Drawing.Size(376, 77)
         Me.lblECON261.TabIndex = 16
         Me.lblECON261.Text = "ECON261: "
         '
         'lblECON262
         '
-        Me.lblECON262.AutoSize = True
-        Me.lblECON262.Location = New System.Drawing.Point(348, 114)
+        Me.lblECON262.Location = New System.Drawing.Point(348, 147)
         Me.lblECON262.Name = "lblECON262"
-        Me.lblECON262.Size = New System.Drawing.Size(79, 17)
+        Me.lblECON262.Size = New System.Drawing.Size(376, 77)
         Me.lblECON262.TabIndex = 17
         Me.lblECON262.Text = "ECON262: "
         '
         'lblIS101
         '
-        Me.lblIS101.AutoSize = True
-        Me.lblIS101.Location = New System.Drawing.Point(351, 144)
+        Me.lblIS101.Location = New System.Drawing.Point(348, 177)
         Me.lblIS101.Name = "lblIS101"
-        Me.lblIS101.Size = New System.Drawing.Size(52, 17)
+        Me.lblIS101.Size = New System.Drawing.Size(349, 77)
         Me.lblIS101.TabIndex = 18
         Me.lblIS101.Text = "IS101: "
         '
         'lblMATH176
         '
-        Me.lblMATH176.AutoSize = True
-        Me.lblMATH176.Location = New System.Drawing.Point(348, 178)
+        Me.lblMATH176.Location = New System.Drawing.Point(348, 204)
         Me.lblMATH176.Name = "lblMATH176"
-        Me.lblMATH176.Size = New System.Drawing.Size(79, 17)
+        Me.lblMATH176.Size = New System.Drawing.Size(376, 77)
         Me.lblMATH176.TabIndex = 19
         Me.lblMATH176.Text = "MATH176: "
         '
         'lblMKT210
         '
-        Me.lblMKT210.AutoSize = True
-        Me.lblMKT210.Location = New System.Drawing.Point(348, 206)
+        Me.lblMKT210.Location = New System.Drawing.Point(348, 232)
         Me.lblMKT210.Name = "lblMKT210"
-        Me.lblMKT210.Size = New System.Drawing.Size(69, 17)
+        Me.lblMKT210.Size = New System.Drawing.Size(366, 77)
         Me.lblMKT210.TabIndex = 20
         Me.lblMKT210.Text = "MKT210: "
         '
@@ -245,7 +236,7 @@ Partial Class frmDisplayStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(648, 638)
+        Me.ClientSize = New System.Drawing.Size(809, 638)
         Me.Controls.Add(Me.lblMKT210)
         Me.Controls.Add(Me.lblMATH176)
         Me.Controls.Add(Me.lblIS101)
