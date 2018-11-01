@@ -80,7 +80,7 @@
 
             Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
             While saveCounter < studentList.Count
-                outFile.WriteLine(studentList(saveCounter).Time.ToString() + "," + studentList(saveCounter).First.ToString() + "," + studentList(saveCounter).Last.ToString() + "," + studentList(saveCounter).NSHE.ToString() + "," + studentList(saveCounter).Phone.ToString() + "," + studentList(saveCounter).Email.ToString() + "," + studentList(saveCounter).Majors.ToString() + "," + studentList(saveCounter).InternationalBusiness.ToString() + "," + studentList(saveCounter).Regional.ToString() + "," + studentList(saveCounter).Acc201.ToString() + "," + studentList(saveCounter).Acc202.ToString() + "," + studentList(saveCounter).Econ102.ToString() + "," + studentList(saveCounter).Econ103.ToString() + "," + studentList(saveCounter).Econ261.ToString() + "," + studentList(saveCounter).Econ262.ToString() + "," + studentList(saveCounter).IS101.ToString() + "," + studentList(saveCounter).Math176.ToString() + "," + studentList(saveCounter).Mkt210.ToString() + "," + studentList(saveCounter).Econ102_2.ToString() + "," + studentList(saveCounter).Econ103_2.ToString() + "," + studentList(saveCounter).Econ261_2.ToString() + "," + studentList(saveCounter).Econ262_2.ToString() + "," + studentList(saveCounter).IS101_2.ToString() + "," + studentList(saveCounter).Math176_2.ToString() + "," + studentList(saveCounter).ToBeCompleted.ToString() + "," + studentList(saveCounter).GPA.ToString() + "," + studentList(saveCounter).AdditionalInfo.ToString() + "," + studentList(saveCounter).OtherInstitutions.ToString() + "," + studentList(saveCounter).TranscriptsSubmitted.ToString() + "," + studentList(saveCounter).TranscriptsUploaded.ToString() + "," + studentList(saveCounter).DeclarationDay.ToString() + "," + studentList(saveCounter).DeclarationDayConflicts.ToString() + "," + studentList(saveCounter).EmailConfirmation.ToString() + "," + studentList(saveCounter).Understand.ToString() + "," + studentList(saveCounter).FalseInfo.ToString() + "," + studentList(saveCounter).ChangeMajorPDF.ToString() + "," + studentList(saveCounter).Signature.ToString() + "," + studentList(saveCounter).AppDate.ToString() + "," + studentList(saveCounter).Browser.ToString() + "," + studentList(saveCounter).ipAddress.ToString() + "," + studentList(saveCounter).UniqueID.ToString() + "," + studentList(saveCounter).Location.ToString() + "," + studentList(saveCounter).Status.ToString())
+                outFile.WriteLine(studentList(saveCounter).Time.ToString() + "," + studentList(saveCounter).First.ToString() + "," + studentList(saveCounter).Last.ToString() + "," + studentList(saveCounter).NSHE.ToString() + "," + studentList(saveCounter).Phone.ToString() + "," + studentList(saveCounter).Email.ToString() + "," + studentList(saveCounter).Majors.ToString() + "," + studentList(saveCounter).InternationalBusiness.ToString() + "," + studentList(saveCounter).Regional.ToString() + "," + studentList(saveCounter).Acc201.ToString() + "," + studentList(saveCounter).Acc202.ToString() + "," + studentList(saveCounter).Econ102.ToString() + "," + studentList(saveCounter).Econ103.ToString() + "," + studentList(saveCounter).Econ261.ToString() + "," + studentList(saveCounter).Econ262.ToString() + "," + studentList(saveCounter).IS101.ToString() + "," + studentList(saveCounter).Math176.ToString() + "," + studentList(saveCounter).Mkt210.ToString() + "," + studentList(saveCounter).Econ102_2.ToString() + "," + studentList(saveCounter).Econ103_2.ToString() + "," + studentList(saveCounter).Econ261_2.ToString() + "," + studentList(saveCounter).Econ262_2.ToString() + "," + studentList(saveCounter).IS101_2.ToString() + "," + studentList(saveCounter).Math176_2.ToString() + "," + studentList(saveCounter).ToBeCompleted.ToString() + "," + studentList(saveCounter).GPA.ToString() + "," + studentList(saveCounter).AdditionalInfo.ToString() + "," + studentList(saveCounter).OtherInstitutions.ToString() + "," + studentList(saveCounter).TranscriptsSubmitted.ToString() + "," + studentList(saveCounter).TranscriptsUploaded.ToString() + "," + studentList(saveCounter).DeclarationDay.ToString() + "," + studentList(saveCounter).DeclarationDayConflicts.ToString() + "," + studentList(saveCounter).EmailConfirmation.ToString() + "," + studentList(saveCounter).Understand.ToString() + "," + studentList(saveCounter).FalseInfo.ToString() + "," + studentList(saveCounter).ChangeMajorPDF.ToString() + "," + studentList(saveCounter).Signature.ToString() + "," + studentList(saveCounter).AppDate.ToString() + "," + studentList(saveCounter).Browser.ToString() + "," + studentList(saveCounter).ipAddress.ToString() + "," + studentList(saveCounter).UniqueID.ToString() + "," + studentList(saveCounter).Location.ToString() + "," + studentList(saveCounter).Status.ToString() + "," + studentList(saveCounter).Semester.ToString() + "," + studentList(saveCounter).Username.ToString())
                 saveCounter = saveCounter + 1
             End While
             outFile.Close()
@@ -92,9 +92,6 @@
     End Sub
 
     Private Sub frmDisplayStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-
-
 
         'loop for reading csv 
         Try
@@ -282,11 +279,14 @@
         lblIS101.Text = "IS101: " + studentList(Counter).IS101
         lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
         lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
+        'May be able to create an if statement that checks if status has a value. if so the accept/deny/bridge buttons could be disabled??
     End Sub
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
         'Save Accept decision
         studentList(Counter).Status = "Accepted"
+        studentList(Counter).Semester = GlobalVariables.CurrentSemester
+        studentList(Counter).Username = GlobalVariables.CurrentUsername
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionAccept = True
         'DecisionDeny = False
@@ -297,6 +297,8 @@
     Private Sub btnBridge_Click(sender As Object, e As EventArgs) Handles btnBridge.Click
         'Save Bridge Decision
         studentList(Counter).Status = "Bridged"
+        studentList(Counter).Semester = GlobalVariables.CurrentSemester
+        studentList(Counter).Username = GlobalVariables.CurrentUsername
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionBridge = True
         'DecisionAccept = False
@@ -307,6 +309,8 @@
     Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
         'Save Deny Decision 
         studentList(Counter).Status = "Denied"
+        studentList(Counter).Semester = GlobalVariables.CurrentSemester
+        studentList(Counter).Username = GlobalVariables.CurrentUsername
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionBridge = False
         'DecisionAccept = False
