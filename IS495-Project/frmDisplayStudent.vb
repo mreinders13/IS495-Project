@@ -241,6 +241,8 @@
                             End If
                             i = i + 1
                         Next
+
+
                         'Done reading row values / Create the instance of Person
                         studentList.Add(New Student(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11,
                                                     var12, var13, var14, var15, var16, var17, var18, var19, var20, var21,
@@ -264,6 +266,7 @@
 
         End Try
         'Load values into the labels on the form
+        '***We could/should create an if statement to check if the first variables are column names or actual data
         lblName.Text = "Student Name: " + studentList(Counter).First.ToString() + studentList(Counter).Last.ToString()
         lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
         lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
