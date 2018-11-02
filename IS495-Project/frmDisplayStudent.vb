@@ -75,7 +75,7 @@
         Dim result As DialogResult = SaveFileDialog.ShowDialog()
         'check filepath to save to
         If result = Windows.Forms.DialogResult.OK Then
-            Dim csvFile As String = SaveFileDialog.FileName
+            Dim csvFile As String = SaveFileDialog.FileName + ".csv"
             Dim saveCounter As Int16 = 1
 
             Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
