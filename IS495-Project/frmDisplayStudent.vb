@@ -109,7 +109,10 @@
                         Dim currentField As String
                         Dim var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17,
                             var18, var19, var20, var21, var22, var23, var24, var25, var26, var27, var28, var29, var30, var31, var32,
-                            var33, var34, var35, var36, var37, var38, var39, var40, var41, var42
+                            var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45
+                        var43 = ""
+                        var44 = ""
+                        var45 = ""
 
                         Dim i = 0
                         For Each currentField In currentRow
@@ -239,6 +242,15 @@
                             If i = 41 Then
                                 var42 = currentField
                             End If
+                            If i = 42 Then
+                                var43 = currentField
+                            End If
+                            If i = 43 Then
+                                var44 = currentField
+                            End If
+                            If i = 44 Then
+                                var45 = currentField
+                            End If
                             i = i + 1
                         Next
 
@@ -247,7 +259,7 @@
                         studentList.Add(New Student(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11,
                                                     var12, var13, var14, var15, var16, var17, var18, var19, var20, var21,
                                                     var22, var23, var24, var25, var26, var27, var28, var29, var30, var31,
-                                                    var32, var33, var34, var35, var36, var37, var38, var39, var40, var41, var42))
+                                                    var32, var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var44, var45))
 
                     Catch ex As Microsoft.VisualBasic.
                                 FileIO.MalformedLineException
@@ -282,7 +294,14 @@
         lblIS101.Text = "IS101: " + studentList(Counter).IS101
         lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
         lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
-        'May be able to create an if statement that checks if status has a value. if so the accept/deny/bridge buttons could be disabled??
+        'May be able to create an if statement that checks if status has a value. 
+        'If so Then the accept/deny/bridge buttons could be disabled??
+        If (studentList(Counter).Status.ToString() <> "") Then
+            btnAccept.Enabled = False
+            btnBridge.Enabled = False
+            btnDeny.Enabled = False
+            lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
+        End If
     End Sub
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click

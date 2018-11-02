@@ -44,11 +44,12 @@ Partial Class frmDisplayStudent
         Me.lblIS101 = New System.Windows.Forms.Label()
         Me.lblMATH176 = New System.Windows.Forms.Label()
         Me.lblMKT210 = New System.Windows.Forms.Label()
+        Me.lblDecisionMade = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnSaveData
         '
-        Me.btnSaveData.Location = New System.Drawing.Point(217, 391)
+        Me.btnSaveData.Location = New System.Drawing.Point(217, 404)
         Me.btnSaveData.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSaveData.Name = "btnSaveData"
         Me.btnSaveData.Size = New System.Drawing.Size(100, 28)
@@ -232,11 +233,21 @@ Partial Class frmDisplayStudent
         Me.lblMKT210.TabIndex = 20
         Me.lblMKT210.Text = "MKT210: "
         '
+        'lblDecisionMade
+        '
+        Me.lblDecisionMade.AutoSize = True
+        Me.lblDecisionMade.Location = New System.Drawing.Point(104, 377)
+        Me.lblDecisionMade.Name = "lblDecisionMade"
+        Me.lblDecisionMade.Size = New System.Drawing.Size(263, 17)
+        Me.lblDecisionMade.TabIndex = 21
+        Me.lblDecisionMade.Text = "This decision has already been made by"
+        '
         'frmDisplayStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(809, 638)
+        Me.Controls.Add(Me.lblDecisionMade)
         Me.Controls.Add(Me.lblMKT210)
         Me.Controls.Add(Me.lblMATH176)
         Me.Controls.Add(Me.lblIS101)
@@ -288,4 +299,5 @@ Partial Class frmDisplayStudent
     Friend WithEvents lblIS101 As Label
     Friend WithEvents lblMATH176 As Label
     Friend WithEvents lblMKT210 As Label
+    Friend WithEvents lblDecisionMade As Label
 End Class
