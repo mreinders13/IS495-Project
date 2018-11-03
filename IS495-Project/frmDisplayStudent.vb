@@ -37,6 +37,19 @@
             lblIS101.Text = "IS101: " + studentList(Counter).IS101
             lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
             lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
+            'Check if a Decision has already been made and Set Buttons/Labels Accordingly
+            If (studentList(Counter).Status.ToString() <> "") Then
+                btnAccept.Enabled = False
+                btnBridge.Enabled = False
+                btnDeny.Enabled = False
+                lblDecisionMade.Visible = True
+                lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
+            Else
+                btnAccept.Enabled = True
+                btnDeny.Enabled = True
+                btnBridge.Enabled = True
+                lblDecisionMade.Visible = False
+            End If
 
         Else
             MessageBox.Show("This is the beginning of the list")
@@ -63,6 +76,19 @@
             lblIS101.Text = "IS101: " + studentList(Counter).IS101
             lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
             lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
+            'Check if a Decision has already been made and Set Buttons/Labels Accordingly
+            If (studentList(Counter).Status.ToString() <> "") Then
+                btnAccept.Enabled = False
+                btnBridge.Enabled = False
+                btnDeny.Enabled = False
+                lblDecisionMade.Visible = True
+                lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
+            Else
+                btnAccept.Enabled = True
+                btnDeny.Enabled = True
+                btnBridge.Enabled = True
+                lblDecisionMade.Visible = False
+            End If
 
         Else
             MessageBox.Show("End of List")
@@ -110,6 +136,18 @@
                         Dim var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17,
                             var18, var19, var20, var21, var22, var23, var24, var25, var26, var27, var28, var29, var30, var31, var32,
                             var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45
+                        var8 = ""
+                        var9 = ""
+                        var19 = ""
+                        var20 = ""
+                        var21 = ""
+                        var22 = ""
+                        var23 = ""
+                        var24 = ""
+                        var29 = ""
+                        var30 = ""
+                        var36 = ""
+                        var37 = ""
                         var43 = ""
                         var44 = ""
                         var45 = ""
@@ -300,7 +338,13 @@
             btnAccept.Enabled = False
             btnBridge.Enabled = False
             btnDeny.Enabled = False
+            lblDecisionMade.Visible = True
             lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
+        Else
+            btnAccept.Enabled = True
+            btnDeny.Enabled = True
+            btnBridge.Enabled = True
+            lblDecisionMade.Visible = False
         End If
     End Sub
 

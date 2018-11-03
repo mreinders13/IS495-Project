@@ -43,6 +43,10 @@
         Dim Result As String
         Result = sParam
         Result = Replace(Result, ",", " - ")
+        'The part below ensures any fields that have Nothing in them, will have an empty string
+        If Result = Nothing Then
+            Result = ""
+        End If
         Return Result
     End Function
 End Class
