@@ -117,139 +117,139 @@
                         Dim i = 0
                         For Each currentField In currentRow
                             If i = 0 Then
-                                var1 = currentField
+                                var1 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 1 Then
-                                var2 = currentField
+                                var2 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 2 Then
-                                var3 = currentField
+                                var3 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 3 Then
-                                var4 = currentField
+                                var4 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 4 Then
-                                var5 = currentField
+                                var5 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 5 Then
-                                var6 = currentField
+                                var6 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 6 Then
-                                var7 = currentField
+                                var7 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 7 Then
-                                var8 = currentField
+                                var8 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 8 Then
-                                var9 = currentField
+                                var9 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 9 Then
-                                var10 = currentField
+                                var10 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 10 Then
-                                var11 = currentField
+                                var11 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 11 Then
-                                var12 = currentField
+                                var12 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 12 Then
-                                var13 = currentField
+                                var13 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 13 Then
-                                var14 = currentField
+                                var14 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 14 Then
-                                var15 = currentField
+                                var15 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 15 Then
-                                var16 = currentField
+                                var16 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 16 Then
-                                var17 = currentField
+                                var17 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 17 Then
-                                var18 = currentField
+                                var18 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 18 Then
-                                var19 = currentField
+                                var19 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 19 Then
-                                var20 = currentField
+                                var20 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 20 Then
-                                var21 = currentField
+                                var21 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 21 Then
-                                var22 = currentField
+                                var22 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 22 Then
-                                var23 = currentField
+                                var23 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 23 Then
-                                var24 = currentField
+                                var24 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 24 Then
-                                var25 = currentField
+                                var25 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 25 Then
-                                var26 = currentField
+                                var26 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 26 Then
-                                var27 = currentField
+                                var27 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 27 Then
-                                var28 = currentField
+                                var28 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 28 Then
-                                var29 = currentField
+                                var29 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 29 Then
-                                var30 = currentField
+                                var30 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 30 Then
-                                var31 = currentField
+                                var31 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 31 Then
-                                var32 = currentField
+                                var32 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 32 Then
-                                var33 = currentField
+                                var33 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 33 Then
-                                var34 = currentField
+                                var34 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 34 Then
-                                var35 = currentField
+                                var35 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 35 Then
-                                var36 = currentField
+                                var36 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 36 Then
-                                var37 = currentField
+                                var37 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 37 Then
-                                var38 = currentField
+                                var38 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 38 Then
-                                var39 = currentField
+                                var39 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 39 Then
-                                var40 = currentField
+                                var40 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 40 Then
-                                var41 = currentField
+                                var41 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 41 Then
-                                var42 = currentField
+                                var42 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 42 Then
-                                var43 = currentField
+                                var43 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 43 Then
-                                var44 = currentField
+                                var44 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             If i = 44 Then
-                                var45 = currentField
+                                var45 = GlobalVariables.RemoveCommas(currentField)
                             End If
                             i = i + 1
                         Next

@@ -39,4 +39,10 @@
             Return CurrentUsername
         End Get
     End Property
+    Public Shared Function RemoveCommas(sParam As String)
+        Dim Result As String
+        Result = sParam
+        Result = Replace(Result, ",", " - ")
+        Return Result
+    End Function
 End Class
