@@ -1,4 +1,5 @@
-﻿Public Class frmDisplayStudent
+﻿Imports System.IO
+Public Class frmDisplayStudent
     'Create a List of all students 
     Dim studentList As New List(Of Student)
     'set counter to 1 before loop begins
@@ -101,8 +102,13 @@
         Dim result As DialogResult = SaveFileDialog.ShowDialog()
         'check filepath to save to
         If result = Windows.Forms.DialogResult.OK Then
-            Dim csvFile As String = SaveFileDialog.FileName + ".csv"
-            Dim saveCounter As Int16 = 1
+            Dim csvFile As String = SaveFileDialog.FileName
+            Dim Extension As String = Path.GetExtension(csvFile)
+            If (Extension <> ".csv") Then
+                csvFile = csvFile + ".csv"
+            End If
+
+            Dim saveCounter As Int16 = 0
 
             Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
             While saveCounter < studentList.Count
@@ -320,7 +326,6 @@
         If (studentList(Counter).Time = "Time") Then
             Counter = Counter + 1
         End If
-
         'Load values into the labels on the form
         lblName.Text = "Student Name: " + studentList(Counter).First.ToString() + studentList(Counter).Last.ToString()
         lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
