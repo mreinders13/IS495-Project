@@ -2,7 +2,7 @@
     'Create a List of all students 
     Dim studentList As New List(Of Student)
     'set counter to 1 before loop begins
-    Dim Counter As Int16 = 1
+    Dim Counter As Int16 = 0
     'status variables
     'Dim Status, Accepted, Denied, Bridged As String
     'Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
@@ -315,8 +315,13 @@
             Me.Text = "Error"
 
         End Try
-        'Load values into the labels on the form
+
         '***We could/should create an if statement to check if the first variables are column names or actual data
+        If (studentList(Counter).Time = "Time") Then
+            Counter = Counter + 1
+        End If
+
+        'Load values into the labels on the form
         lblName.Text = "Student Name: " + studentList(Counter).First.ToString() + studentList(Counter).Last.ToString()
         lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
         lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
