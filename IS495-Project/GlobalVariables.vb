@@ -3,6 +3,8 @@
     Public Shared SourceFilePath As String = Nothing
     Public Shared CurrentUsername As String = Nothing
 
+    Public Shared PDF_FilePath As String = Nothing
+
 
     Private Sub New()
     End Sub
@@ -39,6 +41,22 @@
             Return CurrentUsername
         End Get
     End Property
+
+    Public Shared Sub SetPDF_FilePath()
+        Dim path As String = My.Application.Info.DirectoryPath
+        Dim pdffile As String
+
+        pdffile = IO.Path.Combine(path, "Declaration_Change_of_Plan_Major.pdf")
+
+        PDF_FilePath = pdffile
+    End Sub
+
+    Public Shared ReadOnly Property GetPDF_FilePath() As String
+        Get
+            Return PDF_FilePath
+        End Get
+    End Property
+
     Public Shared Function RemoveCommas(sParam As String)
         Dim Result As String
         Result = sParam

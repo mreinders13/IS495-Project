@@ -157,7 +157,19 @@ Public Class frmDisplayStudent
                         var43 = ""
                         var44 = ""
                         var45 = ""
-
+                        'I was wondering if we could make the above an array with 45 indexes.
+                        'The the For Each loop could be condensed to something more like.
+                        '
+                        '   For Each currentField In currentRow
+                        '       Array(i) = GlobalVariables.RemoveCommas(currentField)
+                        '       i += 1
+                        '   Next
+                        '
+                        'We would have to adjust the Student Constructor below, though.
+                        'Something like
+                        '
+                        '   StudentList.Add(New Student(Array(0), Array(1), ... )
+                        '
                         Dim i = 0
                         For Each currentField In currentRow
                             If i = 0 Then
@@ -395,4 +407,13 @@ Public Class frmDisplayStudent
 
     End Sub
 
+    Private Sub btnPrintPDF_Click(sender As Object, e As EventArgs) Handles btnPrintPDF.Click
+        GlobalVariables.SetPDF_FilePath()
+        Dim PDF_FilePath = GlobalVariables.GetPDF_FilePath
+
+        'To See File Path
+        MessageBox.Show(text:="This is the PDF File Path: " + PDF_FilePath, caption:="This is a test.")
+        'To Test File Path
+        Process.Start(PDF_FilePath)
+    End Sub
 End Class
