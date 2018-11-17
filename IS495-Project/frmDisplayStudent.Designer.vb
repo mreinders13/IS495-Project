@@ -47,12 +47,13 @@ Partial Class frmDisplayStudent
         Me.lblDecisionMade = New System.Windows.Forms.Label()
         Me.btnPrintPDF = New System.Windows.Forms.Button()
         Me.ofdSignature = New System.Windows.Forms.OpenFileDialog()
+        Me.sfdSavePDF = New System.Windows.Forms.SaveFileDialog()
         Me.SuspendLayout()
         '
         'btnSaveData
         '
         Me.btnSaveData.Location = New System.Drawing.Point(217, 404)
-        Me.btnSaveData.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSaveData.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSaveData.Name = "btnSaveData"
         Me.btnSaveData.Size = New System.Drawing.Size(100, 28)
         Me.btnSaveData.TabIndex = 0
@@ -81,7 +82,7 @@ Partial Class frmDisplayStudent
         '
         Me.btnAccept.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert
         Me.btnAccept.Location = New System.Drawing.Point(107, 345)
-        Me.btnAccept.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAccept.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAccept.Name = "btnAccept"
         Me.btnAccept.Size = New System.Drawing.Size(100, 28)
         Me.btnAccept.TabIndex = 3
@@ -91,7 +92,7 @@ Partial Class frmDisplayStudent
         'btnDeny
         '
         Me.btnDeny.Location = New System.Drawing.Point(328, 345)
-        Me.btnDeny.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnDeny.Margin = New System.Windows.Forms.Padding(4)
         Me.btnDeny.Name = "btnDeny"
         Me.btnDeny.Size = New System.Drawing.Size(100, 28)
         Me.btnDeny.TabIndex = 4
@@ -101,7 +102,7 @@ Partial Class frmDisplayStudent
         'btnBridge
         '
         Me.btnBridge.Location = New System.Drawing.Point(217, 345)
-        Me.btnBridge.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnBridge.Margin = New System.Windows.Forms.Padding(4)
         Me.btnBridge.Name = "btnBridge"
         Me.btnBridge.Size = New System.Drawing.Size(100, 28)
         Me.btnBridge.TabIndex = 5
@@ -111,7 +112,7 @@ Partial Class frmDisplayStudent
         'btnNextStudent
         '
         Me.btnNextStudent.Location = New System.Drawing.Point(509, 597)
-        Me.btnNextStudent.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnNextStudent.Margin = New System.Windows.Forms.Padding(4)
         Me.btnNextStudent.Name = "btnNextStudent"
         Me.btnNextStudent.Size = New System.Drawing.Size(125, 28)
         Me.btnNextStudent.TabIndex = 6
@@ -121,7 +122,7 @@ Partial Class frmDisplayStudent
         'btnPrevStudent
         '
         Me.btnPrevStudent.Location = New System.Drawing.Point(15, 597)
-        Me.btnPrevStudent.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnPrevStudent.Margin = New System.Windows.Forms.Padding(4)
         Me.btnPrevStudent.Name = "btnPrevStudent"
         Me.btnPrevStudent.Size = New System.Drawing.Size(125, 28)
         Me.btnPrevStudent.TabIndex = 7
@@ -247,7 +248,7 @@ Partial Class frmDisplayStudent
         'btnPrintPDF
         '
         Me.btnPrintPDF.Location = New System.Drawing.Point(693, 286)
-        Me.btnPrintPDF.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnPrintPDF.Margin = New System.Windows.Forms.Padding(4)
         Me.btnPrintPDF.Name = "btnPrintPDF"
         Me.btnPrintPDF.Size = New System.Drawing.Size(100, 28)
         Me.btnPrintPDF.TabIndex = 22
@@ -315,4 +316,5 @@ Partial Class frmDisplayStudent
     Friend WithEvents lblDecisionMade As Label
     Friend WithEvents btnPrintPDF As Button
     Friend WithEvents ofdSignature As OpenFileDialog
+    Friend WithEvents sfdSavePDF As SaveFileDialog
 End Class

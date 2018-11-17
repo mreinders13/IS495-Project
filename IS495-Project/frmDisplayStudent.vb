@@ -1,4 +1,16 @@
-﻿Imports System.IO
+﻿Imports System
+Imports System.Collections
+Imports System.ComponentModel
+Imports System.Data
+Imports System.Drawing
+Imports System.Text
+Imports System.Windows.Forms
+Imports iTextSharp
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
+Imports iTextSharp.text.xml
+Imports System.IO
+
 Public Class frmDisplayStudent
     'Create a List of all students 
     Dim studentList As New List(Of Student)
@@ -103,7 +115,7 @@ Public Class frmDisplayStudent
     Private Sub btnSaveData_Click(sender As Object, e As EventArgs) Handles btnSaveData.Click
         'view save dialog
         Dim result As DialogResult = SaveFileDialog.ShowDialog()
-        'check filepath to save to
+        'check filepath to save to. If user doesnt specify .csv, save as .csv 
         If result = Windows.Forms.DialogResult.OK Then
             Dim csvFile As String = SaveFileDialog.FileName
             Dim Extension As String = Path.GetExtension(csvFile)
@@ -408,7 +420,7 @@ Public Class frmDisplayStudent
         studentList(Counter).Status = "Denied"
         studentList(Counter).Semester = GlobalVariables.CurrentSemester
         studentList(Counter).Username = GlobalVariables.CurrentUsername
-        btnPrintPDF.Enabled = True
+        btnPrintPDF.Enabled = False
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionBridge = False
         'DecisionAccept = False
@@ -441,13 +453,52 @@ Public Class frmDisplayStudent
         Else
             'To See File Path
             MessageBox.Show(text:="Please click OK to select the Students Signature to be used in the Major PDF Form" + submittedPDF, caption:="Generate New PDF: Please select a Signature")
-            'To Test File Path
-            'Process.Start(PDF_FilePath)
-            'Auto-Populate the PDF with Students information
 
             'Open ofdSignature so the user can choose the correct signatiure to upload, then set the StudentList.Signarure variable to the OFD result
-            Dim Result As DialogResult = ofdSignature.ShowDialog()
-            studentList(Counter).Signature = Result
+            ofdSignature.ShowDialog()
+            Dim SignatureResult As String = ofdSignature.FileName
+            studentList(Counter).Signature = SignatureResult
+
+            'User opens SFD to select where they wish to save the PDF
+            sfdSavePDF.ShowDialog()
+            Dim newFile As String = sfdSavePDF.FileName
+
+            '-----------------------------Auto-Populate the PDF with Students information-------------------------------------------------
+            'set ofd and svd variables
+            Dim pdfTemplate As String = GlobalVariables.PDF_FilePath
+            Dim signature As String = SignatureResult
+
+            'set PdfReader and PdfStamper from iTextSharp
+            Dim pdfReader As New PdfReader(pdfTemplate)
+            Dim pdfStamper As New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
+
+            'Setup pdf fields variables
+            Dim pdfFormFields As AcroFields = pdfStamper.AcroFields
+            pdfFormFields.SetField("Name", studentList(Counter).First + " " + studentList(Counter).Last)
+            pdfFormFields.SetField("NSHE", studentList(Counter).NSHE)
+            pdfFormFields.SetField("StudentSignature", signature)
+            pdfFormFields.SetField("Date", studentList(Counter).AppDate)
+            pdfFormFields.SetField("StudentAthlete", "studentList(Counter).athelete")
+            pdfFormFields.SetField("Change", "No")
+            pdfFormFields.SetField("Add", "Yes")
+            pdfFormFields.SetField("Remove", "No")
+            pdfFormFields.SetField("PlanRequested", studentList(Counter).Majors)
+            pdfFormFields.SetField("CatelogYear", studentList(Counter).Semester)
+            pdfFormFields.SetField("Subplan", "N/A")
+            pdfFormFields.SetField("NewAdvisor", "N/A")
+            pdfFormFields.SetField("AdvisorDateSigned", System.DateTime.Today.ToString())
+            pdfFormFields.SetField("Approved", "Yes")
+            pdfFormFields.SetField("Denied", "No")
+            pdfFormFields.SetField("Evaluator", studentList(Counter).Username)
+            pdfFormFields.SetField("EvaluationDate", "studentList(Counter).decisionTimeStamp")
+
+            pdfStamper.FormFlattening = True
+
+            ' close the pdf
+            pdfStamper.Close()
+
+
+
         End If
     End Sub
 End Class
