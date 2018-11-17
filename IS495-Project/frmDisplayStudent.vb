@@ -431,7 +431,12 @@ Public Class frmDisplayStudent
             'To Test File Path
             'Process.Start(PDF_FilePath)
             'Print the file
-
+            Dim PrintPDF As New ProcessStartInfo
+            PrintPDF.UseShellExecute = True
+            PrintPDF.Verb = "print"
+            PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
+            PrintPDF.FileName = submittedPDF 'fileName is a string parameter
+            Process.Start(PrintPDF)
 
         Else
             'To See File Path
