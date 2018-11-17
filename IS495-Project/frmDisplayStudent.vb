@@ -440,7 +440,7 @@ Public Class frmDisplayStudent
 
         Else
             'To See File Path
-            MessageBox.Show(text:="Click OK to begin PDF Generation" + submittedPDF, caption:="Error: Invalid FilePath")
+            MessageBox.Show(text:="Please click OK to select the Students Signature to be used in the Major PDF Form" + submittedPDF, caption:="Generate New PDF: Please select a Signature")
             'To Test File Path
             'Process.Start(PDF_FilePath)
             'Auto-Populate the PDF with Students information
