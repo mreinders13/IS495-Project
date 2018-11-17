@@ -1,0 +1,4 @@
+add time/date of decision 
+add notes textbox for advisors tp add their notes 
+Still wants to Auto-populate the Major Declaration PDF Form.
+get time of final presentation so he can request the time to be there. 

@@ -20,6 +20,7 @@ Public Class frmDisplayStudent
     'I remember the Client saying he only needed to see the FullName, NSHEID, and Comments.
 
     Private Sub btnPrevStudent_Click(sender As Object, e As EventArgs) Handles btnPrevStudent.Click
+        'Could create code that checks if a checkmark is checked on first page to Display Students without decision only. Skips the Students with decision var not equal to nothing
         'load the previous student 
         If (Counter - 1) > 0 Then
             Counter = Counter - 1
@@ -83,12 +84,14 @@ Public Class frmDisplayStudent
                 btnBridge.Enabled = False
                 btnDeny.Enabled = False
                 lblDecisionMade.Visible = True
+                btnPrintPDF.Enabled = True
                 lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
             Else
                 btnAccept.Enabled = True
                 btnDeny.Enabled = True
                 btnBridge.Enabled = True
                 lblDecisionMade.Visible = False
+                btnPrintPDF.Enabled = False
             End If
 
         Else
@@ -360,12 +363,15 @@ Public Class frmDisplayStudent
             btnAccept.Enabled = False
             btnBridge.Enabled = False
             btnDeny.Enabled = False
+            btnPrintPDF.Enabled = True
             lblDecisionMade.Visible = True
             lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
+
         Else
-            btnAccept.Enabled = True
+                btnAccept.Enabled = True
             btnDeny.Enabled = True
             btnBridge.Enabled = True
+            btnPrintPDF.Enabled = False
             lblDecisionMade.Visible = False
         End If
     End Sub
@@ -375,6 +381,8 @@ Public Class frmDisplayStudent
         studentList(Counter).Status = "Accepted"
         studentList(Counter).Semester = GlobalVariables.CurrentSemester
         studentList(Counter).Username = GlobalVariables.CurrentUsername
+        btnPrintPDF.Enabled = True
+
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionAccept = True
         'DecisionDeny = False
@@ -387,6 +395,7 @@ Public Class frmDisplayStudent
         studentList(Counter).Status = "Bridged"
         studentList(Counter).Semester = GlobalVariables.CurrentSemester
         studentList(Counter).Username = GlobalVariables.CurrentUsername
+        btnPrintPDF.Enabled = True
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionBridge = True
         'DecisionAccept = False
@@ -399,6 +408,7 @@ Public Class frmDisplayStudent
         studentList(Counter).Status = "Denied"
         studentList(Counter).Semester = GlobalVariables.CurrentSemester
         studentList(Counter).Username = GlobalVariables.CurrentUsername
+        btnPrintPDF.Enabled = True
         'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
         'DecisionBridge = False
         'DecisionAccept = False
@@ -410,10 +420,29 @@ Public Class frmDisplayStudent
     Private Sub btnPrintPDF_Click(sender As Object, e As EventArgs) Handles btnPrintPDF.Click
         GlobalVariables.SetPDF_FilePath()
         Dim PDF_FilePath = GlobalVariables.GetPDF_FilePath
+        'Get the student submitted pdf provided by the data
+        Dim submittedPDF As String = studentList(Counter).ChangeMajorPDF
+        'get the file extension to check in if statment 
+        Dim Extension As String = Path.GetExtension(submittedPDF)
+        If (Extension = ".pdf") Then
 
-        'To See File Path
-        MessageBox.Show(text:="This is the PDF File Path: " + PDF_FilePath, caption:="This is a test.")
-        'To Test File Path
-        Process.Start(PDF_FilePath)
+            'To See File Path
+            MessageBox.Show(text:="This is a valid PDF File Path: " + submittedPDF, caption:="PDF Filepath Valid")
+            'To Test File Path
+            'Process.Start(PDF_FilePath)
+            'Print the file
+
+
+        Else
+            'To See File Path
+            MessageBox.Show(text:="Click OK to begin PDF Generation" + submittedPDF, caption:="Error: Invalid FilePath")
+            'To Test File Path
+            'Process.Start(PDF_FilePath)
+            'Auto-Populate the PDF with Students information
+
+            'Open ofdSignature so the user can choose the correct signatiure to upload, then set the StudentList.Signarure variable to the OFD result
+            Dim Result As DialogResult = ofdSignature.ShowDialog()
+            studentList(Counter).Signature = Result
+        End If
     End Sub
 End Class
