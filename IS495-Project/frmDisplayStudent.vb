@@ -20,6 +20,27 @@ Public Class frmDisplayStudent
     'Dim Status, Accepted, Denied, Bridged As String
     'Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
 
+    Public Function RefreshStudentLabels(argCurrentStudent As Integer)
+        Dim CurStud As Integer = argCurrentStudent
+
+        lblName.Text = "Student Name: " + studentList(CurStud).First + " " + studentList(CurStud).Last
+        lblNSHE.Text = "Student NSHE#: " + studentList(CurStud).NSHE
+        lblGPA.Text = "Student GPA: " + studentList(CurStud).GPA
+        lblMajor.Text = "Student Major: " + studentList(CurStud).Majors
+        lblInternationalBusiness.Text = "International Business: " + studentList(CurStud).InternationalBusiness
+        lblComments.Text = "Student Comments: " + studentList(CurStud).AdditionalInfo
+        lblACC201.Text = "ACC201: " + studentList(CurStud).Acc201
+        lblACC202.Text = "ACC202: " + studentList(CurStud).Acc202
+        lblECON102.Text = "ECON102: " + studentList(CurStud).Econ102
+        lblECON103.Text = "ECON103: " + studentList(CurStud).Econ103
+        lblECON261.Text = "ECON261: " + studentList(CurStud).Econ261
+        lblECON262.Text = "ECON262: " + studentList(CurStud).Econ262
+        lblIS101.Text = "IS101: " + studentList(CurStud).IS101
+        lblMATH176.Text = "MATH176: " + studentList(CurStud).Math176
+        lblMKT210.Text = "MKT210: " + studentList(CurStud).Mkt210
+
+    End Function
+
 
     'I had something more like this in mind to keep track of the status. (Steven)
     'Public Enum Status
@@ -36,21 +57,9 @@ Public Class frmDisplayStudent
         'load the previous student 
         If (Counter - 1) > 0 Then
             Counter = Counter - 1
-            lblName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
-            lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
-            lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
-            lblMajor.Text = "Student Major: " + studentList(Counter).Majors
-            lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
-            lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
-            lblACC201.Text = "ACC201: " + studentList(Counter).Acc201
-            lblACC202.Text = "ACC202: " + studentList(Counter).Acc202
-            lblECON102.Text = "ECON102: " + studentList(Counter).Econ102
-            lblECON103.Text = "ECON103: " + studentList(Counter).Econ103
-            lblECON261.Text = "ECON261: " + studentList(Counter).Econ261
-            lblECON262.Text = "ECON262: " + studentList(Counter).Econ262
-            lblIS101.Text = "IS101: " + studentList(Counter).IS101
-            lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
-            lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
+
+            RefreshStudentLabels(Counter)
+
             'Check if a Decision has already been made and Set Buttons/Labels Accordingly
             If (studentList(Counter).Status.ToString() <> "") Then
                 btnAccept.Enabled = False
@@ -75,21 +84,9 @@ Public Class frmDisplayStudent
         'load the next student
         If (Counter + 1) < studentList.Count Then
             Counter = Counter + 1
-            lblName.Text = "Student Name: " + studentList(Counter).First + " " + studentList(Counter).Last
-            lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
-            lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
-            lblMajor.Text = "Student Major: " + studentList(Counter).Majors
-            lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
-            lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
-            lblACC201.Text = "ACC201: " + studentList(Counter).Acc201
-            lblACC202.Text = "ACC202: " + studentList(Counter).Acc202
-            lblECON102.Text = "ECON102: " + studentList(Counter).Econ102
-            lblECON103.Text = "ECON103: " + studentList(Counter).Econ103
-            lblECON261.Text = "ECON261: " + studentList(Counter).Econ261
-            lblECON262.Text = "ECON262: " + studentList(Counter).Econ262
-            lblIS101.Text = "IS101: " + studentList(Counter).IS101
-            lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
-            lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
+
+            RefreshStudentLabels(Counter)
+
             'Check if a Decision has already been made and Set Buttons/Labels Accordingly
             If (studentList(Counter).Status.ToString() <> "") Then
                 btnAccept.Enabled = False
@@ -354,21 +351,9 @@ Public Class frmDisplayStudent
             Counter = Counter + 1
         End If
         'Load values into the labels on the form
-        lblName.Text = "Student Name: " + studentList(Counter).First.ToString() + studentList(Counter).Last.ToString()
-        lblNSHE.Text = "Student NSHE#: " + studentList(Counter).NSHE
-        lblGPA.Text = "Student GPA: " + studentList(Counter).GPA
-        lblMajor.Text = "Student Major: " + studentList(Counter).Majors
-        lblInternationalBusiness.Text = "International Business: " + studentList(Counter).InternationalBusiness
-        lblComments.Text = "Student Comments: " + studentList(Counter).AdditionalInfo
-        lblACC201.Text = "ACC201: " + studentList(Counter).Acc201
-        lblACC202.Text = "ACC202: " + studentList(Counter).Acc202
-        lblECON102.Text = "ECON102: " + studentList(Counter).Econ102
-        lblECON103.Text = "ECON103: " + studentList(Counter).Econ103
-        lblECON261.Text = "ECON261: " + studentList(Counter).Econ261
-        lblECON262.Text = "ECON262: " + studentList(Counter).Econ262
-        lblIS101.Text = "IS101: " + studentList(Counter).IS101
-        lblMATH176.Text = "MATH176: " + studentList(Counter).Math176
-        lblMKT210.Text = "MKT210: " + studentList(Counter).Mkt210
+
+        RefreshStudentLabels(Counter)
+
         'May be able to create an if statement that checks if status has a value. 
         'If so Then the accept/deny/bridge buttons could be disabled??
         If (studentList(Counter).Status.ToString() <> "") Then
