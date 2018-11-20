@@ -136,7 +136,7 @@ Public Class frmDisplayStudent
     End Sub
 
     Private Sub frmDisplayStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Dim AdvisorNotes As String
         'loop for reading csv 
         Try
 
@@ -145,6 +145,7 @@ Public Class frmDisplayStudent
                       GlobalVariables.SourceFilePath)
                 MyReader.TextFieldType = FileIO.FieldType.Delimited
                 MyReader.SetDelimiters(",")
+
                 Dim currentRow As String()
 
                 While Not MyReader.EndOfData
@@ -153,7 +154,7 @@ Public Class frmDisplayStudent
                         Dim currentField As String
                         Dim var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17,
                             var18, var19, var20, var21, var22, var23, var24, var25, var26, var27, var28, var29, var30, var31, var32,
-                            var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45
+                            var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45, AdivsorNotes
                         var8 = ""
                         var9 = ""
                         var19 = ""
@@ -169,6 +170,8 @@ Public Class frmDisplayStudent
                         var43 = ""
                         var44 = ""
                         var45 = ""
+                        AdvisorNotes = ""
+
                         'I was wondering if we could make the above an array with 45 indexes.
                         'The the For Each loop could be condensed to something more like.
                         '
@@ -319,7 +322,11 @@ Public Class frmDisplayStudent
                             If i = 44 Then
                                 var45 = GlobalVariables.RemoveCommas(currentField)
                             End If
+                            If i = 45 Then
+                                AdvisorNotes = GlobalVariables.RemoveCommas(currentField)
+                            End If
                             i = i + 1
+
                         Next
 
 
@@ -327,7 +334,8 @@ Public Class frmDisplayStudent
                         studentList.Add(New Student(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11,
                                                     var12, var13, var14, var15, var16, var17, var18, var19, var20, var21,
                                                     var22, var23, var24, var25, var26, var27, var28, var29, var30, var31,
-                                                    var32, var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45))
+                                                    var32, var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45, AdvisorNotes))
+
 
                     Catch ex As Microsoft.VisualBasic.
                                 FileIO.MalformedLineException
@@ -380,10 +388,7 @@ Public Class frmDisplayStudent
         studentList(Counter).Username = GlobalVariables.CurrentUsername
         btnPrintPDF.Enabled = True
 
-        'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
-        'DecisionAccept = True
-        'DecisionDeny = False
-        'DecisionBridge = False
+
 
     End Sub
 
@@ -393,10 +398,7 @@ Public Class frmDisplayStudent
         studentList(Counter).Semester = GlobalVariables.CurrentSemester
         studentList(Counter).Username = GlobalVariables.CurrentUsername
         btnPrintPDF.Enabled = True
-        'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
-        'DecisionBridge = True
-        'DecisionAccept = False
-        'DecisionDeny = False
+
 
     End Sub
 
@@ -406,10 +408,6 @@ Public Class frmDisplayStudent
         studentList(Counter).Semester = GlobalVariables.CurrentSemester
         studentList(Counter).Username = GlobalVariables.CurrentUsername
         btnPrintPDF.Enabled = False
-        'These are for verification if needed later, we can delete the booleans if they are unfit for the scope
-        'DecisionBridge = False
-        'DecisionAccept = False
-        'DecisionDeny = True
 
 
     End Sub
@@ -485,5 +483,9 @@ Public Class frmDisplayStudent
 
 
         End If
+    End Sub
+
+    Private Sub txtAdvisorNotes_TextChanged(sender As Object, e As EventArgs) Handles txtAdvisorNotes.TextChanged
+        txtAdvisorNotes.Text = txtAdvisorNotes.Text
     End Sub
 End Class

@@ -273,7 +273,6 @@ Partial Class frmDisplayStudent
         Me.txtAdvisorNotes.Name = "txtAdvisorNotes"
         Me.txtAdvisorNotes.Size = New System.Drawing.Size(223, 64)
         Me.txtAdvisorNotes.TabIndex = 24
-        Me.txtAdvisorNotes.Text = "Advisor Notes Go Here"
         '
         'LblAdvisorNotes
         '
@@ -314,7 +313,7 @@ Partial Class frmDisplayStudent
         Me.Controls.Add(Me.lblNSHE)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.btnSaveData)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmDisplayStudent"
         Me.Text = "Form1"
         Me.ResumeLayout(False)
