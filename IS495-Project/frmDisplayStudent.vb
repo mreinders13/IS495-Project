@@ -136,7 +136,10 @@ Public Class frmDisplayStudent
     End Sub
 
     Private Sub frmDisplayStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Creating Variables for AdivsorNotes and DecisionTimeStamp
         Dim AdvisorNotes As String
+
+
         'loop for reading csv 
         Try
 
@@ -154,7 +157,7 @@ Public Class frmDisplayStudent
                         Dim currentField As String
                         Dim var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17,
                             var18, var19, var20, var21, var22, var23, var24, var25, var26, var27, var28, var29, var30, var31, var32,
-                            var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45, AdivsorNotes
+                            var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45, AdivsorNotes, DecisionTimeStamp
                         var8 = ""
                         var9 = ""
                         var19 = ""
@@ -170,7 +173,7 @@ Public Class frmDisplayStudent
                         var43 = ""
                         var44 = ""
                         var45 = ""
-                        AdvisorNotes = ""
+
 
                         'I was wondering if we could make the above an array with 45 indexes.
                         'The the For Each loop could be condensed to something more like.
@@ -325,6 +328,9 @@ Public Class frmDisplayStudent
                             If i = 45 Then
                                 AdvisorNotes = GlobalVariables.RemoveCommas(currentField)
                             End If
+                            If i = AdvisorNotes Then
+                                DecisionTimeStamp = GlobalVariables.RemoveCommas(currentField)
+                            End If
                             i = i + 1
 
                         Next
@@ -334,9 +340,9 @@ Public Class frmDisplayStudent
                         studentList.Add(New Student(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11,
                                                     var12, var13, var14, var15, var16, var17, var18, var19, var20, var21,
                                                     var22, var23, var24, var25, var26, var27, var28, var29, var30, var31,
-                                                    var32, var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45, AdvisorNotes))
+                                                    var32, var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45, AdvisorNotes, DecisionTimeStamp))
 
-
+                        DecisionTimeStamp = DateAndTime.Now
                     Catch ex As Microsoft.VisualBasic.
                                 FileIO.MalformedLineException
                         MsgBox("Line " & ex.Message &
