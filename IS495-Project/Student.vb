@@ -47,7 +47,7 @@
     Public AdvisorNotes As String
     Public DecisionTimeStamp As String
 
-    Public Sub New(time As String, first As String, last As String, nSHE As String, phone As String, email As String, majors As String, internationalBusiness As String, regional As String, acc201 As String, acc202 As String, econ102 As String, econ103 As String, econ261 As String, econ262 As String, iS101 As String, math176 As String, mkt210 As String, econ102_2 As String, econ103_2 As String, econ261_2 As String, econ262_2 As String, iS101_2 As String, math176_2 As String, toBeCompleted As String, gPA As String, additionalInfo As String, otherInstitutions As String, transcriptsSubmitted As String, transcriptsUploaded As String, declarationDay As String, declarationDayConflicts As String, emailConfirmation As String, understand As String, falseInfo As String, changeMajorPDF As String, signature As String, appDate As String, browser As String, ipAddress As String, uniqueID As String, location As String, Optional status As String = "", Optional semester As String = "", Optional username As String = "", Optional AdvisorNotes As String = "", Optional DecisionTimeStamp as String = "")
+    Public Sub New(time As String, first As String, last As String, nSHE As String, phone As String, email As String, majors As String, internationalBusiness As String, regional As String, acc201 As String, acc202 As String, econ102 As String, econ103 As String, econ261 As String, econ262 As String, iS101 As String, math176 As String, mkt210 As String, econ102_2 As String, econ103_2 As String, econ261_2 As String, econ262_2 As String, iS101_2 As String, math176_2 As String, toBeCompleted As String, gPA As String, additionalInfo As String, otherInstitutions As String, transcriptsSubmitted As String, transcriptsUploaded As String, declarationDay As String, declarationDayConflicts As String, emailConfirmation As String, understand As String, falseInfo As String, changeMajorPDF As String, signature As String, appDate As String, browser As String, ipAddress As String, uniqueID As String, location As String, Optional status As String = "", Optional semester As String = "", Optional username As String = "", Optional advisorNotes As String = "", Optional DecisionTimeStamp As String = "")
         Me.Time = time
         Me.First = first
         Me.Last = last
@@ -91,9 +91,10 @@
         Me.UniqueID = uniqueID
         Me.Location = location
         Me.Status = status
+
         Me.Semester = semester
         Me.Username = username
-        Me.AdvisorNotes = AdvisorNotes
+        Me.AdvisorNotes = advisorNotes
         Me.DecisionTimeStamp = DecisionTimeStamp
     End Sub
 End Class

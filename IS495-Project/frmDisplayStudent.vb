@@ -20,7 +20,9 @@ Public Class frmDisplayStudent
     'Dim Status, Accepted, Denied, Bridged As String
     'Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
 
-    Public Function RefreshStudentLabels(argCurrentStudent As Integer)
+    '----------------------------------------------------------------------------------------------------------------
+    'Start of Callable Methods.
+    Public Sub RefreshStudentLabels(argCurrentStudent As Integer)
         Dim CurStud As Integer = argCurrentStudent
 
         lblName.Text = "Student Name: " + studentList(CurStud).First + " " + studentList(CurStud).Last
@@ -38,19 +40,45 @@ Public Class frmDisplayStudent
         lblIS101.Text = "IS101: " + studentList(CurStud).IS101
         lblMATH176.Text = "MATH176: " + studentList(CurStud).Math176
         lblMKT210.Text = "MKT210: " + studentList(CurStud).Mkt210
+        txtAdvisorNotes.Text = studentList(CurStud).AdvisorNotes
 
+    End Sub
+
+    Public Sub SetStudentStatus(argStatus As String)
+        studentList(Counter).Status = argStatus
+        studentList(Counter).Semester = GlobalVariables.CurrentSemester
+        studentList(Counter).Username = GlobalVariables.CurrentUsername
+        studentList(Counter).DecisionTimeStamp = System.DateTime.Now.ToShortDateString()
+    End Sub
+
+    Public Function DecisionMadeMessage(argCurrentStudent As Integer) As String
+        Dim CurStud As Student = studentList(argCurrentStudent)
+        Dim Message As String
+
+        Message = "This Decision has already been made by " + CurStud.Username + " for " + CurStud.Semester +
+            "/n" + CurStud.First + " " + CurStud.Last + " was " + CurStud.Status + "."
+
+        Return Message
     End Function
 
+    Public Sub MADE_StatusSettings()
+        btnAccept.Enabled = False
+        btnBridge.Enabled = False
+        btnDeny.Enabled = False
+        lblDecisionMade.Visible = True
+        btnPrintPDF.Enabled = True
+    End Sub
 
-    'I had something more like this in mind to keep track of the status. (Steven)
-    'Public Enum Status
-    '    Accepted
-    '    Denied
-    '    Bridged
-    'End Enum
+    Public Sub UNMADE_StatusSettings()
+        btnAccept.Enabled = True
+        btnDeny.Enabled = True
+        btnBridge.Enabled = True
+        lblDecisionMade.Visible = False
+        btnPrintPDF.Enabled = False
+    End Sub
 
-    'We should include the comments that students give in the interface.
-    'I remember the Client saying he only needed to see the FullName, NSHEID, and Comments.
+    'End of Callable Methods.
+    '----------------------------------------------------------------------------------------------------------------
 
     Private Sub btnPrevStudent_Click(sender As Object, e As EventArgs) Handles btnPrevStudent.Click
         'Could create code that checks if a checkmark is checked on first page to Display Students without decision only. Skips the Students with decision var not equal to nothing
@@ -62,16 +90,13 @@ Public Class frmDisplayStudent
 
             'Check if a Decision has already been made and Set Buttons/Labels Accordingly
             If (studentList(Counter).Status.ToString() <> "") Then
-                btnAccept.Enabled = False
-                btnBridge.Enabled = False
-                btnDeny.Enabled = False
-                lblDecisionMade.Visible = True
-                lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
-            Else
-                btnAccept.Enabled = True
-                btnDeny.Enabled = True
-                btnBridge.Enabled = True
-                lblDecisionMade.Visible = False
+                MADE_StatusSettings()
+                If (studentList(Counter).Status.ToString = "Denied") Then
+                    btnPrintPDF.Enabled = False
+                End If
+                lblDecisionMade.Text = DecisionMadeMessage(Counter)
+                Else
+                UNMADE_StatusSettings()
             End If
 
         Else
@@ -89,18 +114,13 @@ Public Class frmDisplayStudent
 
             'Check if a Decision has already been made and Set Buttons/Labels Accordingly
             If (studentList(Counter).Status.ToString() <> "") Then
-                btnAccept.Enabled = False
-                btnBridge.Enabled = False
-                btnDeny.Enabled = False
-                lblDecisionMade.Visible = True
-                btnPrintPDF.Enabled = True
-                lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
+                MADE_StatusSettings()
+                If (studentList(Counter).Status.ToString = "Denied") Then
+                    btnPrintPDF.Enabled = False
+                End If
+                lblDecisionMade.Text = DecisionMadeMessage(Counter)
             Else
-                btnAccept.Enabled = True
-                btnDeny.Enabled = True
-                btnBridge.Enabled = True
-                lblDecisionMade.Visible = False
-                btnPrintPDF.Enabled = False
+                UNMADE_StatusSettings()
             End If
 
         Else
@@ -137,7 +157,7 @@ Public Class frmDisplayStudent
 
     Private Sub frmDisplayStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Creating Variables for AdivsorNotes and DecisionTimeStamp
-        Dim AdvisorNotes As String
+        Dim Constructor_List As New List(Of String)
 
 
         'loop for reading csv 
@@ -155,194 +175,60 @@ Public Class frmDisplayStudent
                     Try
                         currentRow = MyReader.ReadFields()
                         Dim currentField As String
-                        Dim var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17,
-                            var18, var19, var20, var21, var22, var23, var24, var25, var26, var27, var28, var29, var30, var31, var32,
-                            var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45, AdivsorNotes, DecisionTimeStamp
-                        var8 = ""
-                        var9 = ""
-                        var19 = ""
-                        var20 = ""
-                        var21 = ""
-                        var22 = ""
-                        var23 = ""
-                        var24 = ""
-                        var29 = ""
-                        var30 = ""
-                        var36 = ""
-                        var37 = ""
-                        var43 = ""
-                        var44 = ""
-                        var45 = ""
 
 
-                        'I was wondering if we could make the above an array with 45 indexes.
-                        'The the For Each loop could be condensed to something more like.
-                        '
-                        '   For Each currentField In currentRow
-                        '       Array(i) = GlobalVariables.RemoveCommas(currentField)
-                        '       i += 1
-                        '   Next
-                        '
-                        'We would have to adjust the Student Constructor below, though.
-                        'Something like
-                        '
-                        '   StudentList.Add(New Student(Array(0), Array(1), ... )
-                        '
                         Dim i = 0
                         For Each currentField In currentRow
-                            If i = 0 Then
-                                var1 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 1 Then
-                                var2 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 2 Then
-                                var3 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 3 Then
-                                var4 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 4 Then
-                                var5 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 5 Then
-                                var6 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 6 Then
-                                var7 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 7 Then
-                                var8 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 8 Then
-                                var9 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 9 Then
-                                var10 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 10 Then
-                                var11 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 11 Then
-                                var12 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 12 Then
-                                var13 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 13 Then
-                                var14 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 14 Then
-                                var15 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 15 Then
-                                var16 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 16 Then
-                                var17 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 17 Then
-                                var18 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 18 Then
-                                var19 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 19 Then
-                                var20 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 20 Then
-                                var21 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 21 Then
-                                var22 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 22 Then
-                                var23 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 23 Then
-                                var24 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 24 Then
-                                var25 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 25 Then
-                                var26 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 26 Then
-                                var27 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 27 Then
-                                var28 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 28 Then
-                                var29 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 29 Then
-                                var30 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 30 Then
-                                var31 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 31 Then
-                                var32 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 32 Then
-                                var33 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 33 Then
-                                var34 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 34 Then
-                                var35 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 35 Then
-                                var36 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 36 Then
-                                var37 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 37 Then
-                                var38 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 38 Then
-                                var39 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 39 Then
-                                var40 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 40 Then
-                                var41 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 41 Then
-                                var42 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 42 Then
-                                var43 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 43 Then
-                                var44 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 44 Then
-                                var45 = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = 45 Then
-                                AdvisorNotes = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            If i = AdvisorNotes Then
-                                DecisionTimeStamp = GlobalVariables.RemoveCommas(currentField)
-                            End If
-                            i = i + 1
-
+                            Constructor_List.Insert(i, GlobalVariables.RemoveCommas(currentField))
+                            i += 1
                         Next
 
 
                         'Done reading row values / Create the instance of Person
-                        studentList.Add(New Student(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10, var11,
-                                                    var12, var13, var14, var15, var16, var17, var18, var19, var20, var21,
-                                                    var22, var23, var24, var25, var26, var27, var28, var29, var30, var31,
-                                                    var32, var33, var34, var35, var36, var37, var38, var39, var40, var41, var42, var43, var44, var45, AdvisorNotes, DecisionTimeStamp))
+                        studentList.Add(New Student(
+                                        time:=Constructor_List(0),
+                                        first:=Constructor_List(1),
+                                        last:=Constructor_List(2),
+                                        nSHE:=Constructor_List(3),
+                                        phone:=Constructor_List(4),
+                                        email:=Constructor_List(5),
+                                        majors:=Constructor_List(6),
+                                        internationalBusiness:=Constructor_List(7),
+                                        regional:=Constructor_List(8),
+                                        acc201:=Constructor_List(9),
+                                        acc202:=Constructor_List(10),
+                                        econ102:=Constructor_List(11),
+                                        econ103:=Constructor_List(12),
+                                        econ261:=Constructor_List(13),
+                                        econ262:=Constructor_List(14),
+                                        iS101:=Constructor_List(15),
+                                        math176:=Constructor_List(16),
+                                        mkt210:=Constructor_List(17),
+                                        econ102_2:=Constructor_List(18),
+                                        econ103_2:=Constructor_List(19),
+                                        econ261_2:=Constructor_List(20),
+                                        econ262_2:=Constructor_List(21),
+                                        iS101_2:=Constructor_List(22),
+                                        math176_2:=Constructor_List(23),
+                                        toBeCompleted:=Constructor_List(24),
+                                        gPA:=Constructor_List(25),
+                                        additionalInfo:=Constructor_List(26),
+                                        otherInstitutions:=Constructor_List(27),
+                                        transcriptsSubmitted:=Constructor_List(28),
+                                        transcriptsUploaded:=Constructor_List(29),
+                                        declarationDay:=Constructor_List(30),
+                                        declarationDayConflicts:=Constructor_List(31),
+                                        emailConfirmation:=Constructor_List(32),
+                                        understand:=Constructor_List(33),
+                                        falseInfo:=Constructor_List(34),
+                                        changeMajorPDF:=Constructor_List(35),
+                                        signature:=Constructor_List(36),
+                                        appDate:=Constructor_List(37),
+                                        browser:=Constructor_List(38),
+                                        ipAddress:=Constructor_List(39),
+                                        uniqueID:=Constructor_List(40),
+                                        location:=Constructor_List(41)))
 
-                        DecisionTimeStamp = DateAndTime.Now
                     Catch ex As Microsoft.VisualBasic.
                                 FileIO.MalformedLineException
                         MsgBox("Line " & ex.Message &
@@ -364,58 +250,39 @@ Public Class frmDisplayStudent
         If (studentList(Counter).Time = "Time") Then
             Counter = Counter + 1
         End If
-        'Load values into the labels on the form
 
+        'Load values into the labels on the form
         RefreshStudentLabels(Counter)
 
         'May be able to create an if statement that checks if status has a value. 
         'If so Then the accept/deny/bridge buttons could be disabled??
         If (studentList(Counter).Status.ToString() <> "") Then
-            btnAccept.Enabled = False
-            btnBridge.Enabled = False
-            btnDeny.Enabled = False
-            btnPrintPDF.Enabled = True
-            lblDecisionMade.Visible = True
-            lblDecisionMade.Text = "This Decision has already been made by " + studentList(Counter).Username + " for " + studentList(Counter).Semester
-
+            MADE_StatusSettings()
+            If (studentList(Counter).Status.ToString = "Denied") Then
+                btnPrintPDF.Enabled = False
+            End If
+            lblDecisionMade.Text = DecisionMadeMessage(Counter)
         Else
-                btnAccept.Enabled = True
-            btnDeny.Enabled = True
-            btnBridge.Enabled = True
-            btnPrintPDF.Enabled = False
-            lblDecisionMade.Visible = False
+            UNMADE_StatusSettings()
         End If
     End Sub
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
         'Save Accept decision
-        studentList(Counter).Status = "Accepted"
-        studentList(Counter).Semester = GlobalVariables.CurrentSemester
-        studentList(Counter).Username = GlobalVariables.CurrentUsername
+        SetStudentStatus("Accepted")
         btnPrintPDF.Enabled = True
-
-
-
     End Sub
 
     Private Sub btnBridge_Click(sender As Object, e As EventArgs) Handles btnBridge.Click
         'Save Bridge Decision
-        studentList(Counter).Status = "Bridged"
-        studentList(Counter).Semester = GlobalVariables.CurrentSemester
-        studentList(Counter).Username = GlobalVariables.CurrentUsername
+        SetStudentStatus("Bridged")
         btnPrintPDF.Enabled = True
-
-
     End Sub
 
     Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
         'Save Deny Decision 
-        studentList(Counter).Status = "Denied"
-        studentList(Counter).Semester = GlobalVariables.CurrentSemester
-        studentList(Counter).Username = GlobalVariables.CurrentUsername
+        SetStudentStatus("Denied")
         btnPrintPDF.Enabled = False
-
-
     End Sub
 
     Private Sub btnPrintPDF_Click(sender As Object, e As EventArgs) Handles btnPrintPDF.Click
@@ -479,19 +346,17 @@ Public Class frmDisplayStudent
             pdfFormFields.SetField("Approved", "Yes")
             pdfFormFields.SetField("Denied", "No")
             pdfFormFields.SetField("Evaluator", studentList(Counter).Username)
-            pdfFormFields.SetField("EvaluationDate", "studentList(Counter).decisionTimeStamp")
+            pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
 
             pdfStamper.FormFlattening = True
 
             ' close the pdf
             pdfStamper.Close()
 
-
-
         End If
     End Sub
 
     Private Sub txtAdvisorNotes_TextChanged(sender As Object, e As EventArgs) Handles txtAdvisorNotes.TextChanged
-        txtAdvisorNotes.Text = txtAdvisorNotes.Text
+        studentList(Counter).AdvisorNotes = txtAdvisorNotes.Text
     End Sub
 End Class
