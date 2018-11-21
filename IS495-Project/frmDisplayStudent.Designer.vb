@@ -50,11 +50,12 @@ Partial Class frmDisplayStudent
         Me.sfdSavePDF = New System.Windows.Forms.SaveFileDialog()
         Me.txtAdvisorNotes = New System.Windows.Forms.TextBox()
         Me.LblAdvisorNotes = New System.Windows.Forms.Label()
+        Me.btnEmailStudent = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnSaveData
         '
-        Me.btnSaveData.Location = New System.Drawing.Point(163, 331)
+        Me.btnSaveData.Location = New System.Drawing.Point(520, 292)
         Me.btnSaveData.Name = "btnSaveData"
         Me.btnSaveData.Size = New System.Drawing.Size(75, 23)
         Me.btnSaveData.TabIndex = 0
@@ -84,7 +85,7 @@ Partial Class frmDisplayStudent
         'btnAccept
         '
         Me.btnAccept.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert
-        Me.btnAccept.Location = New System.Drawing.Point(80, 280)
+        Me.btnAccept.Location = New System.Drawing.Point(15, 292)
         Me.btnAccept.Name = "btnAccept"
         Me.btnAccept.Size = New System.Drawing.Size(75, 23)
         Me.btnAccept.TabIndex = 3
@@ -93,7 +94,7 @@ Partial Class frmDisplayStudent
         '
         'btnDeny
         '
-        Me.btnDeny.Location = New System.Drawing.Point(246, 280)
+        Me.btnDeny.Location = New System.Drawing.Point(181, 292)
         Me.btnDeny.Name = "btnDeny"
         Me.btnDeny.Size = New System.Drawing.Size(75, 23)
         Me.btnDeny.TabIndex = 4
@@ -102,7 +103,7 @@ Partial Class frmDisplayStudent
         '
         'btnBridge
         '
-        Me.btnBridge.Location = New System.Drawing.Point(163, 280)
+        Me.btnBridge.Location = New System.Drawing.Point(98, 292)
         Me.btnBridge.Name = "btnBridge"
         Me.btnBridge.Size = New System.Drawing.Size(75, 23)
         Me.btnBridge.TabIndex = 5
@@ -111,7 +112,7 @@ Partial Class frmDisplayStudent
         '
         'btnNextStudent
         '
-        Me.btnNextStudent.Location = New System.Drawing.Point(382, 485)
+        Me.btnNextStudent.Location = New System.Drawing.Point(264, 485)
         Me.btnNextStudent.Name = "btnNextStudent"
         Me.btnNextStudent.Size = New System.Drawing.Size(94, 23)
         Me.btnNextStudent.TabIndex = 6
@@ -250,7 +251,7 @@ Partial Class frmDisplayStudent
         'lblDecisionMade
         '
         Me.lblDecisionMade.AutoSize = True
-        Me.lblDecisionMade.Location = New System.Drawing.Point(78, 306)
+        Me.lblDecisionMade.Location = New System.Drawing.Point(13, 318)
         Me.lblDecisionMade.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblDecisionMade.Name = "lblDecisionMade"
         Me.lblDecisionMade.Size = New System.Drawing.Size(196, 13)
@@ -259,7 +260,7 @@ Partial Class frmDisplayStudent
         '
         'btnPrintPDF
         '
-        Me.btnPrintPDF.Location = New System.Drawing.Point(520, 232)
+        Me.btnPrintPDF.Location = New System.Drawing.Point(520, 321)
         Me.btnPrintPDF.Name = "btnPrintPDF"
         Me.btnPrintPDF.Size = New System.Drawing.Size(75, 23)
         Me.btnPrintPDF.TabIndex = 22
@@ -283,11 +284,21 @@ Partial Class frmDisplayStudent
         Me.LblAdvisorNotes.TabIndex = 25
         Me.LblAdvisorNotes.Text = "Advisor Notes"
         '
+        'btnEmailStudent
+        '
+        Me.btnEmailStudent.Location = New System.Drawing.Point(481, 350)
+        Me.btnEmailStudent.Name = "btnEmailStudent"
+        Me.btnEmailStudent.Size = New System.Drawing.Size(114, 23)
+        Me.btnEmailStudent.TabIndex = 27
+        Me.btnEmailStudent.Text = "Email Student"
+        Me.btnEmailStudent.UseVisualStyleBackColor = True
+        '
         'frmDisplayStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(607, 518)
+        Me.Controls.Add(Me.btnEmailStudent)
         Me.Controls.Add(Me.LblAdvisorNotes)
         Me.Controls.Add(Me.txtAdvisorNotes)
         Me.Controls.Add(Me.btnPrintPDF)
@@ -315,7 +326,7 @@ Partial Class frmDisplayStudent
         Me.Controls.Add(Me.btnSaveData)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmDisplayStudent"
-        Me.Text = "Form1"
+        Me.Text = "Student Information"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -349,4 +360,5 @@ Partial Class frmDisplayStudent
     Friend WithEvents sfdSavePDF As SaveFileDialog
     Friend WithEvents txtAdvisorNotes As TextBox
     Friend WithEvents LblAdvisorNotes As Label
+    Friend WithEvents btnEmailStudent As Button
 End Class
