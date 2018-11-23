@@ -227,7 +227,12 @@ Public Class frmDisplayStudent
                                         browser:=Constructor_List(38),
                                         ipAddress:=Constructor_List(39),
                                         uniqueID:=Constructor_List(40),
-                                        location:=Constructor_List(41)))
+                                        location:=Constructor_List(41),
+                                        status:=Constructor_List(42),
+                                        semester:=Constructor_List(43),
+                                        username:=Constructor_List(44),
+                                        advisorNotes:=Constructor_List(45),
+                                        DecisionTimeStamp:=Constructor_List(46)))
 
                     Catch ex As Microsoft.VisualBasic.
                                 FileIO.MalformedLineException
