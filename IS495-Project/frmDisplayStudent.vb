@@ -300,60 +300,77 @@ Public Class frmDisplayStudent
             'Process.Start(PDF_FilePath)
             'Print the file
             Dim PrintPDF As New ProcessStartInfo
+
             PrintPDF.UseShellExecute = True
-            PrintPDF.Verb = "print"
+            PrintPDF.Verb = "OPEN"
             PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
             PrintPDF.FileName = submittedPDF 'fileName is a string parameter
             Process.Start(PrintPDF)
 
         Else
             'To See File Path
-            MessageBox.Show(text:="Please click OK to select the Students Signature to be used in the Major PDF Form" + submittedPDF, caption:="Generate New PDF: Please select a Signature")
+            'MessageBox.Show(text:="Please click OK to select the Students Signature to be used in the Major PDF Form" + submittedPDF, caption:="Generate New PDF: Please select a Signature")
 
             'Open ofdSignature so the user can choose the correct signatiure to upload, then set the StudentList.Signarure variable to the OFD result
-            ofdSignature.ShowDialog()
-            Dim SignatureResult As String = ofdSignature.FileName
-            studentList(Counter).Signature = SignatureResult
+            'ofdSignature.ShowDialog()
+            'Dim SignatureResult As String = ofdSignature.FileName
+            'studentList(Counter).Signature = SignatureResult
 
             'User opens SFD to select where they wish to save the PDF
             sfdSavePDF.ShowDialog()
-            Dim newFile As String = sfdSavePDF.FileName
+            Dim newFile As String
+            Dim extNewFile As String
+            newFile = sfdSavePDF.FileName
+            extNewFile = Path.GetExtension(newFile)
+            'add pdf extension if the user doesnt
+            If (extNewFile <> ".pdf") Then
+                newFile = sfdSavePDF.FileName + ".pdf"
+            End If
 
             '-----------------------------Auto-Populate the PDF with Students information-------------------------------------------------
             'set ofd and svd variables
             Dim pdfTemplate As String = GlobalVariables.PDF_FilePath
-            Dim signature As String = SignatureResult
+                Dim signature As String = studentList(Counter).Signature
 
-            'set PdfReader and PdfStamper from iTextSharp
-            Dim pdfReader As New PdfReader(pdfTemplate)
-            Dim pdfStamper As New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
+                'set PdfReader and PdfStamper from iTextSharp
+                Dim pdfReader As New PdfReader(pdfTemplate)
+                Dim pdfStamper As New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
 
-            'Setup pdf fields variables
-            Dim pdfFormFields As AcroFields = pdfStamper.AcroFields
-            pdfFormFields.SetField("Name", studentList(Counter).First + " " + studentList(Counter).Last)
-            pdfFormFields.SetField("NSHE", studentList(Counter).NSHE)
-            pdfFormFields.SetField("StudentSignature", signature)
-            pdfFormFields.SetField("Date", studentList(Counter).AppDate)
-            pdfFormFields.SetField("StudentAthlete", "studentList(Counter).athelete")
-            pdfFormFields.SetField("Change", "No")
-            pdfFormFields.SetField("Add", "Yes")
-            pdfFormFields.SetField("Remove", "No")
-            pdfFormFields.SetField("PlanRequested", studentList(Counter).Majors)
-            pdfFormFields.SetField("CatelogYear", studentList(Counter).Semester)
-            pdfFormFields.SetField("Subplan", "N/A")
-            pdfFormFields.SetField("NewAdvisor", "N/A")
-            pdfFormFields.SetField("AdvisorDateSigned", System.DateTime.Today.ToString())
-            pdfFormFields.SetField("Approved", "Yes")
-            pdfFormFields.SetField("Denied", "No")
-            pdfFormFields.SetField("Evaluator", studentList(Counter).Username)
-            pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
+                'Setup pdf fields variables
+                Dim pdfFormFields As AcroFields = pdfStamper.AcroFields
+                pdfFormFields.SetField("Name", studentList(Counter).First + " " + studentList(Counter).Last)
+                pdfFormFields.SetField("NSHE", studentList(Counter).NSHE)
+                pdfFormFields.SetField("StudentSignature", signature)
+                pdfFormFields.SetField("Date", studentList(Counter).AppDate)
+                pdfFormFields.SetField("StudentAthlete", "studentList(Counter).athelete")
+                pdfFormFields.SetField("Change", "No")
+                pdfFormFields.SetField("Add", "Yes")
+                pdfFormFields.SetField("Remove", "No")
+                pdfFormFields.SetField("PlanRequested", studentList(Counter).Majors)
+                pdfFormFields.SetField("CatelogYear", studentList(Counter).Semester)
+                pdfFormFields.SetField("Subplan", "N/A")
+                pdfFormFields.SetField("NewAdvisor", "N/A")
+                pdfFormFields.SetField("AdvisorDateSigned", System.DateTime.Today.ToString())
+                pdfFormFields.SetField("Approved", "Yes")
+                pdfFormFields.SetField("Denied", "No")
+                pdfFormFields.SetField("Evaluator", studentList(Counter).Username)
+                pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
 
-            pdfStamper.FormFlattening = True
+                pdfStamper.FormFlattening = False
 
-            ' close the pdf
-            pdfStamper.Close()
+                ' close the pdf
+                pdfStamper.Close()
 
-        End If
+                'Open File in Adobe for User to import Signature, review and Print
+                Dim PrintPDF As New ProcessStartInfo
+
+                PrintPDF.UseShellExecute = True
+                PrintPDF.Verb = "OPEN"
+                PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
+                PrintPDF.FileName = newFile 'fileName is a string parameter
+                Process.Start(PrintPDF)
+
+            End If
     End Sub
 
     Private Sub txtAdvisorNotes_TextChanged(sender As Object, e As EventArgs) Handles txtAdvisorNotes.TextChanged
