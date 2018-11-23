@@ -51,6 +51,7 @@ Partial Class frmDisplayStudent
         Me.txtAdvisorNotes = New System.Windows.Forms.TextBox()
         Me.LblAdvisorNotes = New System.Windows.Forms.Label()
         Me.btnEmailStudent = New System.Windows.Forms.Button()
+        Me.btnExportData = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnSaveData
@@ -293,11 +294,21 @@ Partial Class frmDisplayStudent
         Me.btnEmailStudent.Text = "Email Student"
         Me.btnEmailStudent.UseVisualStyleBackColor = True
         '
+        'btnExportData
+        '
+        Me.btnExportData.Location = New System.Drawing.Point(459, 379)
+        Me.btnExportData.Name = "btnExportData"
+        Me.btnExportData.Size = New System.Drawing.Size(136, 23)
+        Me.btnExportData.TabIndex = 28
+        Me.btnExportData.Text = "Export Data for MS BI"
+        Me.btnExportData.UseVisualStyleBackColor = True
+        '
         'frmDisplayStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(607, 518)
+        Me.Controls.Add(Me.btnExportData)
         Me.Controls.Add(Me.btnEmailStudent)
         Me.Controls.Add(Me.LblAdvisorNotes)
         Me.Controls.Add(Me.txtAdvisorNotes)
@@ -361,4 +372,5 @@ Partial Class frmDisplayStudent
     Friend WithEvents txtAdvisorNotes As TextBox
     Friend WithEvents LblAdvisorNotes As Label
     Friend WithEvents btnEmailStudent As Button
+    Friend WithEvents btnExportData As Button
 End Class

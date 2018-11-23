@@ -16,6 +16,9 @@ Public Class frmDisplayStudent
     Dim studentList As New List(Of Student)
     'set counter to 1 before loop begins
     Dim Counter As Int16 = 0
+
+    'This is used to keep track of the count of decisions made.
+    Dim Num_of_Dec_Made As Integer = 0
     'status variables
     'Dim Status, Accepted, Denied, Bridged As String
     'Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
@@ -45,10 +48,15 @@ Public Class frmDisplayStudent
     End Sub
 
     Public Sub SetStudentStatus(argStatus As String)
+        If studentList(Counter).Status = "" Then
+            Num_of_Dec_Made += 1
+        End If
         studentList(Counter).Status = argStatus
         studentList(Counter).Semester = GlobalVariables.CurrentSemester
         studentList(Counter).Username = GlobalVariables.CurrentUsername
         studentList(Counter).DecisionTimeStamp = System.DateTime.Now.ToShortDateString()
+
+        CheckIfAllDecisionsMade()
     End Sub
 
     Public Function DecisionMadeMessage(argCurrentStudent As Integer) As String
@@ -75,6 +83,25 @@ Public Class frmDisplayStudent
         btnBridge.Enabled = True
         lblDecisionMade.Visible = False
         btnPrintPDF.Enabled = False
+    End Sub
+    Public Sub CheckIfAllDecisionsMade()
+        If Num_of_Dec_Made = studentList.Count - 1 Then
+            Dim result As Integer
+            result = MessageBox.Show(
+                text:="All students have been given a stutus. Would you like to export the data?",
+                buttons:=MessageBoxButtons.YesNo,
+                caption:="All student Decisions completed.")
+
+            If (result = DialogResult.Yes) Then
+                ExportData_Method()
+            ElseIf (result = DialogResult.No) Then
+                btnExportData.Visible = True
+            End If
+        End If
+    End Sub
+
+    Public Sub ExportData_Method()
+        'Do Something
     End Sub
 
     'End of Callable Methods.
@@ -157,7 +184,7 @@ Public Class frmDisplayStudent
 
     Private Sub frmDisplayStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Creating Variables for AdivsorNotes and DecisionTimeStamp
-        Dim Constructor_List As New List(Of String)
+
 
 
         'loop for reading csv 
@@ -175,17 +202,63 @@ Public Class frmDisplayStudent
                     Try
                         currentRow = MyReader.ReadFields()
                         Dim currentField As String
-
+                        Dim Constructor_List As New List(Of String)
 
                         Dim i = 0
                         For Each currentField In currentRow
                             Constructor_List.Insert(i, GlobalVariables.RemoveCommas(currentField))
                             i += 1
                         Next
-
-
-                        'Done reading row values / Create the instance of Person
-                        studentList.Add(New Student(
+                        '42 count means that it is a record that doesn't have a decision.
+                        '46 count means that is is a record that has a decision made with additional fields.
+                        Dim BreakPointString = "Hit a breakpoint here to check Constructor_List."
+                        If Constructor_List.Count = 42 Then
+                            'Done reading row values / Create the instance of Person
+                            studentList.Add(New Student(
+                                        time:=Constructor_List(0),
+                                        first:=Constructor_List(1),
+                                        last:=Constructor_List(2),
+                                        nSHE:=Constructor_List(3),
+                                        phone:=Constructor_List(4),
+                                        email:=Constructor_List(5),
+                                        majors:=Constructor_List(6),
+                                        internationalBusiness:=Constructor_List(7),
+                                        regional:=Constructor_List(8),
+                                        acc201:=Constructor_List(9),
+                                        acc202:=Constructor_List(10),
+                                        econ102:=Constructor_List(11),
+                                        econ103:=Constructor_List(12),
+                                        econ261:=Constructor_List(13),
+                                        econ262:=Constructor_List(14),
+                                        iS101:=Constructor_List(15),
+                                        math176:=Constructor_List(16),
+                                        mkt210:=Constructor_List(17),
+                                        econ102_2:=Constructor_List(18),
+                                        econ103_2:=Constructor_List(19),
+                                        econ261_2:=Constructor_List(20),
+                                        econ262_2:=Constructor_List(21),
+                                        iS101_2:=Constructor_List(22),
+                                        math176_2:=Constructor_List(23),
+                                        toBeCompleted:=Constructor_List(24),
+                                        gPA:=Constructor_List(25),
+                                        additionalInfo:=Constructor_List(26),
+                                        otherInstitutions:=Constructor_List(27),
+                                        transcriptsSubmitted:=Constructor_List(28),
+                                        transcriptsUploaded:=Constructor_List(29),
+                                        declarationDay:=Constructor_List(30),
+                                        declarationDayConflicts:=Constructor_List(31),
+                                        emailConfirmation:=Constructor_List(32),
+                                        understand:=Constructor_List(33),
+                                        falseInfo:=Constructor_List(34),
+                                        changeMajorPDF:=Constructor_List(35),
+                                        signature:=Constructor_List(36),
+                                        appDate:=Constructor_List(37),
+                                        browser:=Constructor_List(38),
+                                        ipAddress:=Constructor_List(39),
+                                        uniqueID:=Constructor_List(40),
+                                        location:=Constructor_List(41)))
+                        ElseIf (Constructor_List.Count = 47) Then
+                            studentList.Add(New Student(
                                         time:=Constructor_List(0),
                                         first:=Constructor_List(1),
                                         last:=Constructor_List(2),
@@ -233,6 +306,9 @@ Public Class frmDisplayStudent
                                         username:=Constructor_List(44),
                                         advisorNotes:=Constructor_List(45),
                                         DecisionTimeStamp:=Constructor_List(46)))
+                            Num_of_Dec_Made += 1
+                        End If
+
 
                     Catch ex As Microsoft.VisualBasic.
                                 FileIO.MalformedLineException
@@ -244,6 +320,7 @@ Public Class frmDisplayStudent
             ' For debugging.
             Me.Text = Text.Length.ToString
 
+
         Catch ex As Exception
 
             ' Report an error.
@@ -254,6 +331,7 @@ Public Class frmDisplayStudent
         '***We could/should create an if statement to check if the first variables are column names or actual data
         If (studentList(Counter).Time = "Time") Then
             Counter = Counter + 1
+            Num_of_Dec_Made -= 1
         End If
 
         'Load values into the labels on the form
@@ -270,6 +348,8 @@ Public Class frmDisplayStudent
         Else
             UNMADE_StatusSettings()
         End If
+        btnExportData.Visible = False
+        CheckIfAllDecisionsMade()
     End Sub
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
@@ -335,50 +415,54 @@ Public Class frmDisplayStudent
             '-----------------------------Auto-Populate the PDF with Students information-------------------------------------------------
             'set ofd and svd variables
             Dim pdfTemplate As String = GlobalVariables.PDF_FilePath
-                Dim signature As String = studentList(Counter).Signature
+            Dim signature As String = studentList(Counter).Signature
 
-                'set PdfReader and PdfStamper from iTextSharp
-                Dim pdfReader As New PdfReader(pdfTemplate)
-                Dim pdfStamper As New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
+            'set PdfReader and PdfStamper from iTextSharp
+            Dim pdfReader As New PdfReader(pdfTemplate)
+            Dim pdfStamper As New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
 
-                'Setup pdf fields variables
-                Dim pdfFormFields As AcroFields = pdfStamper.AcroFields
-                pdfFormFields.SetField("Name", studentList(Counter).First + " " + studentList(Counter).Last)
-                pdfFormFields.SetField("NSHE", studentList(Counter).NSHE)
-                pdfFormFields.SetField("StudentSignature", signature)
-                pdfFormFields.SetField("Date", studentList(Counter).AppDate)
-                pdfFormFields.SetField("StudentAthlete", "studentList(Counter).athelete")
-                pdfFormFields.SetField("Change", "No")
-                pdfFormFields.SetField("Add", "Yes")
-                pdfFormFields.SetField("Remove", "No")
-                pdfFormFields.SetField("PlanRequested", studentList(Counter).Majors)
-                pdfFormFields.SetField("CatelogYear", studentList(Counter).Semester)
-                pdfFormFields.SetField("Subplan", "N/A")
-                pdfFormFields.SetField("NewAdvisor", "N/A")
-                pdfFormFields.SetField("AdvisorDateSigned", System.DateTime.Today.ToString())
-                pdfFormFields.SetField("Approved", "Yes")
-                pdfFormFields.SetField("Denied", "No")
-                pdfFormFields.SetField("Evaluator", studentList(Counter).Username)
-                pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
+            'Setup pdf fields variables
+            Dim pdfFormFields As AcroFields = pdfStamper.AcroFields
+            pdfFormFields.SetField("Name", studentList(Counter).First + " " + studentList(Counter).Last)
+            pdfFormFields.SetField("NSHE", studentList(Counter).NSHE)
+            pdfFormFields.SetField("StudentSignature", signature)
+            pdfFormFields.SetField("Date", studentList(Counter).AppDate)
+            pdfFormFields.SetField("StudentAthlete", "studentList(Counter).athelete")
+            pdfFormFields.SetField("Change", "No")
+            pdfFormFields.SetField("Add", "Yes")
+            pdfFormFields.SetField("Remove", "No")
+            pdfFormFields.SetField("PlanRequested", studentList(Counter).Majors)
+            pdfFormFields.SetField("CatelogYear", studentList(Counter).Semester)
+            pdfFormFields.SetField("Subplan", "N/A")
+            pdfFormFields.SetField("NewAdvisor", "N/A")
+            pdfFormFields.SetField("AdvisorDateSigned", System.DateTime.Today.ToString())
+            pdfFormFields.SetField("Approved", "Yes")
+            pdfFormFields.SetField("Denied", "No")
+            pdfFormFields.SetField("Evaluator", studentList(Counter).Username)
+            pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
 
-                pdfStamper.FormFlattening = False
+            pdfStamper.FormFlattening = False
 
-                ' close the pdf
-                pdfStamper.Close()
+            ' close the pdf
+            pdfStamper.Close()
 
-                'Open File in Adobe for User to import Signature, review and Print
-                Dim PrintPDF As New ProcessStartInfo
+            'Open File in Adobe for User to import Signature, review and Print
+            Dim PrintPDF As New ProcessStartInfo
 
-                PrintPDF.UseShellExecute = True
-                PrintPDF.Verb = "OPEN"
-                PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
-                PrintPDF.FileName = newFile 'fileName is a string parameter
-                Process.Start(PrintPDF)
+            PrintPDF.UseShellExecute = True
+            PrintPDF.Verb = "OPEN"
+            PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
+            PrintPDF.FileName = newFile 'fileName is a string parameter
+            Process.Start(PrintPDF)
 
-            End If
+        End If
     End Sub
 
     Private Sub txtAdvisorNotes_TextChanged(sender As Object, e As EventArgs) Handles txtAdvisorNotes.TextChanged
         studentList(Counter).AdvisorNotes = txtAdvisorNotes.Text
+    End Sub
+
+    Private Sub btnExportData_Click(sender As Object, e As EventArgs) Handles btnExportData.Click
+        ExportData_Method()
     End Sub
 End Class
