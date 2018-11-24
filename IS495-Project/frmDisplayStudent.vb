@@ -395,7 +395,7 @@ Public Class frmDisplayStudent
         Else
             Dim signature As String = studentList(Counter).Signature
             'To See File Path
-            MessageBox.Show(text:="A generated PDF will open in Adobe. Please import the signature found in the following file location: " + signature, caption:="Generate New PDF: Please select a Signature")
+            MessageBox.Show("A generated PDF will open in Adobe." & vbCrLf & "Please import the signature found in the following file location: " + signature.ToString())
 
             'Open ofdSignature so the user can choose the correct signatiure to upload, then set the StudentList.Signarure variable to the OFD result
             'ofdSignature.ShowDialog()
