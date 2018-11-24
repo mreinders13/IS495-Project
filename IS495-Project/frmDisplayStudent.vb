@@ -385,16 +385,17 @@ Public Class frmDisplayStudent
             'Process.Start(PDF_FilePath)
             'Print the file
             Dim PrintPDF As New ProcessStartInfo
-
+            '--------------Automatially print pdf if correct----------------------
             PrintPDF.UseShellExecute = True
-            PrintPDF.Verb = "OPEN"
+            PrintPDF.Verb = "print"
             PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
             PrintPDF.FileName = submittedPDF 'fileName is a string parameter
             Process.Start(PrintPDF)
 
         Else
+            Dim signature As String = studentList(Counter).Signature
             'To See File Path
-            'MessageBox.Show(text:="Please click OK to select the Students Signature to be used in the Major PDF Form" + submittedPDF, caption:="Generate New PDF: Please select a Signature")
+            MessageBox.Show(text:="A generated PDF will open in Adobe. Please import the signature found in the following file location: " + signature, caption:="Generate New PDF: Please select a Signature")
 
             'Open ofdSignature so the user can choose the correct signatiure to upload, then set the StudentList.Signarure variable to the OFD result
             'ofdSignature.ShowDialog()
@@ -415,7 +416,7 @@ Public Class frmDisplayStudent
             '-----------------------------Auto-Populate the PDF with Students information-------------------------------------------------
             'set ofd and svd variables
             Dim pdfTemplate As String = GlobalVariables.PDF_FilePath
-            Dim signature As String = studentList(Counter).Signature
+
 
             'set PdfReader and PdfStamper from iTextSharp
             Dim pdfReader As New PdfReader(pdfTemplate)
