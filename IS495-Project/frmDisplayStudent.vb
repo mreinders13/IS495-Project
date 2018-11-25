@@ -101,7 +101,41 @@ Public Class frmDisplayStudent
     End Sub
 
     Public Sub ExportData_Method()
-        'Do Something
+        'view save dialog
+        Dim result As DialogResult = SaveFileDialog.ShowDialog()
+        'check filepath to save to. If user doesnt specify .csv, save as .csv 
+        If result = Windows.Forms.DialogResult.OK Then
+            Dim csvFile As String = SaveFileDialog.FileName
+            Dim Extension As String = Path.GetExtension(csvFile)
+            If (Extension <> ".csv") Then
+                csvFile = csvFile + ".csv"
+            End If
+
+            Dim saveCounter As Int16 = 0
+
+            Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
+            While saveCounter < studentList.Count
+                Dim CurStud = studentList(saveCounter)
+                outFile.WriteLine(
+                    CurStud.Username + "," +
+                    CurStud.DecisionTimeStamp + "," +
+                    CurStud.Status + "," +
+                    CurStud.AdvisorNotes + "," +
+                    CurStud.First + "," +
+                    CurStud.Last + "," +
+                    CurStud.NSHE + "," +
+                    CurStud.Phone + "," +
+                    CurStud.Email + "," +
+                    CurStud.AppDate + "," +
+                    CurStud.Majors + ",")
+                saveCounter = saveCounter + 1
+            End While
+            outFile.Close()
+
+            Console.WriteLine(My.Computer.FileSystem.ReadAllText(csvFile))
+            MessageBox.Show("Exported Successful")
+            Application.Exit()
+        End If
     End Sub
 
     'End of Callable Methods.
@@ -183,13 +217,8 @@ Public Class frmDisplayStudent
     End Sub
 
     Private Sub frmDisplayStudent_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'Creating Variables for AdivsorNotes and DecisionTimeStamp
-
-
-
         'loop for reading csv 
         Try
-
             Using MyReader As New Microsoft.VisualBasic.
                     FileIO.TextFieldParser(
                       GlobalVariables.SourceFilePath)
@@ -204,18 +233,19 @@ Public Class frmDisplayStudent
                         Dim currentField As String
                         Dim Constructor_List As New List(Of String)
 
+                        'Stores each cell in Constructor_List.
                         Dim i = 0
                         For Each currentField In currentRow
                             Constructor_List.Insert(i, GlobalVariables.RemoveCommas(currentField))
                             i += 1
                         Next
-                        Do While (Constructor_List.Count <> 47)
+
+                        'This ensures there there are 47 strings in Constructor_List.
+                        Do While (Constructor_List.Count < 47)
                             Constructor_List.Add("")
                         Loop
-                        '42 count means that it is a record that doesn't have a decision.
-                        '46 count means that is is a record that has a decision made with additional fields.
-                        Dim BreakPointString = "Hit a breakpoint here to check Constructor_List."
 
+                        'This "New Student()" will only work if there are 47 string in Constructor_List.
                         studentList.Add(New Student(
                                         time:=Constructor_List(0),
                                         first:=Constructor_List(1),
@@ -264,6 +294,8 @@ Public Class frmDisplayStudent
                                         username:=Constructor_List(44),
                                         advisorNotes:=Constructor_List(45),
                                         DecisionTimeStamp:=Constructor_List(46)))
+
+                        'If a decision is made, then increment Num_of_Dec_Made
                         If (Constructor_List(46) <> "") Then
                             Num_of_Dec_Made += 1
                         End If
