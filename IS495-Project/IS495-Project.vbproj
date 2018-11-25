@@ -89,6 +89,12 @@
     <Compile Include="frmEmail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmEmailLogin.Designer.vb">
+      <DependentUpon>frmEmailLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmEmailLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmUsername.Designer.vb">
       <DependentUpon>frmUsername.vb</DependentUpon>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmail.resx">
       <DependentUpon>frmEmail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmailLogin.resx">
+      <DependentUpon>frmEmailLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUsername.resx">
       <DependentUpon>frmUsername.vb</DependentUpon>

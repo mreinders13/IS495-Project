@@ -2,6 +2,11 @@
     Public Shared CurrentSemester As String = Nothing
     Public Shared SourceFilePath As String = Nothing
     Public Shared CurrentUsername As String = Nothing
+    Public Shared StudentStatus As String = Nothing
+    Public Shared EmailStatus As String = Nothing
+    Public Shared StudentEmail As String = Nothing
+    Public Shared EmailLogin As String = Nothing
+    Public Shared EmailPassword As String = Nothing
 
     Public Shared PDF_FilePath As String = Nothing
 

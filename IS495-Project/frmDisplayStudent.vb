@@ -44,6 +44,7 @@ Public Class frmDisplayStudent
         lblMATH176.Text = "MATH176: " + studentList(CurStud).Math176
         lblMKT210.Text = "MKT210: " + studentList(CurStud).Mkt210
         txtAdvisorNotes.Text = studentList(CurStud).AdvisorNotes
+        GlobalVariables.StudentEmail = studentList(CurStud).Email
 
     End Sub
 
@@ -350,18 +351,24 @@ Public Class frmDisplayStudent
         'Save Accept decision
         SetStudentStatus("Accepted")
         btnPrintPDF.Enabled = True
+        GlobalVariables.StudentStatus = "Accepted"
+        lblStatus.Text = "Status: Accepted"
     End Sub
 
     Private Sub btnBridge_Click(sender As Object, e As EventArgs) Handles btnBridge.Click
         'Save Bridge Decision
         SetStudentStatus("Bridged")
         btnPrintPDF.Enabled = True
+        GlobalVariables.StudentStatus = "Bridged"
+        lblStatus.Text = "Status: Bridged"
     End Sub
 
     Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
         'Save Deny Decision 
         SetStudentStatus("Denied")
         btnPrintPDF.Enabled = False
+        GlobalVariables.StudentStatus = "Denied"
+        lblStatus.Text = "Status: Denied"
     End Sub
 
     Private Sub btnPrintPDF_Click(sender As Object, e As EventArgs) Handles btnPrintPDF.Click
@@ -459,5 +466,14 @@ Public Class frmDisplayStudent
 
     Private Sub btnExportData_Click(sender As Object, e As EventArgs) Handles btnExportData.Click
         ExportData_Method()
+    End Sub
+
+    Private Sub btnEmailStudent_Click(sender As Object, e As EventArgs) Handles btnEmailStudent.Click
+        frmEmail.txtTo.Text = GlobalVariables.StudentEmail
+        If GlobalVariables.EmailLogin = Nothing Then
+            frmEmailLogin.Show()
+        Else
+            frmEmail.Show()
+        End If
     End Sub
 End Class

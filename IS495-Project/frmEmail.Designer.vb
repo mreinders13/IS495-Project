@@ -35,6 +35,7 @@ Partial Class frmEmail
         Me.lblPassword = New System.Windows.Forms.Label()
         Me.btnSend = New System.Windows.Forms.Button()
         Me.lnkAttach = New System.Windows.Forms.LinkLabel()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.SuspendLayout()
         '
         'txtTo
@@ -147,6 +148,10 @@ Partial Class frmEmail
         Me.lnkAttach.TabStop = True
         Me.lnkAttach.Text = "Attachment"
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
         'frmEmail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -185,4 +190,5 @@ Partial Class frmEmail
     Friend WithEvents lblPassword As Label
     Friend WithEvents btnSend As Button
     Friend WithEvents lnkAttach As LinkLabel
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class
