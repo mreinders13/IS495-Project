@@ -209,56 +209,14 @@ Public Class frmDisplayStudent
                             Constructor_List.Insert(i, GlobalVariables.RemoveCommas(currentField))
                             i += 1
                         Next
+                        Do While (Constructor_List.Count <> 47)
+                            Constructor_List.Add("")
+                        Loop
                         '42 count means that it is a record that doesn't have a decision.
                         '46 count means that is is a record that has a decision made with additional fields.
                         Dim BreakPointString = "Hit a breakpoint here to check Constructor_List."
-                        If Constructor_List.Count = 42 Then
-                            'Done reading row values / Create the instance of Person
-                            studentList.Add(New Student(
-                                        time:=Constructor_List(0),
-                                        first:=Constructor_List(1),
-                                        last:=Constructor_List(2),
-                                        nSHE:=Constructor_List(3),
-                                        phone:=Constructor_List(4),
-                                        email:=Constructor_List(5),
-                                        majors:=Constructor_List(6),
-                                        internationalBusiness:=Constructor_List(7),
-                                        regional:=Constructor_List(8),
-                                        acc201:=Constructor_List(9),
-                                        acc202:=Constructor_List(10),
-                                        econ102:=Constructor_List(11),
-                                        econ103:=Constructor_List(12),
-                                        econ261:=Constructor_List(13),
-                                        econ262:=Constructor_List(14),
-                                        iS101:=Constructor_List(15),
-                                        math176:=Constructor_List(16),
-                                        mkt210:=Constructor_List(17),
-                                        econ102_2:=Constructor_List(18),
-                                        econ103_2:=Constructor_List(19),
-                                        econ261_2:=Constructor_List(20),
-                                        econ262_2:=Constructor_List(21),
-                                        iS101_2:=Constructor_List(22),
-                                        math176_2:=Constructor_List(23),
-                                        toBeCompleted:=Constructor_List(24),
-                                        gPA:=Constructor_List(25),
-                                        additionalInfo:=Constructor_List(26),
-                                        otherInstitutions:=Constructor_List(27),
-                                        transcriptsSubmitted:=Constructor_List(28),
-                                        transcriptsUploaded:=Constructor_List(29),
-                                        declarationDay:=Constructor_List(30),
-                                        declarationDayConflicts:=Constructor_List(31),
-                                        emailConfirmation:=Constructor_List(32),
-                                        understand:=Constructor_List(33),
-                                        falseInfo:=Constructor_List(34),
-                                        changeMajorPDF:=Constructor_List(35),
-                                        signature:=Constructor_List(36),
-                                        appDate:=Constructor_List(37),
-                                        browser:=Constructor_List(38),
-                                        ipAddress:=Constructor_List(39),
-                                        uniqueID:=Constructor_List(40),
-                                        location:=Constructor_List(41)))
-                        ElseIf (Constructor_List.Count = 47) Then
-                            studentList.Add(New Student(
+
+                        studentList.Add(New Student(
                                         time:=Constructor_List(0),
                                         first:=Constructor_List(1),
                                         last:=Constructor_List(2),
@@ -306,9 +264,9 @@ Public Class frmDisplayStudent
                                         username:=Constructor_List(44),
                                         advisorNotes:=Constructor_List(45),
                                         DecisionTimeStamp:=Constructor_List(46)))
+                        If (Constructor_List(46) <> "") Then
                             Num_of_Dec_Made += 1
                         End If
-
 
                     Catch ex As Microsoft.VisualBasic.
                                 FileIO.MalformedLineException
@@ -331,7 +289,11 @@ Public Class frmDisplayStudent
         '***We could/should create an if statement to check if the first variables are column names or actual data
         If (studentList(Counter).Time = "Time") Then
             Counter = Counter + 1
-            Num_of_Dec_Made -= 1
+            'Num_of_Dec_Made -= 1
+
+            'if we start writing the field names in the saved version
+            'for the new fields added, we'll have to reduce Num_of_Dec_Made
+            'by one 
         End If
 
         'Load values into the labels on the form
