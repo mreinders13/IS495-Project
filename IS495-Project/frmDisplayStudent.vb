@@ -45,6 +45,7 @@ Public Class frmDisplayStudent
         lblMKT210.Text = "MKT210: " + studentList(CurStud).Mkt210
         txtAdvisorNotes.Text = studentList(CurStud).AdvisorNotes
         GlobalVariables.StudentEmail = studentList(CurStud).Email
+        GlobalVariables.Major = studentList(CurStud).Majors
 
     End Sub
 
@@ -470,6 +471,7 @@ Public Class frmDisplayStudent
 
     Private Sub btnEmailStudent_Click(sender As Object, e As EventArgs) Handles btnEmailStudent.Click
         frmEmail.txtTo.Text = GlobalVariables.StudentEmail
+        GlobalVariables.SetEmailAttachment_FilePath()
         If GlobalVariables.EmailLogin = Nothing Then
             frmEmailLogin.Show()
         Else

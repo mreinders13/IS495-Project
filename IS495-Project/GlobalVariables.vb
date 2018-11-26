@@ -7,8 +7,9 @@
     Public Shared StudentEmail As String = Nothing
     Public Shared EmailLogin As String = Nothing
     Public Shared EmailPassword As String = Nothing
-
     Public Shared PDF_FilePath As String = Nothing
+    Public Shared Major As String = Nothing
+    Public Shared EmailAttachment_FilePath As String = Nothing
 
 
     Private Sub New()
@@ -55,10 +56,24 @@
 
         PDF_FilePath = pdffile
     End Sub
-
     Public Shared ReadOnly Property GetPDF_FilePath() As String
         Get
             Return PDF_FilePath
+        End Get
+    End Property
+    Public Shared Sub SetEmailAttachment_FilePath()
+        Dim emailPath As System.IO.FileInfo
+        If Major = "Accounting" And StudentStatus = "Accepted" Then
+            emailPath = My.Computer.FileSystem.GetFileInfo("Admission to Major ACC Fall 18.doc")
+        ElseIf StudentStatus = "Accepted" Then
+            emailPath = My.Computer.FileSystem.GetFileInfo("Admission to Major Fall 18.doc")
+        ElseIf StudentStatus = "Bridged" Then
+            emailPath = My.Computer.FileSystem.GetFileInfo("Bridge Fall 18.doc")
+        End If
+    End Sub
+    Public Shared ReadOnly Property GetEmailAttachment_FilePath() As String
+        Get
+            Return EmailAttachment_FilePath
         End Get
     End Property
 

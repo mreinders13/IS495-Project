@@ -20,12 +20,14 @@ Public Class frmEmail
         Using mail As New MailMessage(txtEmail.Text.Trim(), txtTo.Text.Trim())
             mail.Subject = txtSubject.Text
             mail.Body = txtBody.Text
-            For Each filePath As String In OpenFileDialog1.FileNames
-                If File.Exists(filePath) Then
-                    Dim fileName As String = Path.GetFileName(filePath)
-                    mail.Attachments.Add(New Attachment(filePath))
-                End If
-            Next
+            ''Manually select file attachment
+            'For Each filePath As String In OpenFileDialog1.FileNames
+            '    If File.Exists(filePath) Then
+            '        Dim fileName As String = Path.GetFileName(filePath)
+            '        mail.Attachments.Add(New Attachment(filePath))
+            '    End If
+            'Next
+            mail.Attachments.Add(New Attachment(GlobalVariables.EmailAttachment_FilePath))
             mail.IsBodyHtml = False
             Dim smtp As New SmtpClient()
             smtp.Host = "smtp.gmail.com"
