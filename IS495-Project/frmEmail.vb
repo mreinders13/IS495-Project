@@ -33,7 +33,7 @@ Public Class frmEmail
             Dim NetworkCred As New NetworkCredential(txtEmail.Text.Trim(), txtPassword.Text.Trim())
             smtp.UseDefaultCredentials = True
             smtp.Credentials = NetworkCred
-            smtp.Port = 465
+            smtp.Port = 587
             smtp.Send(mail)
             MessageBox.Show("Email sent.", "Message")
         End Using
