@@ -1,4 +1,5 @@
-﻿Public Class GlobalVariables
+﻿Option Strict On
+Public Class GlobalVariables
     Public Shared CurrentSemester As String = Nothing
     Public Shared SourceFilePath As String = Nothing
     Public Shared CurrentUsername As String = Nothing
@@ -70,6 +71,7 @@
         ElseIf StudentStatus = "Bridged" Then
             emailPath = My.Computer.FileSystem.GetFileInfo("Bridge Fall 18.doc")
         End If
+
     End Sub
     Public Shared ReadOnly Property GetEmailAttachment_FilePath() As String
         Get
@@ -77,7 +79,7 @@
         End Get
     End Property
 
-    Public Shared Function RemoveCommas(sParam As String)
+    Public Shared Function RemoveCommas(sParam As String) As String
         Dim Result As String
         Result = sParam
         Result = Replace(Result, ",", " - ")
@@ -86,5 +88,16 @@
             Result = ""
         End If
         Return Result
+    End Function
+    'Put the Generic emails in ...\IS495-Project\IS495-Project\bin\Debug
+    'Then pass the filename. It will return the filepath.
+    Public Shared Function GetFilePath_ByFileName(argFileName As String) As String
+        Dim path As String = My.Application.Info.DirectoryPath
+        Dim FileName As String = argFileName
+        Dim FullFilePath As String
+
+        FullFilePath = IO.Path.Combine(path, FileName)
+
+        Return FullFilePath
     End Function
 End Class

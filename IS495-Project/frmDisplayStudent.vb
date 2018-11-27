@@ -1,4 +1,5 @@
-﻿Imports System
+﻿Option Strict On
+Imports System
 Imports System.Collections
 Imports System.ComponentModel
 Imports System.Data
@@ -15,7 +16,7 @@ Public Class frmDisplayStudent
     'Create a List of all students 
     Dim studentList As New List(Of Student)
     'set counter to 1 before loop begins
-    Dim Counter As Int16 = 0
+    Dim Counter As Integer = 0
 
     'This is used to keep track of the count of decisions made.
     Dim Num_of_Dec_Made As Integer = 0
@@ -44,6 +45,9 @@ Public Class frmDisplayStudent
         lblMATH176.Text = "MATH176: " + studentList(CurStud).Math176
         lblMKT210.Text = "MKT210: " + studentList(CurStud).Mkt210
         txtAdvisorNotes.Text = studentList(CurStud).AdvisorNotes
+        lblStatus.Text = "Status: " + studentList(CurStud).Status
+
+
         GlobalVariables.StudentEmail = studentList(CurStud).Email
         GlobalVariables.Major = studentList(CurStud).Majors
 
@@ -58,6 +62,7 @@ Public Class frmDisplayStudent
         studentList(Counter).Username = GlobalVariables.CurrentUsername
         studentList(Counter).DecisionTimeStamp = System.DateTime.Now.ToShortDateString()
 
+        RefreshStudentLabels(Counter)
         CheckIfAllDecisionsMade()
     End Sub
 
@@ -113,7 +118,7 @@ Public Class frmDisplayStudent
                 csvFile = csvFile + ".csv"
             End If
 
-            Dim saveCounter As Int16 = 0
+            Dim saveCounter As Integer = 0
 
             Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
             While saveCounter < studentList.Count
@@ -130,7 +135,7 @@ Public Class frmDisplayStudent
                     CurStud.Email + "," +
                     CurStud.AppDate + "," +
                     CurStud.Majors + ",")
-                saveCounter = saveCounter + 1
+                saveCounter += 1
             End While
             outFile.Close()
 
@@ -154,7 +159,7 @@ Public Class frmDisplayStudent
             'Check if a Decision has already been made and Set Buttons/Labels Accordingly
             If (studentList(Counter).Status.ToString() <> "") Then
                 MADE_StatusSettings()
-                If (studentList(Counter).Status.ToString = "Denied") Then
+                If (studentList(Counter).Status = "Not Admitted") Then
                     btnPrintPDF.Enabled = False
                 End If
                 lblDecisionMade.Text = DecisionMadeMessage(Counter)
@@ -178,7 +183,7 @@ Public Class frmDisplayStudent
             'Check if a Decision has already been made and Set Buttons/Labels Accordingly
             If (studentList(Counter).Status.ToString() <> "") Then
                 MADE_StatusSettings()
-                If (studentList(Counter).Status.ToString = "Denied") Then
+                If (studentList(Counter).Status = "Not Admitted") Then
                     btnPrintPDF.Enabled = False
                 End If
                 lblDecisionMade.Text = DecisionMadeMessage(Counter)
@@ -203,12 +208,12 @@ Public Class frmDisplayStudent
                 csvFile = csvFile + ".csv"
             End If
 
-            Dim saveCounter As Int16 = 0
+            Dim saveCounter As Integer = 0
 
             Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
             While saveCounter < studentList.Count
                 outFile.WriteLine(studentList(saveCounter).Time.ToString() + "," + studentList(saveCounter).First.ToString() + "," + studentList(saveCounter).Last.ToString() + "," + studentList(saveCounter).NSHE.ToString() + "," + studentList(saveCounter).Phone.ToString() + "," + studentList(saveCounter).Email.ToString() + "," + studentList(saveCounter).Majors.ToString() + "," + studentList(saveCounter).InternationalBusiness.ToString() + "," + studentList(saveCounter).Regional.ToString() + "," + studentList(saveCounter).Acc201.ToString() + "," + studentList(saveCounter).Acc202.ToString() + "," + studentList(saveCounter).Econ102.ToString() + "," + studentList(saveCounter).Econ103.ToString() + "," + studentList(saveCounter).Econ261.ToString() + "," + studentList(saveCounter).Econ262.ToString() + "," + studentList(saveCounter).IS101.ToString() + "," + studentList(saveCounter).Math176.ToString() + "," + studentList(saveCounter).Mkt210.ToString() + "," + studentList(saveCounter).Econ102_2.ToString() + "," + studentList(saveCounter).Econ103_2.ToString() + "," + studentList(saveCounter).Econ261_2.ToString() + "," + studentList(saveCounter).Econ262_2.ToString() + "," + studentList(saveCounter).IS101_2.ToString() + "," + studentList(saveCounter).Math176_2.ToString() + "," + studentList(saveCounter).ToBeCompleted.ToString() + "," + studentList(saveCounter).GPA.ToString() + "," + studentList(saveCounter).AdditionalInfo.ToString() + "," + studentList(saveCounter).OtherInstitutions.ToString() + "," + studentList(saveCounter).TranscriptsSubmitted.ToString() + "," + studentList(saveCounter).TranscriptsUploaded.ToString() + "," + studentList(saveCounter).DeclarationDay.ToString() + "," + studentList(saveCounter).DeclarationDayConflicts.ToString() + "," + studentList(saveCounter).EmailConfirmation.ToString() + "," + studentList(saveCounter).Understand.ToString() + "," + studentList(saveCounter).FalseInfo.ToString() + "," + studentList(saveCounter).ChangeMajorPDF.ToString() + "," + studentList(saveCounter).Signature.ToString() + "," + studentList(saveCounter).AppDate.ToString() + "," + studentList(saveCounter).Browser.ToString() + "," + studentList(saveCounter).ipAddress.ToString() + "," + studentList(saveCounter).UniqueID.ToString() + "," + studentList(saveCounter).Location.ToString() + "," + studentList(saveCounter).Status.ToString() + "," + studentList(saveCounter).Semester.ToString() + "," + studentList(saveCounter).Username.ToString() + "," + studentList(saveCounter).AdvisorNotes.ToString() + "," + studentList(saveCounter).DecisionTimeStamp.ToString())
-                saveCounter = saveCounter + 1
+                saveCounter += 1
             End While
             outFile.Close()
 
@@ -322,7 +327,10 @@ Public Class frmDisplayStudent
 
         '***We could/should create an if statement to check if the first variables are column names or actual data
         If (studentList(Counter).Time = "Time") Then
-            Counter = Counter + 1
+            studentList(Counter).Username = "Reviewed By"
+            studentList(Counter).DecisionTimeStamp = "Review Date"
+            studentList(Counter).Status = "Decision"
+            Counter += 1
             'Num_of_Dec_Made -= 1
 
             'if we start writing the field names in the saved version
@@ -337,7 +345,7 @@ Public Class frmDisplayStudent
         'If so Then the accept/deny/bridge buttons could be disabled??
         If (studentList(Counter).Status.ToString() <> "") Then
             MADE_StatusSettings()
-            If (studentList(Counter).Status.ToString = "Denied") Then
+            If (studentList(Counter).Status.ToString = "Not Admitted") Then
                 btnPrintPDF.Enabled = False
             End If
             lblDecisionMade.Text = DecisionMadeMessage(Counter)
@@ -350,26 +358,26 @@ Public Class frmDisplayStudent
 
     Private Sub btnAccept_Click(sender As Object, e As EventArgs) Handles btnAccept.Click
         'Save Accept decision
-        SetStudentStatus("Accepted")
+        SetStudentStatus("Admitted")
         btnPrintPDF.Enabled = True
-        GlobalVariables.StudentStatus = "Accepted"
-        lblStatus.Text = "Status: Accepted"
+        'GlobalVariables.StudentStatus = "Accepted"
+        'lblStatus.Text = "Status: Accepted"
     End Sub
 
     Private Sub btnBridge_Click(sender As Object, e As EventArgs) Handles btnBridge.Click
         'Save Bridge Decision
-        SetStudentStatus("Bridged")
+        SetStudentStatus("Bridge")
         btnPrintPDF.Enabled = True
-        GlobalVariables.StudentStatus = "Bridged"
-        lblStatus.Text = "Status: Bridged"
+        'GlobalVariables.StudentStatus = "Bridged"
+        'lblStatus.Text = "Status: Bridged"
     End Sub
 
     Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
         'Save Deny Decision 
-        SetStudentStatus("Denied")
+        SetStudentStatus("Not Admitted")
         btnPrintPDF.Enabled = False
-        GlobalVariables.StudentStatus = "Denied"
-        lblStatus.Text = "Status: Denied"
+        'GlobalVariables.StudentStatus = "Denied"
+        'lblStatus.Text = "Status: Denied"
     End Sub
 
     Private Sub btnPrintPDF_Click(sender As Object, e As EventArgs) Handles btnPrintPDF.Click
