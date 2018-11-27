@@ -28,6 +28,31 @@ Public Class frmEmail
             '        mail.Attachments.Add(New Attachment(filePath))
             '    End If
             'Next
+
+            'This might help. Also there is a variable in the GlobalVariables class called StudentForEmail.
+            'This new varaible will make it easier to reference the current student you are dealing with.
+            'This is assuming we are going to deal with one student at a time, though.
+            'I think realistically the program should just email each student all at once.
+            'A little tedious to have the advisor log in for each potentially 100 or 200 students.
+            'Unless maybe the email information is optional at the start of the program,
+            'in which case the advisor may be able to individually click the email button one student at a time.
+            Dim EmailAttachment_FPath As String
+            Dim CurStud As Student = GlobalVariables.StudentForEmail
+            If (CurStud.Status = "Bridge") Then
+                EmailAttachment_FPath = GlobalVariables.GetFilePath_ByFileName("BridgeToMajor.Doc")
+            ElseIf (CurStud.Status = "Admitted") Then
+                If (CurStud.Majors.Contains("Accounting")) Then
+                    EmailAttachment_FPath = GlobalVariables.GetFilePath_ByFileName("AdmissionToAccountingMajor.Doc")
+                Else
+                    EmailAttachment_FPath = GlobalVariables.GetFilePath_ByFileName("AdmissionToMajor.Doc")
+                End If
+            Else
+                'There should be an emailed for the students who are not admitted.
+            End If
+
+
+
+
             mail.Attachments.Add(New Attachment(GlobalVariables.EmailAttachment_FilePath))
             mail.IsBodyHtml = False
             Dim smtp As New SmtpClient()

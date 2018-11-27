@@ -20,9 +20,6 @@ Public Class frmDisplayStudent
 
     'This is used to keep track of the count of decisions made.
     Dim Num_of_Dec_Made As Integer = 0
-    'status variables
-    'Dim Status, Accepted, Denied, Bridged As String
-    'Dim DecisionAccept, DecisionDeny, DecisionBridge As Boolean
 
     '----------------------------------------------------------------------------------------------------------------
     'Start of Callable Methods.
@@ -45,12 +42,16 @@ Public Class frmDisplayStudent
         lblMATH176.Text = "MATH176: " + studentList(CurStud).Math176
         lblMKT210.Text = "MKT210: " + studentList(CurStud).Mkt210
         txtAdvisorNotes.Text = studentList(CurStud).AdvisorNotes
-        lblStatus.Text = "Status: " + studentList(CurStud).Status
+
+        lblDecision.Text = "Decision: " + studentList(CurStud).Status
+        lblReviewedBy.Text = "Reviewed By: " + studentList(CurStud).Username
+        lblReviewDate.Text = "Review Date: " + studentList(CurStud).DecisionTimeStamp
+        lblMajorFormSigned.Text = "Major Form Signed: " + studentList(CurStud).MajorFormedSigned
+        lblBridgePermission.Text = "Bridge Permission Granted" + studentList(CurStud).BridgePermission
 
 
         GlobalVariables.StudentEmail = studentList(CurStud).Email
         GlobalVariables.Major = studentList(CurStud).Majors
-
     End Sub
 
     Public Sub SetStudentStatus(argStatus As String)
@@ -65,13 +66,13 @@ Public Class frmDisplayStudent
         RefreshStudentLabels(Counter)
         CheckIfAllDecisionsMade()
     End Sub
-
+    'I Think it might be a good idea to get rid of lblDecisionMade and also this DecisionMadeMessage() Function
     Public Function DecisionMadeMessage(argCurrentStudent As Integer) As String
         Dim CurStud As Student = studentList(argCurrentStudent)
         Dim Message As String
 
         Message = "This Decision has already been made by " + CurStud.Username + " for " + CurStud.Semester +
-            "/n" + CurStud.First + " " + CurStud.Last + " was " + CurStud.Status + "."
+            ControlChars.NewLine + CurStud.First + " " + CurStud.Last + " was " + CurStud.Status + "."
 
         Return Message
     End Function
@@ -80,7 +81,7 @@ Public Class frmDisplayStudent
         btnAccept.Enabled = False
         btnBridge.Enabled = False
         btnDeny.Enabled = False
-        lblDecisionMade.Visible = True
+        'lblDecisionMade.Visible = True
         btnPrintPDF.Enabled = True
     End Sub
 
@@ -88,14 +89,14 @@ Public Class frmDisplayStudent
         btnAccept.Enabled = True
         btnDeny.Enabled = True
         btnBridge.Enabled = True
-        lblDecisionMade.Visible = False
+        'lblDecisionMade.Visible = False
         btnPrintPDF.Enabled = False
     End Sub
     Public Sub CheckIfAllDecisionsMade()
         If Num_of_Dec_Made = studentList.Count - 1 Then
             Dim result As Integer
             result = MessageBox.Show(
-                text:="All students have been given a stutus. Would you like to export the data?",
+                text:="All students have been given a status. Would you like to export the data?",
                 buttons:=MessageBoxButtons.YesNo,
                 caption:="All student Decisions completed.")
 
@@ -127,6 +128,8 @@ Public Class frmDisplayStudent
                     CurStud.Username + "," +
                     CurStud.DecisionTimeStamp + "," +
                     CurStud.Status + "," +
+                    CurStud.BridgePermission + "," +
+                    CurStud.MajorFormedSigned + "," +
                     CurStud.AdvisorNotes + "," +
                     CurStud.First + "," +
                     CurStud.Last + "," +
@@ -157,19 +160,18 @@ Public Class frmDisplayStudent
             RefreshStudentLabels(Counter)
 
             'Check if a Decision has already been made and Set Buttons/Labels Accordingly
-            If (studentList(Counter).Status.ToString() <> "") Then
+            If (studentList(Counter).Status <> "") Then
                 MADE_StatusSettings()
                 If (studentList(Counter).Status = "Not Admitted") Then
                     btnPrintPDF.Enabled = False
                 End If
-                lblDecisionMade.Text = DecisionMadeMessage(Counter)
+                'lblDecisionMade.Text = DecisionMadeMessage(Counter)
             Else
                 UNMADE_StatusSettings()
             End If
 
         Else
             MessageBox.Show("This is the beginning of the list")
-
         End If
     End Sub
 
@@ -186,14 +188,13 @@ Public Class frmDisplayStudent
                 If (studentList(Counter).Status = "Not Admitted") Then
                     btnPrintPDF.Enabled = False
                 End If
-                lblDecisionMade.Text = DecisionMadeMessage(Counter)
+                'lblDecisionMade.Text = DecisionMadeMessage(Counter)
             Else
                 UNMADE_StatusSettings()
             End If
 
         Else
             MessageBox.Show("End of List")
-
         End If
     End Sub
 
@@ -212,7 +213,7 @@ Public Class frmDisplayStudent
 
             Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
             While saveCounter < studentList.Count
-                outFile.WriteLine(studentList(saveCounter).Time.ToString() + "," + studentList(saveCounter).First.ToString() + "," + studentList(saveCounter).Last.ToString() + "," + studentList(saveCounter).NSHE.ToString() + "," + studentList(saveCounter).Phone.ToString() + "," + studentList(saveCounter).Email.ToString() + "," + studentList(saveCounter).Majors.ToString() + "," + studentList(saveCounter).InternationalBusiness.ToString() + "," + studentList(saveCounter).Regional.ToString() + "," + studentList(saveCounter).Acc201.ToString() + "," + studentList(saveCounter).Acc202.ToString() + "," + studentList(saveCounter).Econ102.ToString() + "," + studentList(saveCounter).Econ103.ToString() + "," + studentList(saveCounter).Econ261.ToString() + "," + studentList(saveCounter).Econ262.ToString() + "," + studentList(saveCounter).IS101.ToString() + "," + studentList(saveCounter).Math176.ToString() + "," + studentList(saveCounter).Mkt210.ToString() + "," + studentList(saveCounter).Econ102_2.ToString() + "," + studentList(saveCounter).Econ103_2.ToString() + "," + studentList(saveCounter).Econ261_2.ToString() + "," + studentList(saveCounter).Econ262_2.ToString() + "," + studentList(saveCounter).IS101_2.ToString() + "," + studentList(saveCounter).Math176_2.ToString() + "," + studentList(saveCounter).ToBeCompleted.ToString() + "," + studentList(saveCounter).GPA.ToString() + "," + studentList(saveCounter).AdditionalInfo.ToString() + "," + studentList(saveCounter).OtherInstitutions.ToString() + "," + studentList(saveCounter).TranscriptsSubmitted.ToString() + "," + studentList(saveCounter).TranscriptsUploaded.ToString() + "," + studentList(saveCounter).DeclarationDay.ToString() + "," + studentList(saveCounter).DeclarationDayConflicts.ToString() + "," + studentList(saveCounter).EmailConfirmation.ToString() + "," + studentList(saveCounter).Understand.ToString() + "," + studentList(saveCounter).FalseInfo.ToString() + "," + studentList(saveCounter).ChangeMajorPDF.ToString() + "," + studentList(saveCounter).Signature.ToString() + "," + studentList(saveCounter).AppDate.ToString() + "," + studentList(saveCounter).Browser.ToString() + "," + studentList(saveCounter).ipAddress.ToString() + "," + studentList(saveCounter).UniqueID.ToString() + "," + studentList(saveCounter).Location.ToString() + "," + studentList(saveCounter).Status.ToString() + "," + studentList(saveCounter).Semester.ToString() + "," + studentList(saveCounter).Username.ToString() + "," + studentList(saveCounter).AdvisorNotes.ToString() + "," + studentList(saveCounter).DecisionTimeStamp.ToString())
+                outFile.WriteLine(studentList(saveCounter).Time.ToString() + "," + studentList(saveCounter).First.ToString() + "," + studentList(saveCounter).Last.ToString() + "," + studentList(saveCounter).NSHE.ToString() + "," + studentList(saveCounter).Phone.ToString() + "," + studentList(saveCounter).Email.ToString() + "," + studentList(saveCounter).Majors.ToString() + "," + studentList(saveCounter).InternationalBusiness.ToString() + "," + studentList(saveCounter).Regional.ToString() + "," + studentList(saveCounter).Acc201.ToString() + "," + studentList(saveCounter).Acc202.ToString() + "," + studentList(saveCounter).Econ102.ToString() + "," + studentList(saveCounter).Econ103.ToString() + "," + studentList(saveCounter).Econ261.ToString() + "," + studentList(saveCounter).Econ262.ToString() + "," + studentList(saveCounter).IS101.ToString() + "," + studentList(saveCounter).Math176.ToString() + "," + studentList(saveCounter).Mkt210.ToString() + "," + studentList(saveCounter).Econ102_2.ToString() + "," + studentList(saveCounter).Econ103_2.ToString() + "," + studentList(saveCounter).Econ261_2.ToString() + "," + studentList(saveCounter).Econ262_2.ToString() + "," + studentList(saveCounter).IS101_2.ToString() + "," + studentList(saveCounter).Math176_2.ToString() + "," + studentList(saveCounter).ToBeCompleted.ToString() + "," + studentList(saveCounter).GPA.ToString() + "," + studentList(saveCounter).AdditionalInfo.ToString() + "," + studentList(saveCounter).OtherInstitutions.ToString() + "," + studentList(saveCounter).TranscriptsSubmitted.ToString() + "," + studentList(saveCounter).TranscriptsUploaded.ToString() + "," + studentList(saveCounter).DeclarationDay.ToString() + "," + studentList(saveCounter).DeclarationDayConflicts.ToString() + "," + studentList(saveCounter).EmailConfirmation.ToString() + "," + studentList(saveCounter).Understand.ToString() + "," + studentList(saveCounter).FalseInfo.ToString() + "," + studentList(saveCounter).ChangeMajorPDF.ToString() + "," + studentList(saveCounter).Signature.ToString() + "," + studentList(saveCounter).AppDate.ToString() + "," + studentList(saveCounter).Browser.ToString() + "," + studentList(saveCounter).ipAddress.ToString() + "," + studentList(saveCounter).UniqueID.ToString() + "," + studentList(saveCounter).Location.ToString() + "," + studentList(saveCounter).Status.ToString() + "," + studentList(saveCounter).Semester.ToString() + "," + studentList(saveCounter).Username.ToString() + "," + studentList(saveCounter).AdvisorNotes.ToString() + "," + studentList(saveCounter).DecisionTimeStamp.ToString() + "," + studentList(saveCounter).MajorFormedSigned + "," + studentList(saveCounter).BridgePermission)
                 saveCounter += 1
             End While
             outFile.Close()
@@ -247,12 +248,12 @@ Public Class frmDisplayStudent
                             i += 1
                         Next
 
-                        'This ensures there there are 47 strings in Constructor_List.
-                        Do While (Constructor_List.Count < 47)
+                        'This ensures there there are 49 strings in Constructor_List.
+                        Do While (Constructor_List.Count < 49)
                             Constructor_List.Add("")
                         Loop
 
-                        'This "New Student()" will only work if there are 47 string in Constructor_List.
+                        'This "New Student()" will only work if there are 49 string in Constructor_List.
                         studentList.Add(New Student(
                                         time:=Constructor_List(0),
                                         first:=Constructor_List(1),
@@ -300,10 +301,12 @@ Public Class frmDisplayStudent
                                         semester:=Constructor_List(43),
                                         username:=Constructor_List(44),
                                         advisorNotes:=Constructor_List(45),
-                                        DecisionTimeStamp:=Constructor_List(46)))
+                                        DecisionTimeStamp:=Constructor_List(46),
+                                        majorFormSigned:=Constructor_List(47),
+                                        bridgePermission:=Constructor_List(48)))
 
                         'If a decision is made, then increment Num_of_Dec_Made
-                        If (Constructor_List(46) <> "") Then
+                        If (Constructor_List(42) <> "" And Constructor_List(42) <> "Decision") Then
                             Num_of_Dec_Made += 1
                         End If
 
@@ -317,7 +320,6 @@ Public Class frmDisplayStudent
             ' For debugging.
             Me.Text = Text.Length.ToString
 
-
         Catch ex As Exception
 
             ' Report an error.
@@ -330,12 +332,12 @@ Public Class frmDisplayStudent
             studentList(Counter).Username = "Reviewed By"
             studentList(Counter).DecisionTimeStamp = "Review Date"
             studentList(Counter).Status = "Decision"
-            Counter += 1
-            'Num_of_Dec_Made -= 1
+            studentList(Counter).BridgePermission = "Bridge Permission Granted"
+            studentList(Counter).MajorFormedSigned = "Major Form Signed"
+            studentList(Counter).AdvisorNotes = "Advisor Notes"
+            studentList(Counter).Semester = "Semester"
 
-            'if we start writing the field names in the saved version
-            'for the new fields added, we'll have to reduce Num_of_Dec_Made
-            'by one 
+            Counter += 1
         End If
 
         'Load values into the labels on the form
@@ -343,12 +345,12 @@ Public Class frmDisplayStudent
 
         'May be able to create an if statement that checks if status has a value. 
         'If so Then the accept/deny/bridge buttons could be disabled??
-        If (studentList(Counter).Status.ToString() <> "") Then
+        If (studentList(Counter).Status <> "") Then
             MADE_StatusSettings()
-            If (studentList(Counter).Status.ToString = "Not Admitted") Then
+            If (studentList(Counter).Status = "Not Admitted") Then
                 btnPrintPDF.Enabled = False
             End If
-            lblDecisionMade.Text = DecisionMadeMessage(Counter)
+            'lblDecisionMade.Text = DecisionMadeMessage(Counter)
         Else
             UNMADE_StatusSettings()
         End If
@@ -361,7 +363,6 @@ Public Class frmDisplayStudent
         SetStudentStatus("Admitted")
         btnPrintPDF.Enabled = True
         'GlobalVariables.StudentStatus = "Accepted"
-        'lblStatus.Text = "Status: Accepted"
     End Sub
 
     Private Sub btnBridge_Click(sender As Object, e As EventArgs) Handles btnBridge.Click
@@ -369,7 +370,6 @@ Public Class frmDisplayStudent
         SetStudentStatus("Bridge")
         btnPrintPDF.Enabled = True
         'GlobalVariables.StudentStatus = "Bridged"
-        'lblStatus.Text = "Status: Bridged"
     End Sub
 
     Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
@@ -377,7 +377,6 @@ Public Class frmDisplayStudent
         SetStudentStatus("Not Admitted")
         btnPrintPDF.Enabled = False
         'GlobalVariables.StudentStatus = "Denied"
-        'lblStatus.Text = "Status: Denied"
     End Sub
 
     Private Sub btnPrintPDF_Click(sender As Object, e As EventArgs) Handles btnPrintPDF.Click
@@ -480,10 +479,13 @@ Public Class frmDisplayStudent
     Private Sub btnEmailStudent_Click(sender As Object, e As EventArgs) Handles btnEmailStudent.Click
         frmEmail.txtTo.Text = GlobalVariables.StudentEmail
         GlobalVariables.SetEmailAttachment_FilePath()
+
+        GlobalVariables.StudentForEmail = studentList(Counter)
         If GlobalVariables.EmailLogin = Nothing Then
             frmEmailLogin.Show()
         Else
             frmEmail.Show()
         End If
     End Sub
+
 End Class

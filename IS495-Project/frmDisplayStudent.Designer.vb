@@ -44,7 +44,6 @@ Partial Class frmDisplayStudent
         Me.lblIS101 = New System.Windows.Forms.Label()
         Me.lblMATH176 = New System.Windows.Forms.Label()
         Me.lblMKT210 = New System.Windows.Forms.Label()
-        Me.lblDecisionMade = New System.Windows.Forms.Label()
         Me.btnPrintPDF = New System.Windows.Forms.Button()
         Me.ofdSignature = New System.Windows.Forms.OpenFileDialog()
         Me.sfdSavePDF = New System.Windows.Forms.SaveFileDialog()
@@ -52,12 +51,16 @@ Partial Class frmDisplayStudent
         Me.LblAdvisorNotes = New System.Windows.Forms.Label()
         Me.btnEmailStudent = New System.Windows.Forms.Button()
         Me.btnExportData = New System.Windows.Forms.Button()
-        Me.lblStatus = New System.Windows.Forms.Label()
+        Me.lblDecision = New System.Windows.Forms.Label()
+        Me.lblReviewedBy = New System.Windows.Forms.Label()
+        Me.lblReviewDate = New System.Windows.Forms.Label()
+        Me.lblMajorFormSigned = New System.Windows.Forms.Label()
+        Me.lblBridgePermission = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnSaveData
         '
-        Me.btnSaveData.Location = New System.Drawing.Point(520, 292)
+        Me.btnSaveData.Location = New System.Drawing.Point(198, 483)
         Me.btnSaveData.Name = "btnSaveData"
         Me.btnSaveData.Size = New System.Drawing.Size(75, 23)
         Me.btnSaveData.TabIndex = 0
@@ -67,7 +70,7 @@ Partial Class frmDisplayStudent
         'lblName
         '
         Me.lblName.AutoSize = True
-        Me.lblName.Location = New System.Drawing.Point(9, 7)
+        Me.lblName.Location = New System.Drawing.Point(11, 9)
         Me.lblName.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblName.Name = "lblName"
         Me.lblName.Size = New System.Drawing.Size(81, 13)
@@ -77,7 +80,7 @@ Partial Class frmDisplayStudent
         'lblNSHE
         '
         Me.lblNSHE.AutoSize = True
-        Me.lblNSHE.Location = New System.Drawing.Point(9, 29)
+        Me.lblNSHE.Location = New System.Drawing.Point(11, 30)
         Me.lblNSHE.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNSHE.Name = "lblNSHE"
         Me.lblNSHE.Size = New System.Drawing.Size(90, 13)
@@ -87,7 +90,7 @@ Partial Class frmDisplayStudent
         'btnAccept
         '
         Me.btnAccept.AccessibleRole = System.Windows.Forms.AccessibleRole.Alert
-        Me.btnAccept.Location = New System.Drawing.Point(15, 292)
+        Me.btnAccept.Location = New System.Drawing.Point(20, 274)
         Me.btnAccept.Name = "btnAccept"
         Me.btnAccept.Size = New System.Drawing.Size(75, 23)
         Me.btnAccept.TabIndex = 3
@@ -96,7 +99,7 @@ Partial Class frmDisplayStudent
         '
         'btnDeny
         '
-        Me.btnDeny.Location = New System.Drawing.Point(181, 292)
+        Me.btnDeny.Location = New System.Drawing.Point(182, 274)
         Me.btnDeny.Name = "btnDeny"
         Me.btnDeny.Size = New System.Drawing.Size(75, 23)
         Me.btnDeny.TabIndex = 4
@@ -105,7 +108,7 @@ Partial Class frmDisplayStudent
         '
         'btnBridge
         '
-        Me.btnBridge.Location = New System.Drawing.Point(98, 292)
+        Me.btnBridge.Location = New System.Drawing.Point(101, 274)
         Me.btnBridge.Name = "btnBridge"
         Me.btnBridge.Size = New System.Drawing.Size(75, 23)
         Me.btnBridge.TabIndex = 5
@@ -114,7 +117,7 @@ Partial Class frmDisplayStudent
         '
         'btnNextStudent
         '
-        Me.btnNextStudent.Location = New System.Drawing.Point(264, 485)
+        Me.btnNextStudent.Location = New System.Drawing.Point(470, 483)
         Me.btnNextStudent.Name = "btnNextStudent"
         Me.btnNextStudent.Size = New System.Drawing.Size(94, 23)
         Me.btnNextStudent.TabIndex = 6
@@ -123,7 +126,7 @@ Partial Class frmDisplayStudent
         '
         'btnPrevStudent
         '
-        Me.btnPrevStudent.Location = New System.Drawing.Point(11, 485)
+        Me.btnPrevStudent.Location = New System.Drawing.Point(12, 483)
         Me.btnPrevStudent.Name = "btnPrevStudent"
         Me.btnPrevStudent.Size = New System.Drawing.Size(94, 23)
         Me.btnPrevStudent.TabIndex = 7
@@ -133,7 +136,7 @@ Partial Class frmDisplayStudent
         'lblGPA
         '
         Me.lblGPA.AutoSize = True
-        Me.lblGPA.Location = New System.Drawing.Point(9, 51)
+        Me.lblGPA.Location = New System.Drawing.Point(11, 51)
         Me.lblGPA.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblGPA.Name = "lblGPA"
         Me.lblGPA.Size = New System.Drawing.Size(75, 13)
@@ -143,7 +146,7 @@ Partial Class frmDisplayStudent
         'lblMajor
         '
         Me.lblMajor.AutoSize = True
-        Me.lblMajor.Location = New System.Drawing.Point(9, 73)
+        Me.lblMajor.Location = New System.Drawing.Point(11, 72)
         Me.lblMajor.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblMajor.Name = "lblMajor"
         Me.lblMajor.Size = New System.Drawing.Size(79, 13)
@@ -153,7 +156,7 @@ Partial Class frmDisplayStudent
         'lblInternationalBusiness
         '
         Me.lblInternationalBusiness.AutoSize = True
-        Me.lblInternationalBusiness.Location = New System.Drawing.Point(9, 96)
+        Me.lblInternationalBusiness.Location = New System.Drawing.Point(11, 93)
         Me.lblInternationalBusiness.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblInternationalBusiness.Name = "lblInternationalBusiness"
         Me.lblInternationalBusiness.Size = New System.Drawing.Size(116, 13)
@@ -171,98 +174,88 @@ Partial Class frmDisplayStudent
         '
         'lblACC201
         '
-        Me.lblACC201.Location = New System.Drawing.Point(261, 11)
+        Me.lblACC201.Location = New System.Drawing.Point(280, 9)
         Me.lblACC201.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblACC201.Name = "lblACC201"
-        Me.lblACC201.Size = New System.Drawing.Size(273, 63)
+        Me.lblACC201.Size = New System.Drawing.Size(285, 13)
         Me.lblACC201.TabIndex = 12
         Me.lblACC201.Text = "ACC201: "
         '
         'lblACC202
         '
-        Me.lblACC202.Location = New System.Drawing.Point(261, 29)
+        Me.lblACC202.Location = New System.Drawing.Point(280, 39)
         Me.lblACC202.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblACC202.Name = "lblACC202"
-        Me.lblACC202.Size = New System.Drawing.Size(273, 63)
+        Me.lblACC202.Size = New System.Drawing.Size(285, 13)
         Me.lblACC202.TabIndex = 13
         Me.lblACC202.Text = "ACC202: "
         '
         'lblECON102
         '
-        Me.lblECON102.Location = New System.Drawing.Point(261, 51)
+        Me.lblECON102.Location = New System.Drawing.Point(280, 69)
         Me.lblECON102.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblECON102.Name = "lblECON102"
-        Me.lblECON102.Size = New System.Drawing.Size(282, 63)
+        Me.lblECON102.Size = New System.Drawing.Size(285, 13)
         Me.lblECON102.TabIndex = 14
         Me.lblECON102.Text = "ECON102: "
         '
         'lblECON103
         '
-        Me.lblECON103.Location = New System.Drawing.Point(261, 73)
+        Me.lblECON103.Location = New System.Drawing.Point(280, 99)
         Me.lblECON103.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblECON103.Name = "lblECON103"
-        Me.lblECON103.Size = New System.Drawing.Size(282, 63)
+        Me.lblECON103.Size = New System.Drawing.Size(285, 13)
         Me.lblECON103.TabIndex = 15
         Me.lblECON103.Text = "ECON103: "
         '
         'lblECON261
         '
-        Me.lblECON261.Location = New System.Drawing.Point(261, 98)
+        Me.lblECON261.Location = New System.Drawing.Point(280, 129)
         Me.lblECON261.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblECON261.Name = "lblECON261"
-        Me.lblECON261.Size = New System.Drawing.Size(282, 63)
+        Me.lblECON261.Size = New System.Drawing.Size(285, 13)
         Me.lblECON261.TabIndex = 16
         Me.lblECON261.Text = "ECON261: "
         '
         'lblECON262
         '
-        Me.lblECON262.Location = New System.Drawing.Point(261, 119)
+        Me.lblECON262.Location = New System.Drawing.Point(280, 159)
         Me.lblECON262.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblECON262.Name = "lblECON262"
-        Me.lblECON262.Size = New System.Drawing.Size(282, 63)
+        Me.lblECON262.Size = New System.Drawing.Size(285, 13)
         Me.lblECON262.TabIndex = 17
         Me.lblECON262.Text = "ECON262: "
         '
         'lblIS101
         '
-        Me.lblIS101.Location = New System.Drawing.Point(261, 144)
+        Me.lblIS101.Location = New System.Drawing.Point(280, 189)
         Me.lblIS101.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblIS101.Name = "lblIS101"
-        Me.lblIS101.Size = New System.Drawing.Size(262, 63)
+        Me.lblIS101.Size = New System.Drawing.Size(285, 13)
         Me.lblIS101.TabIndex = 18
         Me.lblIS101.Text = "IS101: "
         '
         'lblMATH176
         '
-        Me.lblMATH176.Location = New System.Drawing.Point(261, 166)
+        Me.lblMATH176.Location = New System.Drawing.Point(280, 219)
         Me.lblMATH176.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblMATH176.Name = "lblMATH176"
-        Me.lblMATH176.Size = New System.Drawing.Size(282, 63)
+        Me.lblMATH176.Size = New System.Drawing.Size(285, 13)
         Me.lblMATH176.TabIndex = 19
         Me.lblMATH176.Text = "MATH176: "
         '
         'lblMKT210
         '
-        Me.lblMKT210.Location = New System.Drawing.Point(261, 188)
+        Me.lblMKT210.Location = New System.Drawing.Point(280, 249)
         Me.lblMKT210.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblMKT210.Name = "lblMKT210"
-        Me.lblMKT210.Size = New System.Drawing.Size(274, 63)
+        Me.lblMKT210.Size = New System.Drawing.Size(285, 13)
         Me.lblMKT210.TabIndex = 20
         Me.lblMKT210.Text = "MKT210: "
         '
-        'lblDecisionMade
-        '
-        Me.lblDecisionMade.AutoSize = True
-        Me.lblDecisionMade.Location = New System.Drawing.Point(13, 318)
-        Me.lblDecisionMade.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblDecisionMade.Name = "lblDecisionMade"
-        Me.lblDecisionMade.Size = New System.Drawing.Size(196, 13)
-        Me.lblDecisionMade.TabIndex = 21
-        Me.lblDecisionMade.Text = "This decision has already been made by"
-        '
         'btnPrintPDF
         '
-        Me.btnPrintPDF.Location = New System.Drawing.Point(520, 321)
+        Me.btnPrintPDF.Location = New System.Drawing.Point(44, 303)
         Me.btnPrintPDF.Name = "btnPrintPDF"
         Me.btnPrintPDF.Size = New System.Drawing.Size(75, 23)
         Me.btnPrintPDF.TabIndex = 22
@@ -271,10 +264,10 @@ Partial Class frmDisplayStudent
         '
         'txtAdvisorNotes
         '
-        Me.txtAdvisorNotes.Location = New System.Drawing.Point(11, 210)
+        Me.txtAdvisorNotes.Location = New System.Drawing.Point(14, 204)
         Me.txtAdvisorNotes.Multiline = True
         Me.txtAdvisorNotes.Name = "txtAdvisorNotes"
-        Me.txtAdvisorNotes.Size = New System.Drawing.Size(223, 64)
+        Me.txtAdvisorNotes.Size = New System.Drawing.Size(250, 64)
         Me.txtAdvisorNotes.TabIndex = 24
         '
         'LblAdvisorNotes
@@ -288,7 +281,7 @@ Partial Class frmDisplayStudent
         '
         'btnEmailStudent
         '
-        Me.btnEmailStudent.Location = New System.Drawing.Point(481, 350)
+        Me.btnEmailStudent.Location = New System.Drawing.Point(125, 303)
         Me.btnEmailStudent.Name = "btnEmailStudent"
         Me.btnEmailStudent.Size = New System.Drawing.Size(114, 23)
         Me.btnEmailStudent.TabIndex = 27
@@ -297,34 +290,73 @@ Partial Class frmDisplayStudent
         '
         'btnExportData
         '
-        Me.btnExportData.Location = New System.Drawing.Point(459, 379)
+        Me.btnExportData.Location = New System.Drawing.Point(279, 483)
         Me.btnExportData.Name = "btnExportData"
         Me.btnExportData.Size = New System.Drawing.Size(136, 23)
         Me.btnExportData.TabIndex = 28
         Me.btnExportData.Text = "Export Data for MS BI"
         Me.btnExportData.UseVisualStyleBackColor = True
         '
-        'lblStatus
+        'lblDecision
         '
-        Me.lblStatus.AutoSize = True
-        Me.lblStatus.Location = New System.Drawing.Point(13, 331)
-        Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(43, 13)
-        Me.lblStatus.TabIndex = 30
-        Me.lblStatus.Text = "Status: "
+        Me.lblDecision.AutoSize = True
+        Me.lblDecision.Location = New System.Drawing.Point(114, 350)
+        Me.lblDecision.Name = "lblDecision"
+        Me.lblDecision.Size = New System.Drawing.Size(51, 13)
+        Me.lblDecision.TabIndex = 30
+        Me.lblDecision.Text = "Decision:"
+        '
+        'lblReviewedBy
+        '
+        Me.lblReviewedBy.AutoSize = True
+        Me.lblReviewedBy.Location = New System.Drawing.Point(92, 371)
+        Me.lblReviewedBy.Name = "lblReviewedBy"
+        Me.lblReviewedBy.Size = New System.Drawing.Size(73, 13)
+        Me.lblReviewedBy.TabIndex = 31
+        Me.lblReviewedBy.Text = "Reviewed By:"
+        '
+        'lblReviewDate
+        '
+        Me.lblReviewDate.AutoSize = True
+        Me.lblReviewDate.Location = New System.Drawing.Point(93, 392)
+        Me.lblReviewDate.Name = "lblReviewDate"
+        Me.lblReviewDate.Size = New System.Drawing.Size(72, 13)
+        Me.lblReviewDate.TabIndex = 32
+        Me.lblReviewDate.Text = "Review Date:"
+        '
+        'lblMajorFormSigned
+        '
+        Me.lblMajorFormSigned.AutoSize = True
+        Me.lblMajorFormSigned.Location = New System.Drawing.Point(67, 413)
+        Me.lblMajorFormSigned.Name = "lblMajorFormSigned"
+        Me.lblMajorFormSigned.Size = New System.Drawing.Size(98, 13)
+        Me.lblMajorFormSigned.TabIndex = 33
+        Me.lblMajorFormSigned.Text = "Major Form Signed:"
+        '
+        'lblBridgePermission
+        '
+        Me.lblBridgePermission.AutoSize = True
+        Me.lblBridgePermission.Location = New System.Drawing.Point(31, 434)
+        Me.lblBridgePermission.Name = "lblBridgePermission"
+        Me.lblBridgePermission.Size = New System.Drawing.Size(134, 13)
+        Me.lblBridgePermission.TabIndex = 34
+        Me.lblBridgePermission.Text = "Bridge Permission Granted:"
         '
         'frmDisplayStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(607, 518)
-        Me.Controls.Add(Me.lblStatus)
+        Me.ClientSize = New System.Drawing.Size(576, 518)
+        Me.Controls.Add(Me.lblBridgePermission)
+        Me.Controls.Add(Me.lblMajorFormSigned)
+        Me.Controls.Add(Me.lblReviewDate)
+        Me.Controls.Add(Me.lblReviewedBy)
+        Me.Controls.Add(Me.lblDecision)
         Me.Controls.Add(Me.btnExportData)
         Me.Controls.Add(Me.btnEmailStudent)
         Me.Controls.Add(Me.LblAdvisorNotes)
         Me.Controls.Add(Me.txtAdvisorNotes)
         Me.Controls.Add(Me.btnPrintPDF)
-        Me.Controls.Add(Me.lblDecisionMade)
         Me.Controls.Add(Me.lblMKT210)
         Me.Controls.Add(Me.lblMATH176)
         Me.Controls.Add(Me.lblIS101)
@@ -384,5 +416,9 @@ Partial Class frmDisplayStudent
     Friend WithEvents LblAdvisorNotes As Label
     Friend WithEvents btnEmailStudent As Button
     Friend WithEvents btnExportData As Button
-    Friend WithEvents lblStatus As Label
+    Friend WithEvents lblDecision As Label
+    Friend WithEvents lblReviewedBy As Label
+    Friend WithEvents lblReviewDate As Label
+    Friend WithEvents lblMajorFormSigned As Label
+    Friend WithEvents lblBridgePermission As Label
 End Class

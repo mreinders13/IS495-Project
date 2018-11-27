@@ -12,6 +12,8 @@ Public Class GlobalVariables
     Public Shared Major As String = Nothing
     Public Shared EmailAttachment_FilePath As String = Nothing
 
+    Public Shared StudentForEmail As Student = Nothing
+
 
     Private Sub New()
     End Sub
