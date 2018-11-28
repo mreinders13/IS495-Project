@@ -52,10 +52,11 @@ Public Class GlobalVariables
     End Property
 
     Public Shared Sub SetPDF_FilePath()
-        Dim path As String = My.Application.Info.DirectoryPath
+        'Dim path As String = My.Application.Info.DirectoryPath
         Dim pdffile As String
 
-        pdffile = IO.Path.Combine(path, "Declaration_Change_of_Plan_Major.pdf")
+        pdffile = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Declaration_Change_of_Plan_Major.pdf")
+
 
         PDF_FilePath = pdffile
     End Sub
@@ -65,13 +66,13 @@ Public Class GlobalVariables
         End Get
     End Property
     Public Shared Sub SetEmailAttachment_FilePath()
-        Dim emailPath As System.IO.FileInfo
+        Dim emailPath As String
         If Major = "Accounting" And StudentStatus = "Accepted" Then
-            emailPath = My.Computer.FileSystem.GetFileInfo("Admission to Major ACC Fall 18.doc")
+            emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
         ElseIf StudentStatus = "Accepted" Then
-            emailPath = My.Computer.FileSystem.GetFileInfo("Admission to Major Fall 18.doc")
+            emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
         ElseIf StudentStatus = "Bridged" Then
-            emailPath = My.Computer.FileSystem.GetFileInfo("Bridge Fall 18.doc")
+            emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Bridged-Fall2018.docx")
         End If
 
     End Sub
