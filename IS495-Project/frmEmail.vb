@@ -39,12 +39,12 @@ Public Class frmEmail
             Dim EmailAttachment_FPath As String
             Dim CurStud As Student = GlobalVariables.StudentForEmail
             If (CurStud.Status = "Bridge") Then
-                EmailAttachment_FPath = GlobalVariables.GetFilePath_ByFileName("BridgeToMajor.Doc")
+                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Bridged-Fall2018.docx")
             ElseIf (CurStud.Status = "Admitted") Then
                 If (CurStud.Majors.Contains("Accounting")) Then
-                    EmailAttachment_FPath = GlobalVariables.GetFilePath_ByFileName("AdmissionToAccountingMajor.Doc")
+                    EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
                 Else
-                    EmailAttachment_FPath = GlobalVariables.GetFilePath_ByFileName("AdmissionToMajor.Doc")
+                    EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
                 End If
             Else
                 'There should be an emailed for the students who are not admitted.
@@ -53,7 +53,7 @@ Public Class frmEmail
 
 
 
-            mail.Attachments.Add(New Attachment(GlobalVariables.EmailAttachment_FilePath))
+            mail.Attachments.Add(New Attachment(EmailAttachment_FPath))
             mail.IsBodyHtml = False
             Dim smtp As New SmtpClient()
             smtp.Host = "smtp.gmail.com"

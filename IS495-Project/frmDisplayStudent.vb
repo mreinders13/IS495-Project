@@ -478,7 +478,7 @@ Public Class frmDisplayStudent
 
     Private Sub btnEmailStudent_Click(sender As Object, e As EventArgs) Handles btnEmailStudent.Click
         frmEmail.txtTo.Text = GlobalVariables.StudentEmail
-        GlobalVariables.SetEmailAttachment_FilePath()
+        'GlobalVariables.SetEmailAttachment_FilePath()
 
         GlobalVariables.StudentForEmail = studentList(Counter)
         If GlobalVariables.EmailLogin = Nothing Then

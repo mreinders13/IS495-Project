@@ -65,22 +65,22 @@ Public Class GlobalVariables
             Return PDF_FilePath
         End Get
     End Property
-    Public Shared Sub SetEmailAttachment_FilePath()
-        Dim emailPath As String
-        If Major = "Accounting" And StudentStatus = "Accepted" Then
-            emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
-        ElseIf StudentStatus = "Accepted" Then
-            emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
-        ElseIf StudentStatus = "Bridged" Then
-            emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Bridged-Fall2018.docx")
-        End If
+    'Public Shared Sub SetEmailAttachment_FilePath()
+    '    Dim emailPath As String
+    '    If Major = "Accounting" And StudentStatus = "Admitted" Then
+    '        emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
+    '    ElseIf StudentStatus = "Admitted" Then
+    '        emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
+    '    ElseIf StudentStatus = "Bridged" Then
+    '        emailPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Bridged-Fall2018.docx")
+    '    End If
 
-    End Sub
-    Public Shared ReadOnly Property GetEmailAttachment_FilePath() As String
-        Get
-            Return EmailAttachment_FilePath
-        End Get
-    End Property
+    'End Sub
+    'Public Shared ReadOnly Property GetEmailAttachment_FilePath() As String
+    '    Get
+    '        Return EmailAttachment_FilePath
+    '    End Get
+    'End Property
 
     Public Shared Function RemoveCommas(sParam As String) As String
         Dim Result As String
