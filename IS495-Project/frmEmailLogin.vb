@@ -6,4 +6,8 @@ Public Class frmEmailLogin
         frmEmail.Show()
         Me.Close()
     End Sub
+
+    Private Sub frmEmailLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        txtEmailPassword.PasswordChar = CChar("*")
+    End Sub
 End Class

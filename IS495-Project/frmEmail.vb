@@ -91,6 +91,7 @@ Public Class frmEmail
         txtSubject.Text = "College of Business Major Application "
         txtEmail.Text = GlobalVariables.EmailLogin
         txtPassword.Text = GlobalVariables.EmailPassword
+        txtPassword.PasswordChar = CChar("*")
 
     End Sub
 End Class
