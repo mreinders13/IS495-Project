@@ -43,14 +43,21 @@ Public Class frmEmail
 
             If (CurStud.Status = "Bridge") Then
                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Bridged-Fall2018.docx")
+                'set the body to read something about Bridged
+                mail.Body = "Hello " + CurStud.First + " " + CurStud.Last + ", " + vbCrLf +
+                    "We have reviewed your College of Business Major Application, and upon further Advisor review, you do not currently meet the requirements to be admitted to your degree program." + vbCrLf + "Please review the attachment for further instrucitons."
+
             ElseIf (CurStud.Status = "Admitted") Then
                 If (CurStud.Majors.Contains("Accounting")) Then
                     EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
+                    'Set the body to read something about Accepted to Accounting
                 Else
                     EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
+                    'Set the body to read something about Accepted
                 End If
             Else
-                'There should be an emailed for the students who are not admitted.
+                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Denied-Fall2018.docx")
+                'Set the body to read somehting about Denied
             End If
 
 
