@@ -49,10 +49,16 @@ Public Class frmEmail
 
             ElseIf (CurStud.Status = "Admitted") Then
                 If (CurStud.Majors.Contains("Accounting")) Then
-                    EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
-                    'Set the body to read something about Accepted to Accounting
+                    If (CurStud.Majors.Contains("Information Systems")) Then
+                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC-IS.docx")
+                        'Set the body to read something about Accepted to Accounting
+                    Else
+                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
+                        'Set the body to read something about Accepted to Accounting
+                    End If
+
                 Else
-                    EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
+                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
                     'Set the body to read something about Accepted
                 End If
             Else
