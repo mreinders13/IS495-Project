@@ -29,7 +29,13 @@ Public Class frmDisplayStudent
         lblName.Text = "Student Name: " + studentList(CurStud).First + " " + studentList(CurStud).Last
         lblNSHE.Text = "Student NSHE#: " + studentList(CurStud).NSHE
         lblGPA.Text = "Student GPA: " + studentList(CurStud).GPA
-        lblMajor.Text = "Student Major: " + studentList(CurStud).Majors
+        'Check if there is a dual major or just one-------------------------
+        If (studentList(CurStud).Majors.Contains(" - ")) Then
+            lblMajor.Text = "Dual Major:" + vbCrLf + studentList(CurStud).Majors.Replace(" - ", vbCrLf)
+        Else
+            lblMajor.Text = "Student Major: " + vbCrLf + studentList(CurStud).Majors
+        End If
+        'End dual major check
         lblInternationalBusiness.Text = "International Business: " + studentList(CurStud).InternationalBusiness
         lblComments.Text = "Student Comments: " + studentList(CurStud).AdditionalInfo
         lblACC201.Text = "ACC201: " + studentList(CurStud).Acc201
@@ -329,13 +335,13 @@ Public Class frmDisplayStudent
 
         '***We could/should create an if statement to check if the first variables are column names or actual data
         If (studentList(Counter).Time = "Time") Then
-            studentList(Counter).Username = "Reviewed By"
-            studentList(Counter).DecisionTimeStamp = "Review Date"
-            studentList(Counter).Status = "Decision"
-            studentList(Counter).BridgePermission = "Bridge Permission Granted"
-            studentList(Counter).MajorFormedSigned = "Major Form Signed"
-            studentList(Counter).AdvisorNotes = "Advisor Notes"
-            studentList(Counter).Semester = "Semester"
+            'studentList(Counter).Username = "Reviewed By"
+            'studentList(Counter).DecisionTimeStamp = "Review Date"
+            'studentList(Counter).Status = "Decision"
+            'studentList(Counter).BridgePermission = "Bridge Permission Granted"
+            'studentList(Counter).MajorFormedSigned = "Major Form Signed"
+            'studentList(Counter).AdvisorNotes = "Advisor Notes"
+            'studentList(Counter).Semester = "Semester"
 
             Counter += 1
         End If
