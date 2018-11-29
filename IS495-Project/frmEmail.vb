@@ -3,6 +3,8 @@ Imports System.IO
 Imports System.Net
 Imports System.Net.Mail
 
+
+
 Public Class frmEmail
     Private Sub lnkAttach_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lnkAttach.LinkClicked
         OpenFileDialog1.ShowDialog()
@@ -38,6 +40,7 @@ Public Class frmEmail
             'in which case the advisor may be able to individually click the email button one student at a time.
             Dim EmailAttachment_FPath As String
             Dim CurStud As Student = GlobalVariables.StudentForEmail
+
             If (CurStud.Status = "Bridge") Then
                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Bridged-Fall2018.docx")
             ElseIf (CurStud.Status = "Admitted") Then
@@ -56,13 +59,15 @@ Public Class frmEmail
             mail.Attachments.Add(New Attachment(EmailAttachment_FPath))
             mail.IsBodyHtml = False
             Dim smtp As New SmtpClient()
-            smtp.Host = "smtp.gmail.com"
+            smtp.Host = "smtp.live.com"
             smtp.EnableSsl = True
             Dim NetworkCred As New NetworkCredential(txtEmail.Text.Trim(), txtPassword.Text.Trim())
             smtp.UseDefaultCredentials = True
             smtp.Credentials = NetworkCred
             smtp.Port = 587
             smtp.Send(mail)
+
+
             MessageBox.Show("Email sent.", "Message")
         End Using
 
