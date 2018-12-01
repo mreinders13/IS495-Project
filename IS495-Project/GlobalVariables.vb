@@ -55,8 +55,8 @@ Public Class GlobalVariables
         'Dim path As String = My.Application.Info.DirectoryPath
         Dim pdffile As String
 
-        pdffile = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Declaration_Change_of_Plan_Major.pdf")
-
+        pdffile = Application.StartupPath.Replace("IS495-Project\bin\Debug", "IS495-Project\bin\Templates\Declaration_Change_of_Plan_Major.pdf")
+        'pdffile = Application.StartupPath.Replace("Is495-Project\bin\Release", "IS495-Project\bin\Release\Templates\Declaration_Change_of_Plan_Major.pdf")
 
         PDF_FilePath = pdffile
     End Sub

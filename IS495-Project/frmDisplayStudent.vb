@@ -393,21 +393,33 @@ Public Class frmDisplayStudent
         'get the file extension to check in if statment 
         Dim Extension As String = Path.GetExtension(submittedPDF)
         If (Extension = ".pdf") Then
-
+            'check for dual major
+            If studentList(Counter).Majors.Contains("-") Then
+                'check for accounting major in dual major
+                If studentList(Counter).Majors.Contains("Accounting") Then
+                    MessageBox.Show("This is a Accounting and something else double major")
+                End If
+            End If
             'To See File Path
             MessageBox.Show(text:="This is a valid PDF File Path: " + submittedPDF, caption:="PDF Filepath Valid")
             'To Test File Path
             'Process.Start(PDF_FilePath)
             'Print the file
             Dim PrintPDF As New ProcessStartInfo
-            '--------------Automatially print pdf if correct----------------------
+            '--------------Automatially Open for review if pdf correct----------------------
             PrintPDF.UseShellExecute = True
-            PrintPDF.Verb = "print"
+            PrintPDF.Verb = "OPEN"
             PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
             PrintPDF.FileName = submittedPDF 'fileName is a string parameter
             Process.Start(PrintPDF)
 
         Else
+            If studentList(Counter).Majors.Contains("-") Then
+                'check for accounting major in dual major
+                If studentList(Counter).Majors.Contains("Accounting") Then
+                    MessageBox.Show("This is a Accounting and something else double major")
+                End If
+            End If
             Dim signature As String = studentList(Counter).Signature
             'To See File Path
             MessageBox.Show("A generated PDF will open in Adobe." & vbCrLf & "Please import the signature found in the following file location: " + signature.ToString())
