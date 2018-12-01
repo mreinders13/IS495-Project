@@ -52,7 +52,7 @@ Public Class frmDisplayStudent
         lblDecision.Text = "Decision: " + studentList(CurStud).Status
         lblReviewedBy.Text = "Reviewed By: " + studentList(CurStud).Username
         lblReviewDate.Text = "Review Date: " + studentList(CurStud).DecisionTimeStamp
-        lblMajorFormSigned.Text = "Major Form Signed: " + studentList(CurStud).MajorFormedSigned
+        lblMajorFormSigned.Text = "Major Form Signed: " + studentList(CurStud).MajorFormSigned
         lblBridgePermission.Text = "Bridge Permission Granted" + studentList(CurStud).BridgePermission
 
 
@@ -61,13 +61,27 @@ Public Class frmDisplayStudent
     End Sub
 
     Public Sub SetStudentStatus(argStatus As String)
-        If studentList(Counter).Status = "" Then
+        Dim CurStud As Student = studentList(Counter)
+        If CurStud.Status = "" Then
             Num_of_Dec_Made += 1
         End If
-        studentList(Counter).Status = argStatus
-        studentList(Counter).Semester = GlobalVariables.CurrentSemester
-        studentList(Counter).Username = GlobalVariables.CurrentUsername
-        studentList(Counter).DecisionTimeStamp = System.DateTime.Now.ToShortDateString()
+
+        'Admitted
+        'Not Admitted
+        'Bridge
+
+        CurStud.Status = argStatus
+        CurStud.Semester = GlobalVariables.CurrentSemester
+        CurStud.Username = GlobalVariables.CurrentUsername
+        CurStud.DecisionTimeStamp = System.DateTime.Now.ToShortDateString()
+
+        If CurStud.Status = "Admitted" Then
+            CurStud.MajorFormSigned = "Yes"
+            CurStud.BridgePermission = "N/A"
+        ElseIf (CurStud.Status = "Bridge") Then
+            CurStud.MajorFormSigned = "N/A"
+            CurStud.BridgePermission = "Yes"
+        End If
 
         RefreshStudentLabels(Counter)
         CheckIfAllDecisionsMade()
@@ -135,7 +149,7 @@ Public Class frmDisplayStudent
                     CurStud.DecisionTimeStamp + "," +
                     CurStud.Status + "," +
                     CurStud.BridgePermission + "," +
-                    CurStud.MajorFormedSigned + "," +
+                    CurStud.MajorFormSigned + "," +
                     CurStud.AdvisorNotes + "," +
                     CurStud.First + "," +
                     CurStud.Last + "," +
@@ -219,7 +233,7 @@ Public Class frmDisplayStudent
 
             Dim outFile As IO.StreamWriter = My.Computer.FileSystem.OpenTextFileWriter(csvFile, False)
             While saveCounter < studentList.Count
-                outFile.WriteLine(studentList(saveCounter).Time.ToString() + "," + studentList(saveCounter).First.ToString() + "," + studentList(saveCounter).Last.ToString() + "," + studentList(saveCounter).NSHE.ToString() + "," + studentList(saveCounter).Phone.ToString() + "," + studentList(saveCounter).Email.ToString() + "," + studentList(saveCounter).Majors.ToString() + "," + studentList(saveCounter).InternationalBusiness.ToString() + "," + studentList(saveCounter).Regional.ToString() + "," + studentList(saveCounter).Acc201.ToString() + "," + studentList(saveCounter).Acc202.ToString() + "," + studentList(saveCounter).Econ102.ToString() + "," + studentList(saveCounter).Econ103.ToString() + "," + studentList(saveCounter).Econ261.ToString() + "," + studentList(saveCounter).Econ262.ToString() + "," + studentList(saveCounter).IS101.ToString() + "," + studentList(saveCounter).Math176.ToString() + "," + studentList(saveCounter).Mkt210.ToString() + "," + studentList(saveCounter).Econ102_2.ToString() + "," + studentList(saveCounter).Econ103_2.ToString() + "," + studentList(saveCounter).Econ261_2.ToString() + "," + studentList(saveCounter).Econ262_2.ToString() + "," + studentList(saveCounter).IS101_2.ToString() + "," + studentList(saveCounter).Math176_2.ToString() + "," + studentList(saveCounter).ToBeCompleted.ToString() + "," + studentList(saveCounter).GPA.ToString() + "," + studentList(saveCounter).AdditionalInfo.ToString() + "," + studentList(saveCounter).OtherInstitutions.ToString() + "," + studentList(saveCounter).TranscriptsSubmitted.ToString() + "," + studentList(saveCounter).TranscriptsUploaded.ToString() + "," + studentList(saveCounter).DeclarationDay.ToString() + "," + studentList(saveCounter).DeclarationDayConflicts.ToString() + "," + studentList(saveCounter).EmailConfirmation.ToString() + "," + studentList(saveCounter).Understand.ToString() + "," + studentList(saveCounter).FalseInfo.ToString() + "," + studentList(saveCounter).ChangeMajorPDF.ToString() + "," + studentList(saveCounter).Signature.ToString() + "," + studentList(saveCounter).AppDate.ToString() + "," + studentList(saveCounter).Browser.ToString() + "," + studentList(saveCounter).ipAddress.ToString() + "," + studentList(saveCounter).UniqueID.ToString() + "," + studentList(saveCounter).Location.ToString() + "," + studentList(saveCounter).Status.ToString() + "," + studentList(saveCounter).Semester.ToString() + "," + studentList(saveCounter).Username.ToString() + "," + studentList(saveCounter).AdvisorNotes.ToString() + "," + studentList(saveCounter).DecisionTimeStamp.ToString() + "," + studentList(saveCounter).MajorFormedSigned + "," + studentList(saveCounter).BridgePermission)
+                outFile.WriteLine(studentList(saveCounter).Time.ToString() + "," + studentList(saveCounter).First.ToString() + "," + studentList(saveCounter).Last.ToString() + "," + studentList(saveCounter).NSHE.ToString() + "," + studentList(saveCounter).Phone.ToString() + "," + studentList(saveCounter).Email.ToString() + "," + studentList(saveCounter).Majors.ToString() + "," + studentList(saveCounter).InternationalBusiness.ToString() + "," + studentList(saveCounter).Regional.ToString() + "," + studentList(saveCounter).Acc201.ToString() + "," + studentList(saveCounter).Acc202.ToString() + "," + studentList(saveCounter).Econ102.ToString() + "," + studentList(saveCounter).Econ103.ToString() + "," + studentList(saveCounter).Econ261.ToString() + "," + studentList(saveCounter).Econ262.ToString() + "," + studentList(saveCounter).IS101.ToString() + "," + studentList(saveCounter).Math176.ToString() + "," + studentList(saveCounter).Mkt210.ToString() + "," + studentList(saveCounter).Econ102_2.ToString() + "," + studentList(saveCounter).Econ103_2.ToString() + "," + studentList(saveCounter).Econ261_2.ToString() + "," + studentList(saveCounter).Econ262_2.ToString() + "," + studentList(saveCounter).IS101_2.ToString() + "," + studentList(saveCounter).Math176_2.ToString() + "," + studentList(saveCounter).ToBeCompleted.ToString() + "," + studentList(saveCounter).GPA.ToString() + "," + studentList(saveCounter).AdditionalInfo.ToString() + "," + studentList(saveCounter).OtherInstitutions.ToString() + "," + studentList(saveCounter).TranscriptsSubmitted.ToString() + "," + studentList(saveCounter).TranscriptsUploaded.ToString() + "," + studentList(saveCounter).DeclarationDay.ToString() + "," + studentList(saveCounter).DeclarationDayConflicts.ToString() + "," + studentList(saveCounter).EmailConfirmation.ToString() + "," + studentList(saveCounter).Understand.ToString() + "," + studentList(saveCounter).FalseInfo.ToString() + "," + studentList(saveCounter).ChangeMajorPDF.ToString() + "," + studentList(saveCounter).Signature.ToString() + "," + studentList(saveCounter).AppDate.ToString() + "," + studentList(saveCounter).Browser.ToString() + "," + studentList(saveCounter).ipAddress.ToString() + "," + studentList(saveCounter).UniqueID.ToString() + "," + studentList(saveCounter).Location.ToString() + "," + studentList(saveCounter).Status.ToString() + "," + studentList(saveCounter).Semester.ToString() + "," + studentList(saveCounter).Username.ToString() + "," + studentList(saveCounter).AdvisorNotes.ToString() + "," + studentList(saveCounter).DecisionTimeStamp.ToString() + "," + studentList(saveCounter).MajorFormSigned + "," + studentList(saveCounter).BridgePermission)
                 saveCounter += 1
             End While
             outFile.Close()
@@ -339,7 +353,7 @@ Public Class frmDisplayStudent
             'studentList(Counter).DecisionTimeStamp = "Review Date"
             'studentList(Counter).Status = "Decision"
             'studentList(Counter).BridgePermission = "Bridge Permission Granted"
-            'studentList(Counter).MajorFormedSigned = "Major Form Signed"
+            'studentList(Counter).MajorFormSigned = "Major Form Signed"
             'studentList(Counter).AdvisorNotes = "Advisor Notes"
             'studentList(Counter).Semester = "Semester"
 
