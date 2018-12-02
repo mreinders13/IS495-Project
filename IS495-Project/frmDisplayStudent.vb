@@ -402,105 +402,126 @@ Public Class frmDisplayStudent
     Private Sub btnPrintPDF_Click(sender As Object, e As EventArgs) Handles btnPrintPDF.Click
         GlobalVariables.SetPDF_FilePath()
         Dim PDF_FilePath = GlobalVariables.GetPDF_FilePath
-        'Get the student submitted pdf provided by the data
         Dim submittedPDF As String = studentList(Counter).ChangeMajorPDF
-        'get the file extension to check in if statment 
         Dim Extension As String = Path.GetExtension(submittedPDF)
+
+
+
+
+
+
+
+
+
         If (Extension = ".pdf") Then
-            'check for dual major
-            If studentList(Counter).Majors.Contains("-") Then
-                'The student is requesting a dual major
+            If System.IO.File.Exists(studentList(Counter).ChangeMajorPDF) Then
+                'check for dual major
+                If studentList(Counter).Majors.Contains("-") Then
+                    'The student is requesting a dual major
+                    If studentList(Counter).Majors.Contains("Accounting (B.S.)") Then
+                        'We need to generate a PDF for each major !!!!
+                        'First create the accounting Declaration of Major
+                        GeneratePDF("Accounting (B.S.)")
+                        'Then create other Declaration of Major
+                        If studentList(Counter).Majors.Contains("Economics (B.A.)") Then
+                            'other major is economics
+                            GeneratePDF("Economics (B.A.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Economics (B.S.)") Then
+                            'other major is economics bs
+                            GeneratePDF("Economics (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Finance (B.S.)") Then
+                            'pther major is finance
+                            GeneratePDF("Finance (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("General Business (B.S.)") Then
+                            'other major is General Business
+                            GeneratePDF("General Business (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("International Business (B.S.)") Then
+                            'other major is International Business
+                            GeneratePDF("International Business (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Information Systems (B.S.)") Then
+                            GeneratePDF("Information Systems (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Management (B.S.)") Then
+                            GeneratePDF("Management (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Marketing (B.S.)") Then
+                            GeneratePDF("Marketing (B.S.)")
+                        End If
 
-                If studentList(Counter).Majors.Contains("Accounting") Then
-                    'check for accounting major as one of the majors
-                    MessageBox.Show("This is a Accounting and something else double major")
-                    'Conditions to create two seperate PDF's
+                    End If
+                    'The Pdf sumitted is good to open for print since its a dual major without Accounting
+                    Dim PrintPDF As New ProcessStartInfo
+                    PrintPDF.UseShellExecute = True
+                    PrintPDF.Verb = "OPEN"
+                    PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
+                    PrintPDF.FileName = submittedPDF 'fileName is a string parameter
+                    Process.Start(PrintPDF)
+                Else
+                    'Not a Dual Major, just open file for print
+                    Dim PrintPDF As New ProcessStartInfo
+                    PrintPDF.UseShellExecute = True
+                    PrintPDF.Verb = "OPEN"
+                    PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
+                    PrintPDF.FileName = submittedPDF 'fileName is a string parameter
+                    Process.Start(PrintPDF)
                 End If
-            Else
-                'Not a Dual Major
+                'Else
+                'Generate PDF
             End If
-            'To See File Path
-            MessageBox.Show(text:="This is a valid PDF File Path: " + submittedPDF, caption:="PDF Filepath Valid")
-            'To Test File Path
-            'Process.Start(PDF_FilePath)
-            'Print the file
-            Dim PrintPDF As New ProcessStartInfo
-            '--------------Automatially Open for review if pdf correct----------------------
-            PrintPDF.UseShellExecute = True
-            PrintPDF.Verb = "OPEN"
-            PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
-            PrintPDF.FileName = submittedPDF 'fileName is a string parameter
-            Process.Start(PrintPDF)
-
+            'The File given wont work, we need to generate the PDF('s)
         Else
             If studentList(Counter).Majors.Contains("-") Then
-                'check for accounting major in dual major
-                If studentList(Counter).Majors.Contains("Accounting") Then
-                    MessageBox.Show("This is a Accounting and something else double major")
+                'The Student is requesting a dual-major
+                If studentList(Counter).Majors.Contains("Accounting (B.S.)") Then
+                    'Generate Accounting PDF
+                    GeneratePDF("Accounting (B.S.)")
+                    If studentList(Counter).Majors.Contains("Economics (B.A.)") Then
+                        'other major is economics
+                        GeneratePDF("Economics (B.A.)")
+                    End If
+                    If studentList(Counter).Majors.Contains("Economics (B.S.)") Then
+                        'other major is economics bs
+                        GeneratePDF("Economics (B.S.)")
+                    End If
+                    If studentList(Counter).Majors.Contains("Finance (B.S.)") Then
+                        'pther major is finance
+                        GeneratePDF("Finance (B.S.)")
+                    End If
+                    If studentList(Counter).Majors.Contains("General Business (B.S.)") Then
+                        'other major is General Business
+                        GeneratePDF("General Business (B.S.)")
+                    End If
+                    If studentList(Counter).Majors.Contains("International Business (B.S.)") Then
+                        'other major is International Business
+                        GeneratePDF("International Business (B.S.)")
+                    End If
+                    If studentList(Counter).Majors.Contains("Information Systems (B.S.)") Then
+                        GeneratePDF("Information Systems (B.S.)")
+                    End If
+                    If studentList(Counter).Majors.Contains("Management (B.S.)") Then
+                        GeneratePDF("Management (B.S.)")
+                    End If
+                    If studentList(Counter).Majors.Contains("Marketing (B.S.)") Then
+                        GeneratePDF("Marketing (B.S.)")
+                    End If
+                Else
+                    GeneratePDF(studentList(Counter).Majors)
                 End If
+            Else
+                'generate the major form and open in Adobe
+                GeneratePDF(studentList(Counter).Majors)
             End If
+
             Dim signature As String = studentList(Counter).Signature
             'To See File Path
             MessageBox.Show("A generated PDF will open in Adobe." & vbCrLf & "Please import the signature found in the following file location: " + signature.ToString())
 
-            'Open ofdSignature so the user can choose the correct signatiure to upload, then set the StudentList.Signarure variable to the OFD result
-            'ofdSignature.ShowDialog()
-            'Dim SignatureResult As String = ofdSignature.FileName
-            'studentList(Counter).Signature = SignatureResult
 
-            'User opens SFD to select where they wish to save the PDF
-            sfdSavePDF.ShowDialog()
-            Dim newFile As String
-            Dim extNewFile As String
-            newFile = sfdSavePDF.FileName
-            extNewFile = Path.GetExtension(newFile)
-            'add pdf extension if the user doesnt
-            If (extNewFile <> ".pdf") Then
-                newFile = sfdSavePDF.FileName + ".pdf"
-            End If
-
-            '-----------------------------Auto-Populate the PDF with Students information-------------------------------------------------
-            'set ofd and svd variables
-            Dim pdfTemplate As String = GlobalVariables.PDF_FilePath
-
-
-            'set PdfReader and PdfStamper from iTextSharp
-            Dim pdfReader As New PdfReader(pdfTemplate)
-            Dim pdfStamper As New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
-
-            'Setup pdf fields variables
-            Dim pdfFormFields As AcroFields = pdfStamper.AcroFields
-            pdfFormFields.SetField("Name", studentList(Counter).First + " " + studentList(Counter).Last)
-            pdfFormFields.SetField("NSHE", studentList(Counter).NSHE)
-            pdfFormFields.SetField("StudentSignature", signature)
-            pdfFormFields.SetField("Date", studentList(Counter).AppDate)
-            pdfFormFields.SetField("StudentAthlete", "studentList(Counter).athelete")
-            pdfFormFields.SetField("Change", "No")
-            pdfFormFields.SetField("Add", "Yes")
-            pdfFormFields.SetField("Remove", "No")
-            pdfFormFields.SetField("PlanRequested", studentList(Counter).Majors)
-            pdfFormFields.SetField("CatelogYear", studentList(Counter).Semester)
-            pdfFormFields.SetField("Subplan", "N/A")
-            pdfFormFields.SetField("NewAdvisor", "N/A")
-            pdfFormFields.SetField("AdvisorDateSigned", System.DateTime.Today.ToString())
-            pdfFormFields.SetField("Approved", "Yes")
-            pdfFormFields.SetField("Denied", "No")
-            pdfFormFields.SetField("Evaluator", studentList(Counter).Username)
-            pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
-
-            pdfStamper.FormFlattening = False
-
-            ' close the pdf
-            pdfStamper.Close()
-
-            'Open File in Adobe for User to import Signature, review and Print
-            Dim PrintPDF As New ProcessStartInfo
-
-            PrintPDF.UseShellExecute = True
-            PrintPDF.Verb = "OPEN"
-            PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
-            PrintPDF.FileName = newFile 'fileName is a string parameter
-            Process.Start(PrintPDF)
 
         End If
     End Sub
@@ -523,6 +544,54 @@ Public Class frmDisplayStudent
         Else
             frmEmail.Show()
         End If
+    End Sub
+
+    Public Sub GeneratePDF(selectedMajor As String)
+        'select where to save file
+        sfdSavePDF.ShowDialog()
+        Dim newFile As String
+        Dim extNewFile As String
+        newFile = sfdSavePDF.FileName
+        extNewFile = Path.GetExtension(newFile)
+        'add pdf extension if the user doesnt
+        If (extNewFile <> ".pdf") Then
+            newFile = sfdSavePDF.FileName + ".pdf"
+        End If
+
+        'Auto-Populate the PDF with Students information
+        Dim pdfTemplate As String = GlobalVariables.PDF_FilePath
+        Dim pdfReader As New PdfReader(pdfTemplate)
+        Dim pdfStamper As New PdfStamper(pdfReader, New FileStream(newFile, FileMode.Create))
+
+        'Setup pdf fields variables
+        Dim pdfFormFields As AcroFields = pdfStamper.AcroFields
+        pdfFormFields.SetField("Name", studentList(Counter).First + " " + studentList(Counter).Last)
+        pdfFormFields.SetField("NSHE", studentList(Counter).NSHE)
+        pdfFormFields.SetField("StudentSignature", Nothing)
+        pdfFormFields.SetField("Date", studentList(Counter).AppDate)
+        pdfFormFields.SetField("StudentAthlete", "studentList(Counter).athelete")
+        pdfFormFields.SetField("Change", "No")
+        pdfFormFields.SetField("Add", "Yes")
+        pdfFormFields.SetField("Remove", "No")
+        pdfFormFields.SetField("PlanRequested", selectedMajor)
+        pdfFormFields.SetField("CatelogYear", studentList(Counter).Semester)
+        pdfFormFields.SetField("Subplan", "N/A")
+        pdfFormFields.SetField("NewAdvisor", "N/A")
+        pdfFormFields.SetField("AdvisorDateSigned", System.DateTime.Today.ToString())
+        pdfFormFields.SetField("Approved", "Yes")
+        pdfFormFields.SetField("Denied", "No")
+        pdfFormFields.SetField("Evaluator", studentList(Counter).Username)
+        pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
+        pdfStamper.FormFlattening = False
+        pdfStamper.Close()
+
+        'Open File in Adobe for User to import Signature, review and Print
+        Dim PrintPDF As New ProcessStartInfo
+        PrintPDF.UseShellExecute = True
+        PrintPDF.Verb = "OPEN"
+        PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
+        PrintPDF.FileName = newFile 'fileName is a string parameter
+        Process.Start(PrintPDF)
     End Sub
 
 End Class
