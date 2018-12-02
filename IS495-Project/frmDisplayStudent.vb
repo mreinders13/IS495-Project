@@ -53,7 +53,7 @@ Public Class frmDisplayStudent
         lblReviewedBy.Text = "Reviewed By: " + studentList(CurStud).Username
         lblReviewDate.Text = "Review Date: " + studentList(CurStud).DecisionTimeStamp
         lblMajorFormSigned.Text = "Major Form Signed: " + studentList(CurStud).MajorFormSigned
-        lblBridgePermission.Text = "Bridge Permission Granted" + studentList(CurStud).BridgePermission
+        lblBridgePermission.Text = "Bridge Permission Granted: " + studentList(CurStud).BridgePermission
 
 
         GlobalVariables.StudentEmail = studentList(CurStud).Email
@@ -81,6 +81,9 @@ Public Class frmDisplayStudent
         ElseIf (CurStud.Status = "Bridge") Then
             CurStud.MajorFormSigned = "N/A"
             CurStud.BridgePermission = "Yes"
+        ElseIf (CurStud.Status = "Not Admitted") Then
+            CurStud.MajorFormSigned = "N/A"
+            CurStud.BridgePermission = "N/A"
         End If
 
         RefreshStudentLabels(Counter)
@@ -349,13 +352,13 @@ Public Class frmDisplayStudent
 
         '***We could/should create an if statement to check if the first variables are column names or actual data
         If (studentList(Counter).Time = "Time") Then
-            'studentList(Counter).Username = "Reviewed By"
-            'studentList(Counter).DecisionTimeStamp = "Review Date"
-            'studentList(Counter).Status = "Decision"
-            'studentList(Counter).BridgePermission = "Bridge Permission Granted"
-            'studentList(Counter).MajorFormSigned = "Major Form Signed"
-            'studentList(Counter).AdvisorNotes = "Advisor Notes"
-            'studentList(Counter).Semester = "Semester"
+            studentList(Counter).Username = "Reviewed By"
+            studentList(Counter).DecisionTimeStamp = "Review Date"
+            studentList(Counter).Status = "Decision"
+            studentList(Counter).BridgePermission = "Bridge Permission Granted"
+            studentList(Counter).MajorFormSigned = "Major Form Signed"
+            studentList(Counter).AdvisorNotes = "Advisor Notes"
+            studentList(Counter).Semester = "Semester"
 
             Counter += 1
         End If
