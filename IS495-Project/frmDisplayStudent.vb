@@ -412,10 +412,15 @@ Public Class frmDisplayStudent
         If (Extension = ".pdf") Then
             'check for dual major
             If studentList(Counter).Majors.Contains("-") Then
-                'check for accounting major in dual major
+                'The student is requesting a dual major
+
                 If studentList(Counter).Majors.Contains("Accounting") Then
+                    'check for accounting major as one of the majors
                     MessageBox.Show("This is a Accounting and something else double major")
+                    'Conditions to create two seperate PDF's
                 End If
+            Else
+                'Not a Dual Major
             End If
             'To See File Path
             MessageBox.Show(text:="This is a valid PDF File Path: " + submittedPDF, caption:="PDF Filepath Valid")
