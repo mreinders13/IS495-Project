@@ -520,9 +520,7 @@ Public Class frmDisplayStudent
                 GeneratePDF(studentList(Counter).Majors)
             End If
 
-            Dim signature As String = studentList(Counter).Signature
-            'To See File Path
-            MessageBox.Show("A generated PDF will open in Adobe." & vbCrLf & "Please import the signature found in the following file location: " + signature.ToString())
+
 
 
 
@@ -587,6 +585,10 @@ Public Class frmDisplayStudent
         pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
         pdfStamper.FormFlattening = False
         pdfStamper.Close()
+
+        'To See the File Path of the students signature
+        Dim signature As String = studentList(Counter).Signature
+        MessageBox.Show("A generated PDF will open in Adobe." & vbCrLf & "Please import the signature found in the following file location: " + signature.ToString())
 
         'Open File in Adobe for User to import Signature, review and Print
         Dim PrintPDF As New ProcessStartInfo
