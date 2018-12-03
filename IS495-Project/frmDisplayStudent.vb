@@ -408,14 +408,6 @@ Public Class frmDisplayStudent
         Dim submittedPDF As String = studentList(Counter).ChangeMajorPDF
         Dim Extension As String = Path.GetExtension(submittedPDF)
 
-
-
-
-
-
-
-
-
         If (Extension = ".pdf") Then
             If System.IO.File.Exists(studentList(Counter).ChangeMajorPDF) Then
                 'check for dual major
@@ -473,8 +465,49 @@ Public Class frmDisplayStudent
                     PrintPDF.FileName = submittedPDF 'fileName is a string parameter
                     Process.Start(PrintPDF)
                 End If
-                'Else
+            Else
                 'Generate PDF
+                If studentList(Counter).Majors.Contains("-") Then
+                    'The Student is requesting a dual-major
+                    If studentList(Counter).Majors.Contains("Accounting (B.S.)") Then
+                        'Generate Accounting PDF
+                        GeneratePDF("Accounting (B.S.)")
+                        If studentList(Counter).Majors.Contains("Economics (B.A.)") Then
+                            'other major is economics
+                            GeneratePDF("Economics (B.A.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Economics (B.S.)") Then
+                            'other major is economics bs
+                            GeneratePDF("Economics (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Finance (B.S.)") Then
+                            'pther major is finance
+                            GeneratePDF("Finance (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("General Business (B.S.)") Then
+                            'other major is General Business
+                            GeneratePDF("General Business (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("International Business (B.S.)") Then
+                            'other major is International Business
+                            GeneratePDF("International Business (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Information Systems (B.S.)") Then
+                            GeneratePDF("Information Systems (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Management (B.S.)") Then
+                            GeneratePDF("Management (B.S.)")
+                        End If
+                        If studentList(Counter).Majors.Contains("Marketing (B.S.)") Then
+                            GeneratePDF("Marketing (B.S.)")
+                        End If
+                    Else
+                        GeneratePDF(studentList(Counter).Majors)
+                    End If
+                Else
+                    'generate the major form and open in Adobe
+                    GeneratePDF(studentList(Counter).Majors)
+                End If
             End If
             'The File given wont work, we need to generate the PDF('s)
         Else
@@ -519,10 +552,6 @@ Public Class frmDisplayStudent
                 'generate the major form and open in Adobe
                 GeneratePDF(studentList(Counter).Majors)
             End If
-
-
-
-
 
         End If
     End Sub
@@ -585,11 +614,10 @@ Public Class frmDisplayStudent
         pdfFormFields.SetField("EvaluationDate", studentList(Counter).DecisionTimeStamp)
         pdfStamper.FormFlattening = False
         pdfStamper.Close()
-
         'To See the File Path of the students signature
         Dim signature As String = studentList(Counter).Signature
-        MessageBox.Show("A generated PDF will open in Adobe." & vbCrLf & "Please import the signature found in the following file location: " + signature.ToString())
 
+        MessageBox.Show("A generated PDF will open in Adobe." & vbCrLf & "Please import the signature found in the following file location: " + signature.ToString())
         'Open File in Adobe for User to import Signature, review and Print
         Dim PrintPDF As New ProcessStartInfo
         PrintPDF.UseShellExecute = True
