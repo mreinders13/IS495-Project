@@ -58,7 +58,7 @@ Public Class frmEmail
                     End If
 
                 Else
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
+                    EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-Fall2018.docx")
                     'Set the body to read something about Accepted
                 End If
             Else
@@ -86,7 +86,7 @@ Public Class frmEmail
 
         End Using
 
-        GlobalVariables.EmailStatus = "Student has been emailed"
+        GlobalVariables.EmailStatus = True
     End Sub
 
     Private Sub frmEmail_Load(sender As Object, e As EventArgs) Handles MyBase.Load

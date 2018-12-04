@@ -4,7 +4,7 @@ Public Class GlobalVariables
     Public Shared SourceFilePath As String = Nothing
     Public Shared CurrentUsername As String = Nothing
     Public Shared StudentStatus As String = Nothing
-    Public Shared EmailStatus As String = Nothing
+    Public Shared EmailStatus As Boolean = False
     Public Shared StudentEmail As String = Nothing
     Public Shared EmailLogin As String = Nothing
     Public Shared EmailPassword As String = Nothing
