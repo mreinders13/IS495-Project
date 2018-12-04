@@ -55,6 +55,11 @@ Public Class frmDisplayStudent
         lblMajorFormSigned.Text = "Major Form Signed: " + studentList(CurStud).MajorFormSigned
         lblBridgePermission.Text = "Bridge Permission Granted: " + studentList(CurStud).BridgePermission
 
+        If GlobalVariables.EmailStatus = True Then
+            lblStudentEmail.Text = "Student Emailed: Yes"
+        Else
+            lblStudentEmail.Text = "Student Emailed: No"
+        End If
 
         GlobalVariables.StudentEmail = studentList(CurStud).Email
         GlobalVariables.Major = studentList(CurStud).Majors
@@ -566,8 +571,8 @@ Public Class frmDisplayStudent
 
     Private Sub btnEmailStudent_Click(sender As Object, e As EventArgs) Handles btnEmailStudent.Click
         frmEmail.txtTo.Text = GlobalVariables.StudentEmail
-        'GlobalVariables.SetEmailAttachment_FilePath()
 
+        'GlobalVariables.SetEmailAttachment_FilePath()
         GlobalVariables.StudentForEmail = studentList(Counter)
         If GlobalVariables.EmailLogin = Nothing Then
             frmEmailLogin.Show()
