@@ -66,9 +66,6 @@ Public Class frmEmail
                 'Set the body to read somehting about Denied
             End If
 
-
-
-
             mail.Attachments.Add(New Attachment(EmailAttachment_FPath))
             mail.IsBodyHtml = False
             Dim smtp As New SmtpClient()
@@ -78,10 +75,15 @@ Public Class frmEmail
             smtp.UseDefaultCredentials = True
             smtp.Credentials = NetworkCred
             smtp.Port = 587
-            smtp.Send(mail)
+            Try
+                smtp.Send(mail)
+                MessageBox.Show("Email sent.", "Message")
+            Catch ex As Exception
+                MessageBox.Show("The email was blocked by the connected networks firewall. Please contact your Network Administrator.")
+            End Try
 
 
-            MessageBox.Show("Email sent.", "Message")
+
         End Using
 
         GlobalVariables.EmailStatus = "Student has been emailed"
