@@ -561,7 +561,7 @@ Public Class frmDisplayStudent
     End Sub
 
     Private Sub txtAdvisorNotes_TextChanged(sender As Object, e As EventArgs) Handles txtAdvisorNotes.TextChanged
-        studentList(Counter).AdvisorNotes = txtAdvisorNotes.Text
+        studentList(Counter).AdvisorNotes = GlobalVariables.RemoveCommas(txtAdvisorNotes.Text)
     End Sub
 
     Private Sub btnExportData_Click(sender As Object, e As EventArgs) Handles btnExportData.Click
