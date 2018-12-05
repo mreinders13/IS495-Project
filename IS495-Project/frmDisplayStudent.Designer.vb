@@ -64,7 +64,7 @@ Partial Class frmDisplayStudent
         Me.btnSaveData.Location = New System.Drawing.Point(144, 481)
         Me.btnSaveData.Name = "btnSaveData"
         Me.btnSaveData.Size = New System.Drawing.Size(93, 23)
-        Me.btnSaveData.TabIndex = 0
+        Me.btnSaveData.TabIndex = 8
         Me.btnSaveData.Text = "Save"
         Me.btnSaveData.UseVisualStyleBackColor = True
         '
@@ -94,7 +94,7 @@ Partial Class frmDisplayStudent
         Me.btnAccept.Location = New System.Drawing.Point(18, 314)
         Me.btnAccept.Name = "btnAccept"
         Me.btnAccept.Size = New System.Drawing.Size(75, 23)
-        Me.btnAccept.TabIndex = 3
+        Me.btnAccept.TabIndex = 1
         Me.btnAccept.Text = "Accept"
         Me.btnAccept.UseVisualStyleBackColor = True
         '
@@ -103,7 +103,7 @@ Partial Class frmDisplayStudent
         Me.btnDeny.Location = New System.Drawing.Point(180, 314)
         Me.btnDeny.Name = "btnDeny"
         Me.btnDeny.Size = New System.Drawing.Size(75, 23)
-        Me.btnDeny.TabIndex = 4
+        Me.btnDeny.TabIndex = 3
         Me.btnDeny.Text = "Deny"
         Me.btnDeny.UseVisualStyleBackColor = True
         '
@@ -112,7 +112,7 @@ Partial Class frmDisplayStudent
         Me.btnBridge.Location = New System.Drawing.Point(99, 314)
         Me.btnBridge.Name = "btnBridge"
         Me.btnBridge.Size = New System.Drawing.Size(75, 23)
-        Me.btnBridge.TabIndex = 5
+        Me.btnBridge.TabIndex = 2
         Me.btnBridge.Text = "Bridge"
         Me.btnBridge.UseVisualStyleBackColor = True
         '
@@ -121,7 +121,7 @@ Partial Class frmDisplayStudent
         Me.btnNextStudent.Location = New System.Drawing.Point(415, 481)
         Me.btnNextStudent.Name = "btnNextStudent"
         Me.btnNextStudent.Size = New System.Drawing.Size(94, 23)
-        Me.btnNextStudent.TabIndex = 6
+        Me.btnNextStudent.TabIndex = 9
         Me.btnNextStudent.Text = "Next Student"
         Me.btnNextStudent.UseVisualStyleBackColor = True
         '
@@ -130,7 +130,7 @@ Partial Class frmDisplayStudent
         Me.btnPrevStudent.Location = New System.Drawing.Point(12, 481)
         Me.btnPrevStudent.Name = "btnPrevStudent"
         Me.btnPrevStudent.Size = New System.Drawing.Size(94, 23)
-        Me.btnPrevStudent.TabIndex = 7
+        Me.btnPrevStudent.TabIndex = 6
         Me.btnPrevStudent.Text = "Prev. Student"
         Me.btnPrevStudent.UseVisualStyleBackColor = True
         '
@@ -259,7 +259,7 @@ Partial Class frmDisplayStudent
         Me.btnPrintPDF.Location = New System.Drawing.Point(42, 344)
         Me.btnPrintPDF.Name = "btnPrintPDF"
         Me.btnPrintPDF.Size = New System.Drawing.Size(75, 23)
-        Me.btnPrintPDF.TabIndex = 22
+        Me.btnPrintPDF.TabIndex = 4
         Me.btnPrintPDF.Text = "Print PDF"
         Me.btnPrintPDF.UseVisualStyleBackColor = True
         '
@@ -269,7 +269,7 @@ Partial Class frmDisplayStudent
         Me.txtAdvisorNotes.Multiline = True
         Me.txtAdvisorNotes.Name = "txtAdvisorNotes"
         Me.txtAdvisorNotes.Size = New System.Drawing.Size(250, 64)
-        Me.txtAdvisorNotes.TabIndex = 24
+        Me.txtAdvisorNotes.TabIndex = 0
         '
         'LblAdvisorNotes
         '
@@ -285,7 +285,7 @@ Partial Class frmDisplayStudent
         Me.btnEmailStudent.Location = New System.Drawing.Point(123, 344)
         Me.btnEmailStudent.Name = "btnEmailStudent"
         Me.btnEmailStudent.Size = New System.Drawing.Size(114, 23)
-        Me.btnEmailStudent.TabIndex = 27
+        Me.btnEmailStudent.TabIndex = 5
         Me.btnEmailStudent.Text = "Email Student"
         Me.btnEmailStudent.UseVisualStyleBackColor = True
         '
