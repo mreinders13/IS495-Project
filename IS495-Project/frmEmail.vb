@@ -41,12 +41,10 @@ Public Class frmEmail
             Dim EmailAttachment_FPath As String = ""
             Dim EmailAttachment_FPath2 As String = ""
             Dim CurStud As Student = GlobalVariables.StudentForEmail
-
+            Dim maj1 As String = ""
+            'SET THE ATTACHMENTS FOR THE CORRECT SINGLE OR DUAL MAJR
             If (CurStud.Status = "Bridge") Then
                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Bridged-Fall2018.docx")
-                'set the body to read something about Bridged
-                txtBody.Text = "Hello " + CurStud.First + " " + CurStud.Last + ", " + vbCrLf +
-                    "We have reviewed your College of Business Major Application, and upon further Advisor review, you do not currently meet the requirements to be admitted to your degree program." + vbCrLf + "Please review the attachment for further instrucitons."
 
             ElseIf (CurStud.Status = "Admitted") Then
                 If (CurStud.Majors.Contains("-")) Then
@@ -56,70 +54,89 @@ Public Class frmEmail
                             'major is Accounting
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
-                            Else
+                                maj1 = "Accounting (B.S.)"
+                            ElseIf maj1 <> "Accounting (B.S.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("Accounting & Information Systems") Then
+                        End If
+                        If CurStud.Majors.Contains("Accounting & Information Systems") Then
                             'major is Accounting & Information Systems
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC-IS.docx")
-                            Else
+                                maj1 = "Accounting & Information Systems"
+                            ElseIf maj1 <> "Accounting & Information Systems" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC-IS.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("Economics (B.A.)") Then
+                        End If
+                        If CurStud.Majors.Contains("Economics (B.A.)") Then
                             'major is economics ba
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON-BA.docx")
-                            Else
+                                maj1 = "Economics (B.A.)"
+                            ElseIf maj1 <> "Economics (B.A.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON-BA.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("Economics (B.S.)") Then
+                        End If
+                        If CurStud.Majors.Contains("Economics (B.S.)") Then
                             'major is economics bs
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON.docx")
-                            Else
+                                maj1 = "Economics (B.S.)"
+                            ElseIf maj1 <> "Economics (B.S.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("Finance (B.S.)") Then
+                        End If
+                        If CurStud.Majors.Contains("Finance (B.S.)") Then
                             'major is finance
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-FIN.docx")
-                            Else
+                                maj1 = "Finance (B.S.)"
+                            ElseIf maj1 <> "Finance (B.S.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-FIN.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("General Business (B.S.)") Then
+                        End If
+                        If CurStud.Majors.Contains("General Business (B.S.)") Then
                             'major is General Business
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-GB.docx")
-                            Else
+                                maj1 = "General Business (B.S.)"
+                            ElseIf maj1 <> "General Business (B.S.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-GB.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("International Business (B.S.)") Then
+                        End If
+                        If CurStud.Majors.Contains("International Business (B.S.)") Then
                             'major is International Business
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IB.docx")
-                            Else
+                                maj1 = "International Business (B.S.)"
+                            ElseIf maj1 <> "International Business (B.S.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IB.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("Information Systems (B.S.)") Then
+                        End If
+                        If CurStud.Majors.Contains("Information Systems (B.S.)") Then
                             'major is Information systems
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IS.docx")
-                            Else
+                                maj1 = "Information Systems (B.S.)"
+                            ElseIf maj1 <> "Information Systems (B.S.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IS.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("Management (B.S.)") Then
+                        End If
+                        If CurStud.Majors.Contains("Management (B.S.)") Then
                             'Major is Management
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MGT.docx")
-                            Else
+                                maj1 = "Management (B.S.)"
+                            ElseIf maj1 <> "Management (B.S.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MGT.docx")
                             End If
-                        ElseIf CurStud.Majors.Contains("Marketing (B.S.)") Then
+                        End If
+                        If CurStud.Majors.Contains("Marketing (B.S.)") Then
                             'Major is Marketing
                             If EmailAttachment_FPath = "" Then
                                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MKT.docx")
-                            Else
+                                maj1 = "Marketing (B.S.)"
+                            ElseIf maj1 <> "Marketing (B.S.)" Then
                                 EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MKT.docx")
                             End If
                         End If
@@ -159,8 +176,6 @@ Public Class frmEmail
                 End If
             Else
                 EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Denied-Fall2018.docx")
-                'Set the body to read somehting about Denied
-                txtBody.Text = "Hello " + CurStud.First + " " + CurStud.Last + vbCrLf + "We have reviewed your Application to the Business Major within the UNR College of Business. Upon further Advisor review, we regret to inform you that you have not been admitted to your degree program, as you do not currently meet the admission criteria and/or or you are not an active student at the University." + vbCrLf + "Please see the emil attachment for more information"
             End If
 
             mail.Body = txtBody.Text
@@ -179,6 +194,7 @@ Public Class frmEmail
             Try
                 smtp.Send(mail)
                 MessageBox.Show("Email sent.", "Message")
+                Me.Close()
             Catch ex As Exception
                 MessageBox.Show("The email was blocked by the connected networks firewall. Please contact your Network Administrator.")
             End Try
@@ -195,6 +211,17 @@ Public Class frmEmail
         txtEmail.Text = GlobalVariables.EmailLogin
         txtPassword.Text = GlobalVariables.EmailPassword
         txtPassword.PasswordChar = CChar("*")
-
+        Dim CurStud As Student = GlobalVariables.StudentForEmail
+        'SET THE BODY OF THE EMAIL, users can change if they wish
+        If CurStud.Status = "Admitted" Then
+            'set the body to read something about admitted
+            txtBody.Text = "Hello " + CurStud.First + " " + CurStud.Last + "," + vbCrLf + "Congratulations! We have reviewed your College of Business Major Application, and it is with great pleasure that we are notifying you of your admission to the following degree program within the UNR College of Business for the Spring 2019 term." + vbCrLf + "Please review the attachment for further instrucitons."
+        ElseIf CurStud.Status = "Bridge" Then
+            'set the body to read something about Bridged
+            txtBody.Text = "Hello " + CurStud.First + " " + CurStud.Last + "," + vbCrLf + "We have reviewed your College of Business Major Application, and upon further Advisor review, you do not currently meet the requirements to be admitted to your degree program. Your application has instead been bridged." + vbCrLf + "Please review the attachment for further instrucitons."
+        ElseIf CurStud.Status = "Not Admitted" Then
+            'Set the body to read somehting about Denied
+            txtBody.Text = "Hello " + CurStud.First + " " + CurStud.Last + "," + vbCrLf + "We have reviewed your Application to the Business Major within the UNR College of Business. Upon further Advisor review, we regret to inform you that you have not been admitted to your degree program, as you do not currently meet the admission criteria and/or or you are not an active student at the University." + vbCrLf + "Please review the email attachment for more information"
+        End If
     End Sub
 End Class
