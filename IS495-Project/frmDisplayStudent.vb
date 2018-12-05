@@ -94,7 +94,7 @@ Public Class frmDisplayStudent
         RefreshStudentLabels(Counter)
         CheckIfAllDecisionsMade()
     End Sub
-    'I Think it might be a good idea to get rid of lblDecisionMade and also this DecisionMadeMessage() Function
+
     Public Function DecisionMadeMessage(argCurrentStudent As Integer) As String
         Dim CurStud As Student = studentList(argCurrentStudent)
         Dim Message As String
@@ -180,7 +180,6 @@ Public Class frmDisplayStudent
     '----------------------------------------------------------------------------------------------------------------
 
     Private Sub btnPrevStudent_Click(sender As Object, e As EventArgs) Handles btnPrevStudent.Click
-        'Could create code that checks if a checkmark is checked on first page to Display Students without decision only. Skips the Students with decision var not equal to nothing
         'load the previous student 
         If (Counter - 1) > 0 Then
             Counter = Counter - 1

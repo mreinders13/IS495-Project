@@ -23,21 +23,6 @@ Public Class frmEmail
         Using mail As New MailMessage(txtEmail.Text.Trim(), txtTo.Text.Trim())
             mail.Subject = txtSubject.Text
 
-            ''Manually select file attachment
-            'For Each filePath As String In OpenFileDialog1.FileNames
-            '    If File.Exists(filePath) Then
-            '        Dim fileName As String = Path.GetFileName(filePath)
-            '        mail.Attachments.Add(New Attachment(filePath))
-            '    End If
-            'Next
-
-            'This might help. Also there is a variable in the GlobalVariables class called StudentForEmail.
-            'This new varaible will make it easier to reference the current student you are dealing with.
-            'This is assuming we are going to deal with one student at a time, though.
-            'I think realistically the program should just email each student all at once.
-            'A little tedious to have the advisor log in for each potentially 100 or 200 students.
-            'Unless maybe the email information is optional at the start of the program,
-            'in which case the advisor may be able to individually click the email button one student at a time.
             Dim EmailAttachment_FPath As String = ""
             Dim EmailAttachment_FPath2 As String = ""
             Dim CurStud As Student = GlobalVariables.StudentForEmail
@@ -199,8 +184,6 @@ Public Class frmEmail
                 MessageBox.Show("The email was blocked by the connected networks firewall. Please contact your Network Administrator.")
             End Try
 
-
-
         End Using
 
         GlobalVariables.EmailStatus = True
@@ -221,7 +204,7 @@ Public Class frmEmail
             txtBody.Text = "Hello " + CurStud.First + " " + CurStud.Last + "," + vbCrLf + "We have reviewed your College of Business Major Application, and upon further Advisor review, you do not currently meet the requirements to be admitted to your degree program. Your application has instead been bridged." + vbCrLf + "Please review the attachment for further instrucitons."
         ElseIf CurStud.Status = "Not Admitted" Then
             'Set the body to read somehting about Denied
-            txtBody.Text = "Hello " + CurStud.First + " " + CurStud.Last + "," + vbCrLf + "We have reviewed your Application to the Business Major within the UNR College of Business. Upon further Advisor review, we regret to inform you that you have not been admitted to your degree program, as you do not currently meet the admission criteria and/or or you are not an active student at the University." + vbCrLf + "Please review the email attachment for more information"
+            txtBody.Text = "Hello " + CurStud.First + " " + CurStud.Last + "," + vbCrLf + "We have reviewed your College of Business Major Application. Upon further Advisor review, we regret to inform you that you have not been admitted to your degree program, as you do not currently meet the admission criteria and/or you are not an active student at the University." + vbCrLf + "Please review the email attachment for more information"
         End If
     End Sub
 End Class

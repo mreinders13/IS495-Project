@@ -105,7 +105,7 @@ Partial Class frmUsername
         Me.Controls.Add(Me.btnEntrySubmit)
         Me.Controls.Add(Me.txtUsername)
         Me.Name = "frmUsername"
-        Me.Text = "frmUsername"
+        Me.Text = "Username"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

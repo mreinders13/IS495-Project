@@ -61,7 +61,7 @@ Partial Class frmDisplayStudent
         '
         'btnSaveData
         '
-        Me.btnSaveData.Location = New System.Drawing.Point(180, 481)
+        Me.btnSaveData.Location = New System.Drawing.Point(144, 481)
         Me.btnSaveData.Name = "btnSaveData"
         Me.btnSaveData.Size = New System.Drawing.Size(93, 23)
         Me.btnSaveData.TabIndex = 0
@@ -118,7 +118,7 @@ Partial Class frmDisplayStudent
         '
         'btnNextStudent
         '
-        Me.btnNextStudent.Location = New System.Drawing.Point(470, 481)
+        Me.btnNextStudent.Location = New System.Drawing.Point(415, 481)
         Me.btnNextStudent.Name = "btnNextStudent"
         Me.btnNextStudent.Size = New System.Drawing.Size(94, 23)
         Me.btnNextStudent.TabIndex = 6
@@ -291,7 +291,7 @@ Partial Class frmDisplayStudent
         '
         'btnExportData
         '
-        Me.btnExportData.Location = New System.Drawing.Point(279, 481)
+        Me.btnExportData.Location = New System.Drawing.Point(243, 481)
         Me.btnExportData.Name = "btnExportData"
         Me.btnExportData.Size = New System.Drawing.Size(136, 23)
         Me.btnExportData.TabIndex = 28
@@ -356,7 +356,7 @@ Partial Class frmDisplayStudent
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(576, 516)
+        Me.ClientSize = New System.Drawing.Size(521, 516)
         Me.Controls.Add(Me.lblStudentEmail)
         Me.Controls.Add(Me.lblBridgePermission)
         Me.Controls.Add(Me.lblMajorFormSigned)
@@ -389,7 +389,7 @@ Partial Class frmDisplayStudent
         Me.Controls.Add(Me.lblNSHE)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.btnSaveData)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmDisplayStudent"
         Me.Text = "Student Information"
         Me.ResumeLayout(False)
