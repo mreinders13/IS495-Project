@@ -451,15 +451,16 @@ Public Class frmDisplayStudent
                         If studentList(Counter).Majors.Contains("Marketing (B.S.)") Then
                             GeneratePDF("Marketing (B.S.)")
                         End If
-
+                    Else
+                        'The Pdf sumitted is good to open for print since its a dual major without Accounting
+                        Dim PrintPDF As New ProcessStartInfo
+                        PrintPDF.UseShellExecute = True
+                        PrintPDF.Verb = "OPEN"
+                        PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
+                        PrintPDF.FileName = submittedPDF 'fileName is a string parameter
+                        Process.Start(PrintPDF)
                     End If
-                    'The Pdf sumitted is good to open for print since its a dual major without Accounting
-                    Dim PrintPDF As New ProcessStartInfo
-                    PrintPDF.UseShellExecute = True
-                    PrintPDF.Verb = "OPEN"
-                    PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
-                    PrintPDF.FileName = submittedPDF 'fileName is a string parameter
-                    Process.Start(PrintPDF)
+
                 Else
                     'Not a Dual Major, just open file for print
                     Dim PrintPDF As New ProcessStartInfo
@@ -582,15 +583,16 @@ Public Class frmDisplayStudent
 
     Public Sub GeneratePDF(selectedMajor As String)
         'select where to save file
-        sfdSavePDF.ShowDialog()
+        'sfdSavePDF.ShowDialog()
         Dim newFile As String
-        Dim extNewFile As String
-        newFile = sfdSavePDF.FileName
-        extNewFile = Path.GetExtension(newFile)
+        'Dim extNewFile As String
+        'newFile = sfdSavePDF.FileName
+        'extNewFile = Path.GetExtension(newFile)
         'add pdf extension if the user doesnt
-        If (extNewFile <> ".pdf") Then
-            newFile = sfdSavePDF.FileName + ".pdf"
-        End If
+        'If (extNewFile <> ".pdf") Then
+        'newFile = sfdSavePDF.FileName + ".pdf"
+        'End If
+        newFile = Application.StartupPath + "\PDFs\" + studentList(Counter).Last + "-" + selectedMajor.Replace("-", ",") + ".pdf"
 
         'Auto-Populate the PDF with Students information
         Dim pdfTemplate As String = GlobalVariables.PDF_FilePath
@@ -607,7 +609,7 @@ Public Class frmDisplayStudent
         pdfFormFields.SetField("Change", "No")
         pdfFormFields.SetField("Add", "Yes")
         pdfFormFields.SetField("Remove", "No")
-        pdfFormFields.SetField("PlanRequested", selectedMajor)
+        pdfFormFields.SetField("PlanRequested", selectedMajor.Replace("-", ","))
         pdfFormFields.SetField("CatelogYear", studentList(Counter).Semester)
         pdfFormFields.SetField("Subplan", "N/A")
         pdfFormFields.SetField("NewAdvisor", "N/A")
@@ -629,6 +631,10 @@ Public Class frmDisplayStudent
         PrintPDF.WindowStyle = ProcessWindowStyle.Hidden
         PrintPDF.FileName = newFile 'fileName is a string parameter
         Process.Start(PrintPDF)
+    End Sub
+
+    Public Sub GeneratePDF2(selectedMajor As String)
+
     End Sub
 
 End Class
