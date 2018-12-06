@@ -29,7 +29,7 @@ Public Class frmEmail
             Dim maj1 As String = ""
             'SET THE ATTACHMENTS FOR THE CORRECT SINGLE OR DUAL MAJR
             If (CurStud.Status = "Bridge") Then
-                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Bridged-Fall2018.docx")
+                EmailAttachment_FPath = Application.StartupPath + "\Templates\Bridged-Fall2018.docx"
 
             ElseIf (CurStud.Status = "Admitted") Then
                 If (CurStud.Majors.Contains("-")) Then
@@ -38,129 +38,129 @@ Public Class frmEmail
                         If CurStud.Majors.Contains("Accounting (B.S.)") Then
                             'major is Accounting
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-ACC.docx"
                                 maj1 = "Accounting (B.S.)"
                             ElseIf maj1 <> "Accounting (B.S.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-ACC.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("Accounting & Information Systems") Then
                             'major is Accounting & Information Systems
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC-IS.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-ACC-IS.docx"
                                 maj1 = "Accounting & Information Systems"
                             ElseIf maj1 <> "Accounting & Information Systems" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC-IS.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-ACC-IS.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("Economics (B.A.)") Then
                             'major is economics ba
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON-BA.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-ECON-BA.docx"
                                 maj1 = "Economics (B.A.)"
                             ElseIf maj1 <> "Economics (B.A.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON-BA.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-ECON-BA.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("Economics (B.S.)") Then
                             'major is economics bs
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-ECON.docx"
                                 maj1 = "Economics (B.S.)"
                             ElseIf maj1 <> "Economics (B.S.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-ECON.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("Finance (B.S.)") Then
                             'major is finance
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-FIN.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-FIN.docx"
                                 maj1 = "Finance (B.S.)"
                             ElseIf maj1 <> "Finance (B.S.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-FIN.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-FIN.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("General Business (B.S.)") Then
                             'major is General Business
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-GB.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-GB.docx"
                                 maj1 = "General Business (B.S.)"
                             ElseIf maj1 <> "General Business (B.S.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-GB.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-GB.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("International Business (B.S.)") Then
                             'major is International Business
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IB.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-IB.docx"
                                 maj1 = "International Business (B.S.)"
                             ElseIf maj1 <> "International Business (B.S.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IB.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-IB.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("Information Systems (B.S.)") Then
                             'major is Information systems
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IS.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-IS.docx"
                                 maj1 = "Information Systems (B.S.)"
                             ElseIf maj1 <> "Information Systems (B.S.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IS.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-IS.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("Management (B.S.)") Then
                             'Major is Management
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MGT.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-MGT.docx"
                                 maj1 = "Management (B.S.)"
                             ElseIf maj1 <> "Management (B.S.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MGT.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-MGT.docx"
                             End If
                         End If
                         If CurStud.Majors.Contains("Marketing (B.S.)") Then
                             'Major is Marketing
                             If EmailAttachment_FPath = "" Then
-                                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MKT.docx")
+                                EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-MKT.docx"
                                 maj1 = "Marketing (B.S.)"
                             ElseIf maj1 <> "Marketing (B.S.)" Then
-                                EmailAttachment_FPath2 = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MKT.docx")
+                                EmailAttachment_FPath2 = Application.StartupPath + "\Templates\Accepted-MKT.docx"
                             End If
                         End If
                     End While
                 Else
                     If CurStud.Majors.Contains("Accounting (B.S.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-ACC.docx"
 
                     ElseIf CurStud.Majors.Contains("Accounting & Information Systems") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ACC-IS.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-ACC-IS.docx"
 
                     ElseIf CurStud.Majors.Contains("Economics (B.A.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON-BA.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-ECON-BA.docx"
 
                     ElseIf CurStud.Majors.Contains("Economics (B.S.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-ECON.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-ECON.docx"
 
                     ElseIf CurStud.Majors.Contains("Finance (B.S.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-FIN.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-FIN.docx"
 
                     ElseIf CurStud.Majors.Contains("General Business (B.S.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-GB.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-GB.docx"
 
                     ElseIf CurStud.Majors.Contains("International Business (B.S.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IB.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-IB.docx"
 
                     ElseIf CurStud.Majors.Contains("Information Systems (B.S.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-IS.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-IS.docx"
 
                     ElseIf CurStud.Majors.Contains("Management (B.S.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MGT.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-MGT.docx"
 
                     ElseIf CurStud.Majors.Contains("Marketing (B.S.)") Then
-                        EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Accepted-MKT.docx")
+                        EmailAttachment_FPath = Application.StartupPath + "\Templates\Accepted-MKT.docx"
 
                     End If
                 End If
             Else
-                EmailAttachment_FPath = Application.StartupPath.Replace("IS495-Project\bin\Debug", "Templates\Denied-Fall2018.docx")
+                EmailAttachment_FPath = Application.StartupPath + "\Templates\Denied-Fall2018.docx"
             End If
 
             mail.Body = txtBody.Text
